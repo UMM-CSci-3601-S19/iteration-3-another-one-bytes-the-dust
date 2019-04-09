@@ -28,7 +28,7 @@ import umm3601.vehicles.VehicleRequestHandler;
 
 public class Server {
 
-  private static final int serverPort=8080;
+  private static final int serverPort=4567;
 
   private static final String databaseName = "dev";
 
@@ -121,7 +121,7 @@ public class Server {
 
               clientSecrets.getDetails().getClientSecret(),
               authCode,
-              "https://morriscarpool.com").execute();
+              "http://localhost:9000").execute();
 
 
           // Get profile info from ID token
