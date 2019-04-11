@@ -32,7 +32,7 @@ export class RideListComponent implements OnInit {
   }
 
   // To use to delete past rides
-  static getCurrentTime(): string{
+  private getCurrentTime(): string{
     let today = new Date();
     let date = today.getMonth() + '-' + (today.getDate() + 1) + '-' + today.getFullYear();
     let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -43,7 +43,7 @@ export class RideListComponent implements OnInit {
 
   openDialog(): void {
     const newRide: Ride = {driver: this.appComponent.getUsername(), destination: '', origin: '', roundTrip: false, driving: false,
-      departureDate: '', departureTime: '', notes: ''};
+      departureDate: '', departureTime: '', creationTime: this.getCurrentTime(), notes: '', sortCreationTime: 'placeHolder'};
     const dialogRef = this.dialog.open(AddRideComponent, {
       width: '500px',
       data: {ride: newRide}

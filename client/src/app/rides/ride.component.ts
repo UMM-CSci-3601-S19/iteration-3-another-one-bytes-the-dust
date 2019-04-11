@@ -13,6 +13,7 @@ export class RideComponent implements OnInit {
   public ride: Ride = null;
   private destination: string;
   private roundTrip: boolean;
+  private creationTime: string;
 
 
   constructor(private rideListService: RideListService) {
@@ -45,6 +46,7 @@ export class RideComponent implements OnInit {
     this.roundTrip = roundTrip;
     this.subscribeToServiceForRoundTrip();
   }
+
 
   ngOnInit(): void {
     this.subscribeToServiceForDestination();

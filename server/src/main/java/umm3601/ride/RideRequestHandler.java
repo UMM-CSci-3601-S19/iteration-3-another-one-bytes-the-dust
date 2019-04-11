@@ -56,17 +56,20 @@ public class RideRequestHandler {
     System.err.println(" This is without the parse in adding " + newRide.getString("departureTime"));
     String departureTime = parseTime(newRide.getString("departureTime"));
     System.err.println(" This is with the parse in adding " + departureTime);
+    String creationTime = newRide.getString("creationTime");
+    System.out.println("Time of Creation Is = " + "creationTime");
     String notes = newRide.getString("notes");
 
     String sortingDate = newRide.getString("departureDate");
     String sortingTime = newRide.getString("departureTime");
 
     String sortDateTime =  parseDateSorting(sortingDate)+parseColon(sortingTime);
+    System.out.println("This is the sortDateTime = " + sortDateTime);
 
 
     System.err.println("Adding new ride [driver=" + driver + " destination=" + destination + " origin=" + origin + " roundTrip=" + roundTrip + " driving=" + driving
       + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + " sortDateTime=" + sortDateTime + ']');
-    return rideController.addNewRide(driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes,
+    return rideController.addNewRide(driver, destination, origin, roundTrip, driving, departureDate, departureTime, creationTime, notes,
       sortDateTime);
   }
 

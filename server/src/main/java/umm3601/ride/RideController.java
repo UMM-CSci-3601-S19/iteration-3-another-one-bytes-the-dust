@@ -109,6 +109,7 @@ public class RideController {
     System.err.println(" I got past roundTrip");
 
     Bson sortDateTime = ascending("sortDateTime");
+    Bson creationTime = ascending("creationTime");
     FindIterable<Document> matchingRides = rideCollection.find(filterDoc).sort(sortDateTime);
 
     return serializeIterable(matchingRides);
@@ -127,7 +128,7 @@ public class RideController {
   }
 
   String addNewRide(String driver, String destination, String origin, Boolean roundTrip, Boolean driving, String departureDate,
-                    String departureTime, String notes, String sortDateTime) {
+                    String departureTime, String creationTime, String notes, String sortDateTime/*, String sortCreationTime*/) {
 
     Document newRide = new Document();
     newRide.append("driver", driver);
@@ -137,16 +138,17 @@ public class RideController {
     newRide.append("driving", driving);
     newRide.append("departureDate", departureDate);
     newRide.append("departureTime", departureTime);
+    newRide.append("creationTime", creationTime);
     newRide.append("notes", notes);
     newRide.append("sortDateTime",sortDateTime);
-
+    //newRide.append("sortCreationTime", sortCreationTime);
 
     try {
       rideCollection.insertOne(newRide);
       ObjectId _id = newRide.getObjectId("_id");
       System.err.println("Successfully added new ride [_id=" + _id + ", driver=" + driver + ", destination=" + destination + ", origin=" + origin + ", roundTrip=" + roundTrip + ", driving="
-        + driving + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes +
-        " sortDateTime=" + sortDateTime + ']');
+        + driving + " departureDate=" + departureDate + " departureTime=" + departureTime + " creationTime= " + creationTime +
+        " notes=" + notes + " sortDateTime=" + sortDateTime + ']');
       return _id.toHexString();
     } catch (MongoException me) {
       me.printStackTrace();

@@ -41,6 +41,10 @@ export class RideListService {
     return this.http.get<Ride>(this.rideUrl + '/' + roundTrip.toString());
   }
 
+  getRideByCreationTime(creationTime: string): Observable<Ride> {
+    return this.http.get<Ride>(this.rideUrl + '/' + creationTime.toString());
+  }
+
 
 
   addNewRide(newRide: Ride): Observable<string> {
