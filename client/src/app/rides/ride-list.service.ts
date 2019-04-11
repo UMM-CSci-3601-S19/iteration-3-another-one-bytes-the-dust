@@ -15,12 +15,14 @@ export class RideListService {
 
   }
 
-  getRides(searchedDestination: string, searchedOrigin: string, searchedDate: string, searchedTime: string, searchedRoundTrip: boolean): Observable<Ride[]> {
+  getRides(searchedDestination: string, searchedOrigin: string, searchedDate: string, searchedTime: string, searchedRoundTrip: boolean, searchSort?: boolean): Observable<Ride[]> {
     console.log("searched Destination to getRides is " + searchedDestination);
     console.log("searched Origin to getRides is " + searchedOrigin);
     console.log("searched date to getRides is " + searchedDate);
     console.log("searched time to getRides is " + searchedTime);
     console.log("searched roundTrip to getRides is " + searchedRoundTrip);
+    console.log("searchedSort for getRides is " + searchSort);
+
 
     console.log("Ride Url before filter By PARAMETERS " + this.rideUrl);
 

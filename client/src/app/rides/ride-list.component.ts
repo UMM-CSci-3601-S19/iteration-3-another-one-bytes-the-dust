@@ -85,7 +85,7 @@ export class RideListComponent implements OnInit {
         console.log('The roundTrip passed in is ' + searchRide.roundTrip);
 
         this.rideListService.getRides(searchRide.destination,searchRide.origin,searchRide.departureDate,
-          searchRide.departureTime,searchRide.roundTrip).subscribe(
+          searchRide.departureTime,searchRide.roundTrip, ).subscribe(
           result => {
             this.searchedRides = result;
             console.log("The result is " + JSON.stringify(result));
@@ -190,11 +190,11 @@ export class RideListComponent implements OnInit {
   }
  */
 
-  refreshRides(searchDestination?: string,searchOrigin?: string,searchDate?: string,searchTime?: string,searchRoundTrip?: boolean): Observable<Ride[]> {
+  refreshRides(searchDestination?: string,searchOrigin?: string,searchDate?: string,searchTime?: string,searchRoundTrip?: boolean,searchSort?: boolean): Observable<Ride[]> {
     localStorage.setItem("searched", "false");
     localStorage.setItem("load", "false");
   if (searchDestination == null && searchOrigin == null) {
-      const rides: Observable<Ride[]> = this.rideListService.getRides('','','','', null);
+      const rides: Observable<Ride[]> = this.rideListService.getRides('','','','', null, null);
       rides.subscribe(
         rides => {
           this.rides = rides;
@@ -205,7 +205,7 @@ export class RideListComponent implements OnInit {
       return rides;
     }
     else {
-    const rides: Observable<Ride[]> = this.rideListService.getRides(searchDestination,searchOrigin,searchDate,searchTime,searchRoundTrip);
+    const rides: Observable<Ride[]> = this.rideListService.getRides(searchDestination,searchOrigin,searchDate,searchTime,searchRoundTrip, searchSort);
     rides.subscribe(
       rides => {
         this.rides = rides;
