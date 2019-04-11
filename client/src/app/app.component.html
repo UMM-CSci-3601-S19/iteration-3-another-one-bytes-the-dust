@@ -17,6 +17,9 @@
     <button mat-icon-button td-menu-button tdLayoutToggle *ngIf="appService.isSignedIn()">
       <mat-icon>menu</mat-icon>
     </button>
+    <button class="search" td-menu-button *ngIf="appService.isSignedIn()">
+       <mat-icon>search</mat-icon>
+    </button>
     <router-outlet></router-outlet>
   </td-layout-nav>
 </td-layout>

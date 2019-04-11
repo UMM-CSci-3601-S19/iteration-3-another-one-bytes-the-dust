@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
@@ -23,6 +24,7 @@ import {VehicleListComponent} from "./vehicles/vehicle-list.component";
 import {VehicleListService} from "./vehicles/vehicle-list.service";
 import {AddVehicleComponent} from "./vehicles/add-vehicle.component";
 
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 
@@ -44,6 +46,7 @@ import {MatButtonModule, MatOptionModule, MatSelectModule, MatTabsModule} from "
     MatCheckboxModule,
     MatDatepickerModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatSelectModule,
     MatOptionModule,
     MatTabsModule

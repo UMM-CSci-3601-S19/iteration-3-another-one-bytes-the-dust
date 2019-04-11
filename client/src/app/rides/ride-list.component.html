@@ -1,8 +1,11 @@
 <div class="ride-list" layout-gt-sm="row">
   <div flex-gt-sm="80" flex-offset-gt-sm="10">
-
+    <mat-button-toggle-group class="sortSelect">
+      <mat-button-toggle> Button </mat-button-toggle>
+    </mat-button-toggle-group>
         <br>
         <mat-card-content id="background" *ngIf="rides; else ridesError">
+
           <mat-card id="rides" #elem class="rides" [id]="ride.destination"
                                *ngFor="let ride of rides">
 
