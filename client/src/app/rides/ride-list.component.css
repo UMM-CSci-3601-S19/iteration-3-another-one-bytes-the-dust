@@ -1,6 +1,6 @@
 #background{
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   margin: 10px;
 }
 

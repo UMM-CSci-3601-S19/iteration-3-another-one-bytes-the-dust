@@ -108,8 +108,7 @@ public class RideController {
 
     System.err.println(" I got past roundTrip");
 
-    Bson sortDateTime = ascending("sortDateTime");
-    FindIterable<Document> matchingRides = rideCollection.find(filterDoc).sort(sortDateTime);
+    FindIterable<Document> matchingRides = rideCollection.find(filterDoc);
 
     return serializeIterable(matchingRides);
   }
