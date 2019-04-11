@@ -59,6 +59,9 @@
         <mat-checkbox id="roundTripCheckBox" name ="roundTripStatus" ngDefaultControl [(ngModel)]="data.ride.roundTrip" [ngModelOptions]="{standalone: true}" >Round Trip</mat-checkbox>
         <mat-checkbox name ="drivingStatus" ngDefaultControl [(ngModel)]="data.ride.driving" [ngModelOptions]="{standalone: true}" >Driving</mat-checkbox>
       </div>
+      <div>
+        <mat-checkbox id="noSmokingCheckBox" name ="noSmoking"
+      </div>
     </mat-dialog-content>
     <mat-dialog-actions layout="row">
       <button mat-raised-button id="confirmAddRideButton" [mat-dialog-close]="data.ride" type="button" color="primary"
