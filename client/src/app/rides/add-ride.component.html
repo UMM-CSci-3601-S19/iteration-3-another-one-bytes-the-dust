@@ -58,9 +58,9 @@
       <div>
         <mat-checkbox id="roundTripCheckBox" name ="roundTripStatus" ngDefaultControl [(ngModel)]="data.ride.roundTrip" [ngModelOptions]="{standalone: true}" >Round Trip</mat-checkbox>
         <mat-checkbox name ="drivingStatus" ngDefaultControl [(ngModel)]="data.ride.driving" [ngModelOptions]="{standalone: true}" >Driving</mat-checkbox>
-      </div>
-      <div>
-        <mat-checkbox id="noSmokingCheckBox" name ="noSmoking"
+        <mat-checkbox id="noSmokingCheckBox" name ="noSmoking" ngDefaultControl [(ngModel)]="data.ride.noSmoking" [ngModelOptions]="{standalone: true}" >No Smoking</mat-checkbox>
+        <mat-checkbox id="EcoFriendlyCheckBox" name="EcoFriendly" ngDefaultControl [(ngModel)]="data.ride.Eco" [ngModelOptions]="{standalone: true}" >Eco Friendly</mat-checkbox>
+        <mat-checkbox id="petFriendlyCheckBox" name="petFriendly" ngDefaultControl [(ngModel)]="data.ride.petFriendly" [ngModelOptions]="{standalone: true}" >Pet Friendly</mat-checkbox>
       </div>
     </mat-dialog-content>
     <mat-dialog-actions layout="row">

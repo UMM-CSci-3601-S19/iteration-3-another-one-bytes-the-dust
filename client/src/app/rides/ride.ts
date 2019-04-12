@@ -10,7 +10,7 @@ export interface Ride {
   driving?: boolean;
   notes: string;
   sortDateTime?: string;
-  NoSmoking: boolean;
+  noSmoking: boolean;
   Eco: boolean;
-  PetFriendly: boolean;
+  petFriendly: boolean;
 }
