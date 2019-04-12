@@ -44,6 +44,18 @@ export class RideListService {
     return this.http.get<Ride>(this.rideUrl + '/' + roundTrip.toString());
   }
 
+  getRideByNoSmoking(noSmoking: boolean): Observable<Ride> {
+    return this.http.get<Ride>(this.rideUrl + '/' + noSmoking.toString());
+  }
+
+  getRideByEco(Eco: boolean): Observable<Ride> {
+    return this.http.get<Ride>(this.rideUrl + '/' + Eco.toString());
+  }
+
+  getRideByPetFriendly(petFriendly: boolean): Observable<Ride> {
+    return this.http.get<Ride>(this.rideUrl + '/' + petFriendly.toString());
+  }
+
 
 
   addNewRide(newRide: Ride): Observable<string> {
