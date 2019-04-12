@@ -15,7 +15,10 @@ describe( 'Ride list service: ', () => {
       departureDate: '05-16-2007',
       departureTime: '6:00 PM',
       notes: 'I will be arriving in a flying motorcycle',
-      sortDateTime: '200705161800'
+      sortDateTime: '200705161800',
+      noSmoking: true,
+      Eco: true,
+      petFriendly: false,
     },
     {
       driver: 'Lucy',
@@ -25,7 +28,10 @@ describe( 'Ride list service: ', () => {
       departureDate: '07-13-2020',
       departureTime: '5:00 PM',
       notes: 'Dress for cold',
-      sortDateTime: '202007131700'
+      sortDateTime: '202007131700',
+      noSmoking: true,
+      Eco: true,
+      petFriendly: false,
     },
     {
       driver: 'Student',
@@ -35,7 +41,10 @@ describe( 'Ride list service: ', () => {
       departureDate: '08-02-2019',
       departureTime: '7:00 PM',
       notes: 'There is no escaping Morris',
-      sortDateTime: '201908021900'
+      sortDateTime: '201908021900',
+      noSmoking: true,
+      Eco: true,
+      petFriendly: false,
     }
   ];
 
@@ -68,7 +77,7 @@ describe( 'Ride list service: ', () => {
 
   it('getRides() calls api/rides', () => {
 
-    rideListService.getRides('','','','',null).subscribe(
+    rideListService.getRides('','','','',null, null, null, null).subscribe(
       rides => expect(rides).toBe(testRides)
     );
 
@@ -78,7 +87,7 @@ describe( 'Ride list service: ', () => {
   });
 
   it('getRides(rideDestination) adds appropriate param string to called URL', () => {
-    rideListService.getRides('r','','','',null).subscribe(
+    rideListService.getRides('r','','','',null,null,null,null).subscribe(
       rides => expect(rides).toEqual(rRides)
     );
 
@@ -98,7 +107,10 @@ describe( 'Ride list service: ', () => {
       departureDate: '10-16-2124',
       departureTime: '5:00 PM',
       notes: 'There is no escaping Morris',
-      sortDateTime: '212410160500'
+      sortDateTime: '212410160500',
+      noSmoking: true,
+      Eco: true,
+      petFriendly: false,
     };
 
     rideListService.addNewRide(newRide).subscribe(
@@ -151,7 +163,10 @@ describe( 'Ride list service: ', () => {
       departureDate: '10-16-2124',
       departureTime: '5:00 PM',
       notes: 'There is no escaping Morris',
-      sortDateTime: '212410160500'
+      sortDateTime: '212410160500',
+      noSmoking: true,
+      Eco: true,
+      petFriendly: false,
     };
 
     rideListService.editRide(editedRide).subscribe(
@@ -176,7 +191,10 @@ describe( 'Ride list service: ', () => {
       roundTrip: false,
       departureTime: '6:00 AM',
       departureDate: '12-13-2019',
-      notes: 'There is no escaping the lab'
+      notes: 'There is no escaping the lab',
+      noSmoking: true,
+      Eco: true,
+      petFriendly: false,
     };
 
     rideListService.deleteRide(deletedRide._id.toString()).subscribe(
