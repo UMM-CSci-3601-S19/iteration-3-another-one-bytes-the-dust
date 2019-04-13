@@ -1,6 +1,11 @@
 <div layout-gt-sm="row">
   <div flex-gt-sm="80" flex-offset-gt-sm="10">
 
+    <mat-tab-group>
+      <mat-tab label="All"></mat-tab>
+      <mat-tab label="Drivers"><mat-icon class="drivingIcon" color="driver">directions_car</mat-icon></mat-tab>
+      <mat-tab label="Riders"><mat-icon class="drivingIcon" color="rider"> directions_walk</mat-icon></mat-tab>
+    </mat-tab-group>
         <br>
         <mat-card-content id="background" *ngIf="rides; else ridesError">
           <mat-card id="rides" #elem class="rides" [id]="ride.destination"

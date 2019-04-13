@@ -12,6 +12,7 @@ export class RideComponent implements OnInit {
 
   public ride: Ride = null;
   private destination: string;
+  private driving: boolean;
   private roundTrip: boolean;
   private noSmoking: boolean;
   private Eco: boolean;
@@ -22,12 +23,21 @@ export class RideComponent implements OnInit {
   }
 
   private subscribeToServiceForDestination() {
-      this.rideListService.getRideByDestination(this.destination).subscribe(
-        ride => this.ride = ride,
-        err => {
-          console.log(err);
-        }
-      );
+    this.rideListService.getRideByDestination(this.destination).subscribe(
+      ride => this.ride = ride,
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  private subscribeToServiceForDriving(){
+    this.rideListService.getRideByDriving(this.driving).subscribe(
+      ride => this.ride = ride,
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   private subscribeToServiceForRoundTrip() {

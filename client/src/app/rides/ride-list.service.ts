@@ -15,11 +15,14 @@ export class RideListService {
 
   }
 
-  getRides(searchedDestination: string, searchedOrigin: string, searchedDate: string, searchedTime: string, searchedRoundTrip: boolean, searchedNoSmoking: boolean, searchedEco: boolean, searchedPetFriendly: boolean): Observable<Ride[]> {
+  getRides(searchedDestination: string, searchedOrigin: string, searchedDate: string, searchedTime: string,
+           searchedDriving: boolean, searchedRoundTrip: boolean, searchedNoSmoking: boolean, searchedEco: boolean,
+           searchedPetFriendly: boolean): Observable<Ride[]> {
     console.log("searched Destination to getRides is " + searchedDestination);
     console.log("searched Origin to getRides is " + searchedOrigin);
     console.log("searched date to getRides is " + searchedDate);
     console.log("searched time to getRides is " + searchedTime);
+    console.log("searched driving to getRides is " + searchedDriving);
     console.log("searched roundTrip to getRides is " + searchedRoundTrip);
     console.log("searched noSmoking to getRides is " + searchedNoSmoking);
     console.log("searched Eco to getRides is " + searchedEco);
@@ -27,7 +30,8 @@ export class RideListService {
 
     console.log("Ride Url before filter By PARAMETERS " + this.rideUrl);
 
-    this.filterByParameters(searchedDestination,searchedOrigin,searchedDate,searchedTime,searchedRoundTrip, searchedNoSmoking, searchedEco, searchedPetFriendly);
+    this.filterByParameters(searchedDestination,searchedOrigin,searchedDate,searchedTime,searchedDriving,
+      searchedRoundTrip, searchedNoSmoking, searchedEco, searchedPetFriendly);
 
     console.log("Ride Url after filter By PARAMETERS " + this.rideUrl);
 
@@ -38,6 +42,10 @@ export class RideListService {
   //This could be changed into a getRideById if we decide to ad id as a field
   getRideByDestination(destination: string): Observable<Ride> {
     return this.http.get<Ride>(this.rideUrl + '/' + destination);
+  }
+
+  getRideByDriving(driving: boolean): Observable<Ride> {
+    return this.http.get<Ride>(this.rideUrl + '/' + driving);
   }
 
   getRideByRoundTrip(roundTrip: boolean): Observable<Ride> {
@@ -135,30 +143,36 @@ export class RideListService {
     else {return false;}
   }
 
-  filterByParameters(rideDestination: string, rideOrigin: string, rideDate: string, rideTime: string, rideRoundTrip: boolean, rideNoSmoking: boolean, rideEco: boolean, ridePetFriendly: boolean): void {
+  filterByParameters(rideDestination: string, rideOrigin: string, rideDate: string, rideTime: string, rideDriving: boolean, rideRoundTrip: boolean, rideNoSmoking: boolean, rideEco: boolean, ridePetFriendly: boolean): void {
 
     // Filtering by destination
     if (!(rideDestination == null || rideDestination === '')) {
       if (this.parameterPresent('destination=')) {
         // there was a previous search by destination that we need to clear
         this.removeParameter('destination=');
+        console.log(this.rideUrl + " --- 1");
       }
       if (this.rideUrl.indexOf('?') !== -1) {
         // there was already some information passed in this url
-        this.rideUrl += 'destination=' + rideDestination + '&';
+        this.rideUrl += '?destination=' + rideDestination + '&';
+        console.log(this.rideUrl + " --- 2");
       } else {
         // this was the first bit of information to pass in the url
         this.rideUrl += '?destination=' + rideDestination + '&';
+        console.log(this.rideUrl + " --- 3");
       }
     } else {
       // there was nothing in the box to put onto the URL... reset
       if (this.parameterPresent('destination=')) {
         let start = this.rideUrl.indexOf('destination=');
         const end = this.rideUrl.indexOf('&', start);
+        console.log(this.rideUrl + " --- 4");
         if (this.rideUrl.substring(start - 1, start) === '?') {
           start = start - 1;
+          console.log(this.rideUrl + " --- 5");
         }
         this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
+        console.log(this.rideUrl + " --- 6");
       }
     }
 
@@ -230,6 +244,31 @@ export class RideListService {
       // there was nothing in the box to put onto the URL... reset
       if (this.parameterPresent('departureTime=')) {
         let start = this.rideUrl.indexOf('departureTime=');
+        const end = this.rideUrl.indexOf('&', start);
+        if (this.rideUrl.substring(start - 1, start) === '?') {
+          start = start - 1;
+        }
+        this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
+      }
+    }
+
+    // Filtering by roundTrip
+    if (!(rideDriving == null)) {
+      if (this.parameterPresent('driving=')) {
+        // there was a previous search by destination that we need to clear
+        this.removeParameter('driving=');
+      }
+      if (this.rideUrl.indexOf('?') !== -1) {
+        // there was already some information passed in this url
+        this.rideUrl += 'driving=' + rideDriving + '&';
+      } else {
+        // this was the first bit of information to pass in the url
+        this.rideUrl += '?driving=' + rideDriving + '&';
+      }
+    } else {
+      // there was nothing in the box to put onto the URL... reset
+      if (this.parameterPresent('driving=')) {
+        let start = this.rideUrl.indexOf('driving=');
         const end = this.rideUrl.indexOf('&', start);
         if (this.rideUrl.substring(start - 1, start) === '?') {
           start = start - 1;

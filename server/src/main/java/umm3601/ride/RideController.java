@@ -107,8 +107,44 @@ public class RideController {
     }
 
     System.err.println(" I got past roundTrip");
+
+    if (queryParams.containsKey("noSmoking")) {
+      String targetContent = (queryParams.get("noSmoking")[0]);
+      System.err.println("This is the targetContent " + targetContent);
+      Boolean targetBoolean = Boolean.parseBoolean(targetContent);
+      System.err.println("This is the targetBoolean " + targetBoolean);
+      Document contentRegQuery = new Document();
+      contentRegQuery.append("$regex", targetContent);
+      contentRegQuery.append("$options", "i");
+      filterDoc = filterDoc.append("noSmoking", contentRegQuery);
+    }
+
     System.err.println(" I got past noSmoking");
+
+    if (queryParams.containsKey("Eco")) {
+      String targetContent = (queryParams.get("Eco")[0]);
+      System.err.println("This is the targetContent " + targetContent);
+      Boolean targetBoolean = Boolean.parseBoolean(targetContent);
+      System.err.println("This is the targetBoolean " + targetBoolean);
+      Document contentRegQuery = new Document();
+      contentRegQuery.append("$regex", targetContent);
+      contentRegQuery.append("$options", "i");
+      filterDoc = filterDoc.append("Eco", contentRegQuery);
+    }
+
     System.err.println(" I got past Eco");
+
+    if (queryParams.containsKey("petFriendly")) {
+      String targetContent = (queryParams.get("petFriendly")[0]);
+      System.err.println("This is the targetContent " + targetContent);
+      Boolean targetBoolean = Boolean.parseBoolean(targetContent);
+      System.err.println("This is the targetBoolean " + targetBoolean);
+      Document contentRegQuery = new Document();
+      contentRegQuery.append("$regex", targetContent);
+      contentRegQuery.append("$options", "i");
+      filterDoc = filterDoc.append("petFriendly", contentRegQuery);
+    }
+
     System.err.println(" I got past petFriendly");
 
     FindIterable<Document> matchingRides = rideCollection.find(filterDoc);
