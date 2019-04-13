@@ -15,16 +15,19 @@ export class RideListService {
 
   }
 
-  getRides(searchedDestination: string, searchedOrigin: string, searchedDate: string, searchedTime: string, searchedRoundTrip: boolean): Observable<Ride[]> {
+  getRides(searchedDestination: string, searchedOrigin: string, searchedDate: string, searchedTime: string, searchedRoundTrip: boolean, searchedNoSmoking: boolean, searchedEco: boolean, searchedPetFriendly: boolean): Observable<Ride[]> {
     console.log("searched Destination to getRides is " + searchedDestination);
     console.log("searched Origin to getRides is " + searchedOrigin);
     console.log("searched date to getRides is " + searchedDate);
     console.log("searched time to getRides is " + searchedTime);
     console.log("searched roundTrip to getRides is " + searchedRoundTrip);
+    console.log("searched noSmoking to getRides is " + searchedNoSmoking);
+    console.log("searched Eco to getRides is " + searchedEco);
+    console.log("searched petFriendly to getRides is " + searchedPetFriendly);
 
     console.log("Ride Url before filter By PARAMETERS " + this.rideUrl);
 
-    this.filterByParameters(searchedDestination,searchedOrigin,searchedDate,searchedTime,searchedRoundTrip);
+    this.filterByParameters(searchedDestination,searchedOrigin,searchedDate,searchedTime,searchedRoundTrip, searchedNoSmoking, searchedEco, searchedPetFriendly);
 
     console.log("Ride Url after filter By PARAMETERS " + this.rideUrl);
 
@@ -39,6 +42,18 @@ export class RideListService {
 
   getRideByRoundTrip(roundTrip: boolean): Observable<Ride> {
     return this.http.get<Ride>(this.rideUrl + '/' + roundTrip.toString());
+  }
+
+  getRideByNoSmoking(noSmoking: boolean): Observable<Ride> {
+    return this.http.get<Ride>(this.rideUrl + '/' + noSmoking.toString());
+  }
+
+  getRideByEco(Eco: boolean): Observable<Ride> {
+    return this.http.get<Ride>(this.rideUrl + '/' + Eco.toString());
+  }
+
+  getRideByPetFriendly(petFriendly: boolean): Observable<Ride> {
+    return this.http.get<Ride>(this.rideUrl + '/' + petFriendly.toString());
   }
 
 
@@ -120,7 +135,7 @@ export class RideListService {
     else {return false;}
   }
 
-  filterByParameters(rideDestination: string, rideOrigin: string, rideDate: string, rideTime: string, rideRoundTrip: boolean): void {
+  filterByParameters(rideDestination: string, rideOrigin: string, rideDate: string, rideTime: string, rideRoundTrip: boolean, rideNoSmoking: boolean, rideEco: boolean, ridePetFriendly: boolean): void {
 
     // Filtering by destination
     if (!(rideDestination == null || rideDestination === '')) {
@@ -240,6 +255,81 @@ export class RideListService {
       // there was nothing in the box to put onto the URL... reset
       if (this.parameterPresent('roundTrip=')) {
         let start = this.rideUrl.indexOf('roundTrip=');
+        const end = this.rideUrl.indexOf('&', start);
+        if (this.rideUrl.substring(start - 1, start) === '?') {
+          start = start - 1;
+        }
+        this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
+      }
+    }
+
+    // Filtering by noSmoking
+    if (!(rideNoSmoking == null)) {
+      if (this.parameterPresent('noSmoking=')) {
+        // there was a previous search by destination that we need to clear
+        this.removeParameter('noSmoking=');
+      }
+      if (this.rideUrl.indexOf('?') !== -1) {
+        // there was already some information passed in this url
+        this.rideUrl += 'noSmoking=' + rideNoSmoking + '&';
+      } else {
+        // this was the first bit of information to pass in the url
+        this.rideUrl += '?noSmoking=' + rideNoSmoking + '&';
+      }
+    } else {
+      // there was nothing in the box to put onto the URL... reset
+      if (this.parameterPresent('noSmoking=')) {
+        let start = this.rideUrl.indexOf('noSmoking=');
+        const end = this.rideUrl.indexOf('&', start);
+        if (this.rideUrl.substring(start - 1, start) === '?') {
+          start = start - 1;
+        }
+        this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
+      }
+    }
+
+    // Filtering by EcoFriendly
+    if (!(rideEco == null)) {
+      if (this.parameterPresent('Eco=')) {
+        // there was a previous search by destination that we need to clear
+        this.removeParameter('Eco=');
+      }
+      if (this.rideUrl.indexOf('?') !== -1) {
+        // there was already some information passed in this url
+        this.rideUrl += 'Eco=' + rideEco + '&';
+      } else {
+        // this was the first bit of information to pass in the url
+        this.rideUrl += '?Eco=' + rideEco + '&';
+      }
+    } else {
+      // there was nothing in the box to put onto the URL... reset
+      if (this.parameterPresent('Eco=')) {
+        let start = this.rideUrl.indexOf('Eco=');
+        const end = this.rideUrl.indexOf('&', start);
+        if (this.rideUrl.substring(start - 1, start) === '?') {
+          start = start - 1;
+        }
+        this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
+      }
+    }
+
+    // Filtering by petFriendly
+    if (!(ridePetFriendly == null)) {
+      if (this.parameterPresent('petFriendly=')) {
+        // there was a previous search by destination that we need to clear
+        this.removeParameter('petFriendly=');
+      }
+      if (this.rideUrl.indexOf('?') !== -1) {
+        // there was already some information passed in this url
+        this.rideUrl += 'petFriendly=' + ridePetFriendly + '&';
+      } else {
+        // this was the first bit of information to pass in the url
+        this.rideUrl += '?petFriendly=' + ridePetFriendly + '&';
+      }
+    } else {
+      // there was nothing in the box to put onto the URL... reset
+      if (this.parameterPresent('petFriendly=')) {
+        let start = this.rideUrl.indexOf('petFriendly=');
         const end = this.rideUrl.indexOf('&', start);
         if (this.rideUrl.substring(start - 1, start) === '?') {
           start = start - 1;

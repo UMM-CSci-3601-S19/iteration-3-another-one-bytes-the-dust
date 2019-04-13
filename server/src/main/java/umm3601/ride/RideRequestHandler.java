@@ -62,12 +62,15 @@ public class RideRequestHandler {
     String sortingTime = newRide.getString("departureTime");
 
     String sortDateTime =  parseDateSorting(sortingDate)+parseColon(sortingTime);
+    Boolean noSmoking = newRide.getBoolean("noSmoking");
+    Boolean Eco = newRide.getBoolean("Eco");
+    Boolean petFriendly = newRide.getBoolean("petFriendly");
 
 
     System.err.println("Adding new ride [driver=" + driver + " destination=" + destination + " origin=" + origin + " roundTrip=" + roundTrip + " driving=" + driving
       + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + " sortDateTime=" + sortDateTime + ']');
     return rideController.addNewRide(driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes,
-      sortDateTime);
+      sortDateTime, noSmoking, Eco, petFriendly);
   }
 
   public Boolean updateRide(Request req, Response res) {
@@ -92,10 +95,13 @@ public class RideRequestHandler {
     System.err.println(" This is without the parse in editing " + sortingTime);
 
     String sortDateTime =  parseDateSorting(sortingDate)+parseColon(sortingTime);
+    Boolean noSmoking = editRide.getBoolean("noSmoking");
+    Boolean Eco = editRide.getBoolean("Eco");
+    Boolean petFriendly = editRide.getBoolean("petFriendly");
 
     System.err.println("Editing ride [id=" + id + " driver=" + driver + " destination=" + destination + " origin=" + origin + " roundTrip=" + roundTrip + " driving=" + driving
       + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + " sortDateTime=" + sortDateTime + ']');
-    return rideController.updateRide(id, driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes, sortDateTime);
+    return rideController.updateRide(id, driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes, sortDateTime, noSmoking, Eco, petFriendly);
   }
 
   public Boolean deleteRide(Request req, Response res){
