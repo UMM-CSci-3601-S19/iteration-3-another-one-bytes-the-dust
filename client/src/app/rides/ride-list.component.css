@@ -33,6 +33,13 @@
   font-size: larger;
 }
 
+.seats {
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+
+}
+
 .bottomInfo{
   display: flex;
   flex-direction: row;
