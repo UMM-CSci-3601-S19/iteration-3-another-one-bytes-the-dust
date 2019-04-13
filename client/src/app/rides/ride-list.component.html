@@ -11,7 +11,7 @@
               </button>
               <mat-menu #menu="matMenu" >
                 <button mat-menu-item (click)="openEditDialog(ride._id, ride.driver, ride.destination,
-                ride.origin, ride.roundTrip, ride.driving, ride.departureDate, ride.departureTime, ride.notes)" >
+                ride.origin, ride.roundTrip, ride.driving, ride.departureDate, ride.departureTime, ride.notes, ride.seatsAvailable)" >
 
                   <span>Edit Ride</span>
                 </button>
@@ -33,7 +33,9 @@
               <p>{{ride.driver}}</p>
             <div class="bottomInfo">
               <div>{{ride.departureDate}} at {{ride.departureTime}}</div>
+              <small class="seats">{{ride.seatsAvailable}} Seats Available</small>
               <div class=ride.roundTrip ><mat-icon *ngIf="ride.roundTrip">repeat</mat-icon></div>
+
             </div>
             </mat-card-content>
 

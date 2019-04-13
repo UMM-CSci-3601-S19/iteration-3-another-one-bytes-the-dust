@@ -75,8 +75,8 @@ export class AddRideComponent implements OnInit {
         Validators.pattern('^[?\'"></!@#$%^&*()_+= a-zA-Z0-9:._-]+$')
       ])),
       seatsAvailable: new FormControl('seatsAvailable', Validators.compose([
-        Validators.minLength(2),
-        Validators.maxLength(12),
+        Validators.min(2),
+        Validators.max(12),
         Validators.pattern('^[0-9]?'),
       ]))
     })
