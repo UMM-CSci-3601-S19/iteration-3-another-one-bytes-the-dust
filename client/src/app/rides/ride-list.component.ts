@@ -43,7 +43,7 @@ export class RideListComponent implements OnInit {
 
   openDialog(): void {
     const newRide: Ride = {driver: this.appComponent.getUsername(), destination: '', origin: '', roundTrip: false, driving: false,
-      departureDate: '', departureTime: '', notes: ''};
+      departureDate: '', departureTime: '', notes: '', noSmoking: false, Eco: false, petFriendly: false, seatsAvailable: 0};
     const dialogRef = this.dialog.open(AddRideComponent, {
       width: '500px',
       data: {ride: newRide}
@@ -69,7 +69,7 @@ export class RideListComponent implements OnInit {
   openSearchDialog(): void {
 
     const searchRide: Ride = {driver: '', destination: '', origin: '', roundTrip: null, driving: false,
-      departureDate: '', departureTime: '', notes: ''};
+      departureDate: '', departureTime: '', notes: '', noSmoking: false, Eco: false, petFriendly: false, seatsAvailable: 0};
 
     const dialogRef = this.dialog.open(SearchRideComponent, {
       width: '500px',
@@ -102,7 +102,10 @@ export class RideListComponent implements OnInit {
     });
   }
 
-  openEditDialog(currentId: object,currentDriver: string, currentDestination: string, currentOrigin: string, currentRoundTrip: boolean, currentDriving: boolean, currentDepartureDate: string, currentDepartureTime: string, currentNotes: string): void {
+  openEditDialog(currentId: object,currentDriver: string, currentDestination: string, currentOrigin: string,
+                 currentRoundTrip: boolean, currentDriving: boolean, currentDepartureDate: string,
+                 currentDepartureTime: string, currentNotes: string, currentNoSmoking: boolean, currentEco: boolean,
+                 currentPetFriendly: boolean, currentSeatsAvailable: number): void {
     const currentRide: Ride = {
       _id: currentId,
       driver: this.appComponent.getUsername(),
@@ -112,7 +115,11 @@ export class RideListComponent implements OnInit {
       driving: currentDriving,
       departureDate: currentDepartureDate,
       departureTime: currentDepartureTime,
-      notes: currentNotes
+      notes: currentNotes,
+      noSmoking: currentNoSmoking,
+      Eco: currentEco,
+      petFriendly: currentPetFriendly,
+      seatsAvailable: currentSeatsAvailable
     };
 
     const dialogRef = this.dialog.open(EditRideComponent, {

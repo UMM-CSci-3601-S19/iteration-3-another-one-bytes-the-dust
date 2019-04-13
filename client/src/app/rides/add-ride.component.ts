@@ -39,7 +39,12 @@ export class AddRideComponent implements OnInit {
     'notes': [
       {type: 'minlength', message: 'Notes must be at least 2 characters long'},
       {type: 'maxlength', message: 'Notes cannot be more than 50 characters long'},
-      {type: 'pattern', message: 'notes must contain only english and certain symbols'}
+      {type: 'pattern', message: 'notes must contain only english and certain symbols'},
+    ],
+    'seatsAvailable':[
+      {type: 'minlength', message: 'Must have at least 1 seat available'},
+      {type: 'maxlength', message: 'Must not have more than 12 seats'},
+      {type: 'pattern', message: 'Must contain only numbers'},
     ]
   };
 
@@ -68,8 +73,12 @@ export class AddRideComponent implements OnInit {
         Validators.minLength(2),
         Validators.maxLength(50),
         Validators.pattern('^[?\'"></!@#$%^&*()_+= a-zA-Z0-9:._-]+$')
+      ])),
+      seatsAvailable: new FormControl('seatsAvailable', Validators.compose([
+        Validators.minLength(2),
+        Validators.maxLength(12),
+        Validators.pattern('^[0-9]?'),
       ]))
-
     })
   }
 
