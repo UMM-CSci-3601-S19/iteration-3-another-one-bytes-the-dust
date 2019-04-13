@@ -42,9 +42,9 @@ export class AddRideComponent implements OnInit {
       {type: 'pattern', message: 'notes must contain only english and certain symbols'},
     ],
     'seatsAvailable':[
-      {type: 'minlength', message: 'Must have at least 1 seat available'},
-      {type: 'maxlength', message: 'Must not have more than 12 seats'},
-      {type: 'pattern', message: 'Must contain only numbers'},
+      {type: 'min', message: 'Must have at least 1 seat available'},
+      {type: 'max', message: 'Must not have more than 12 seats'},
+      {type: 'pattern', message: 'Must contain only numbers'}
     ]
   };
 
@@ -75,9 +75,9 @@ export class AddRideComponent implements OnInit {
         Validators.pattern('^[?\'"></!@#$%^&*()_+= a-zA-Z0-9:._-]+$')
       ])),
       seatsAvailable: new FormControl('seatsAvailable', Validators.compose([
-        Validators.min(2),
+        Validators.min(1),
         Validators.max(12),
-        Validators.pattern('^[0-9]?'),
+        Validators.pattern('^[0-9]+')
       ]))
     })
   }
