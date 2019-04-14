@@ -30,8 +30,13 @@
                   <div class="card-top-left-icon" *ngIf="ride.driving; then thenBlock else elseBlock">ride.driving</div>
                   <ng-template #thenBlock><mat-icon>directions_car</mat-icon></ng-template>
                   <ng-template #elseBlock><mat-icon>directions_walk</mat-icon></ng-template>
+                  //Origin Display
                   <div class="originDestinationFields">{{ride.origin}}</div>
-                  <div><mat-icon class="arrow">forward</mat-icon></div>
+                  //Arrow icon
+                  <div><mat-icon class="arrow" *ngIf="ride.roundTrip; then thenBlock else elseBlock">ride.roundTrip</mat-icon></div>
+                  <ng-template #thenBlock><mat-icon>directions_car</mat-icon></ng-template>
+                  <ng-template #elseBlock><mat-icon>directions_walk</mat-icon></ng-template>
+                  //Destination Display
                   <div class="originDestinationFields">{{ride.destination}}</div>
                 </div>
               </mat-card-title>
