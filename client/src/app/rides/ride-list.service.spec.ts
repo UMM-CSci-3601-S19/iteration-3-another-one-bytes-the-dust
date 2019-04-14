@@ -19,6 +19,7 @@ describe( 'Ride list service: ', () => {
       noSmoking: true,
       Eco: true,
       petFriendly: false,
+      seatsAvailable: 4,
     },
     {
       driver: 'Lucy',
@@ -32,6 +33,7 @@ describe( 'Ride list service: ', () => {
       noSmoking: true,
       Eco: true,
       petFriendly: false,
+      seatsAvailable: 7,
     },
     {
       driver: 'Student',
@@ -45,6 +47,7 @@ describe( 'Ride list service: ', () => {
       noSmoking: true,
       Eco: true,
       petFriendly: false,
+      seatsAvailable: 6,
     }
   ];
 
@@ -111,6 +114,7 @@ describe( 'Ride list service: ', () => {
       noSmoking: true,
       Eco: true,
       petFriendly: false,
+      seatsAvailable: 8,
     };
 
     rideListService.addNewRide(newRide).subscribe(
@@ -167,6 +171,7 @@ describe( 'Ride list service: ', () => {
       noSmoking: true,
       Eco: true,
       petFriendly: false,
+      seatsAvailable: 2,
     };
 
     rideListService.editRide(editedRide).subscribe(
@@ -195,6 +200,7 @@ describe( 'Ride list service: ', () => {
       noSmoking: true,
       Eco: true,
       petFriendly: false,
+      seatsAvailable: 6,
     };
 
     rideListService.deleteRide(deletedRide._id.toString()).subscribe(
