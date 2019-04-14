@@ -25,7 +25,7 @@ describe('Ride component', () => {
           roundTrip: true,
           departureDate: '05-16-2007',
           departureTime: '6:00 PM',
-          driving: false,
+          driving: true,
           notes: 'I will be arriving in a flying motorcycle',
           sortDateTime: '200705161800',
           noSmoking: true,
@@ -39,7 +39,7 @@ describe('Ride component', () => {
           roundTrip: true,
           departureDate: '07-13-2020',
           departureTime: '5:00 PM',
-          driving: false,
+          driving: true,
           notes: 'Dress for cold',
           sortDateTime: '202007131700',
           noSmoking: true,
@@ -141,7 +141,7 @@ describe('Ride component', () => {
 
   it('returns undefined for Canada', () => {
     rideComponent.setDestination('Canada');
-    expect(rideComponent.ride)/*.not*/.toBeDefined();
+    expect(rideComponent.ride).toBeUndefined();
   });
 
 
