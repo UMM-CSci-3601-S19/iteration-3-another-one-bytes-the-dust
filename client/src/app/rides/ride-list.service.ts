@@ -143,7 +143,8 @@ export class RideListService {
     else {return false;}
   }
 
-  filterByParameters(rideDestination: string, rideOrigin: string, rideDate: string, rideTime: string, rideDriving: boolean, rideRoundTrip: boolean, rideNoSmoking: boolean, rideEco: boolean, ridePetFriendly: boolean): void {
+  filterByParameters(rideDestination: string, rideOrigin: string, rideDate: string, rideTime: string, rideDriving: boolean, rideRoundTrip: boolean, rideNoSmoking: boolean, rideEco: boolean,
+                     ridePetFriendly: boolean): void {
 
     // Filtering by destination
     if (!(rideDestination == null || rideDestination === '')) {
@@ -185,7 +186,7 @@ export class RideListService {
       }
       if (this.rideUrl.indexOf('?') !== -1) {
         // there was already some information passed in this url
-        this.rideUrl += '?origin=' + rideOrigin.replace(/\s/g, "%20") + '&';
+        this.rideUrl += 'origin=' + rideOrigin.replace(/\s/g, "%20") + '&';
       } else {
         // this was the first bit of information to pass in the url
         this.rideUrl += '?origin=' + rideOrigin.replace(/\s/g, "%20") + '&';

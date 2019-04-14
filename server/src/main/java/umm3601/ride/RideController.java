@@ -42,6 +42,7 @@ public class RideController {
     }
   }
 
+  // Method for appending the filterDoc in getRides for strings
   private Document appendFilterDocString(Map<String, String[]> appendParams, String targetString, Document appendDoc){
     String targetContent = (appendParams.get(targetString)[0]);
     Document contentRegQuery = new Document();
@@ -50,6 +51,7 @@ public class RideController {
     appendDoc = appendDoc.append(targetString, contentRegQuery);
     return appendDoc;
   }
+  // Method for appending the filterDoc in getRides for booleans
   private Document appendFilterDocBoolean(Map<String, String[]> appendParams, String appendBoolean, Document appendDoc){
     String targetContent = (appendParams.get(appendBoolean)[0]);
     System.err.println("This is the targetContent " + targetContent);

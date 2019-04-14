@@ -27,6 +27,9 @@
               </mat-menu>
               <mat-card-title flex>
                 <div id="originAndDestinationContainer">
+                  <div class="card-top-left-icon" *ngIf="ride.driving; then thenBlock else elseBlock">ride.driving</div>
+                  <ng-template #thenBlock><mat-icon>directions_car</mat-icon></ng-template>
+                  <ng-template #elseBlock><mat-icon>directions_walk</mat-icon></ng-template>
                   <div class="originDestinationFields">{{ride.origin}}</div>
                   <div><mat-icon class="arrow">forward</mat-icon></div>
                   <div class="originDestinationFields">{{ride.destination}}</div>
