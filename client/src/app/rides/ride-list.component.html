@@ -1,11 +1,6 @@
 <div layout-gt-sm="row">
   <div flex-gt-sm="80" flex-offset-gt-sm="10">
 
-    <mat-tab-group>
-      <mat-tab label="All"></mat-tab>
-      <mat-tab label="Drivers"><mat-icon class="drivingIcon" color="driver">directions_car</mat-icon></mat-tab>
-      <mat-tab label="Riders"><mat-icon class="drivingIcon" color="rider"> directions_walk</mat-icon></mat-tab>
-    </mat-tab-group>
         <br>
         <mat-card-content id="background" *ngIf="rides; else ridesError">
           <mat-card id="rides" #elem class="rides" [id]="ride.destination"
@@ -35,8 +30,8 @@
                   <div class="originDestinationFields">{{ride.origin}}</div>
                   <!--//Arrow icon-->
                   <div class="arrow" *ngIf="ride.roundTrip; then thenArrow else elseArrow">ride.roundTrip</div>
-                  <ng-template #thenArrow><mat-icon>trending_flat</mat-icon></ng-template>
-                  <ng-template #elseArrow><mat-icon>swap_horiz</mat-icon></ng-template>
+                  <ng-template #thenArrow><mat-icon>swap_horiz</mat-icon></ng-template>
+                  <ng-template #elseArrow><mat-icon>trending_flat</mat-icon></ng-template>
                   <!--//Destination Display-->
                   <div class="originDestinationFields">{{ride.destination}}</div>
                 </div>

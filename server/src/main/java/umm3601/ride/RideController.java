@@ -64,6 +64,7 @@ public class RideController {
     return appendDoc;
   }
 
+  //Method for getting Rides from the database
   String getRides(Map<String, String[]> queryParams){
     Document filterDoc = new Document();
 
@@ -73,14 +74,12 @@ public class RideController {
       String key = "destination";
       filterDoc = appendFilterDocString(queryParams, key, filterDoc);
     }
-
     System.err.println(" I got past destination");
 
     if (queryParams.containsKey("origin")) {
       String key = "origin";
       filterDoc = appendFilterDocString(queryParams, key, filterDoc);
     }
-
     System.err.println(" I got past origin");
 
     if (queryParams.containsKey("departureDate")) {
@@ -95,48 +94,36 @@ public class RideController {
       filterDoc = filterDoc.append("departureDate", contentRegQuery);
       System.err.println(" this is the filter Doc in date " + contentRegQuery);
     }
-
     System.err.println(" I got past departureDate");
 
     if (queryParams.containsKey("departureTime")) {
       String key = "departureTime";
       filterDoc = appendFilterDocString(queryParams, key, filterDoc);
     }
-
     System.err.println(" I got past departureTime");
 
     if (queryParams.containsKey("roundTrip")) {
-      String targetContent = (queryParams.get("roundTrip")[0]);
-      System.err.println("This is the targetContent " + targetContent);
-      Boolean targetBoolean = Boolean.parseBoolean(targetContent);
-      System.err.println("This is the targetBoolean " + targetBoolean);
-      Document contentRegQuery = new Document();
-      contentRegQuery.append("$regex", targetContent);
-      contentRegQuery.append("$options", "i");
-      filterDoc = filterDoc.append("roundTrip", contentRegQuery);
+      String key = "roundTrip";
+      filterDoc = appendFilterDocBoolean(queryParams, key, filterDoc);
     }
-
     System.err.println(" I got past roundTrip");
 
     if (queryParams.containsKey("noSmoking")) {
       String key = "noSmoking";
       filterDoc = appendFilterDocBoolean(queryParams, key, filterDoc);
     }
-
     System.err.println(" I got past noSmoking");
 
     if (queryParams.containsKey("Eco")) {
       String key = "Eco";
       filterDoc = appendFilterDocBoolean(queryParams, key, filterDoc);
     }
-
     System.err.println(" I got past Eco");
 
     if (queryParams.containsKey("petFriendly")) {
       String key = "petFriendly";
       filterDoc = appendFilterDocBoolean(queryParams, key, filterDoc);
     }
-
     System.err.println(" I got past petFriendly");
 
     FindIterable<Document> matchingRides = rideCollection.find(filterDoc);

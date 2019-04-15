@@ -44,8 +44,12 @@ export class RideListService {
     return this.http.get<Ride>(this.rideUrl + '/' + destination);
   }
 
+  getRideByOrigin(origin: string): Observable<Ride> {
+    return this.http.get<Ride>(this.rideUrl + '/' + origin);
+  }
+
   getRideByDriving(driving: boolean): Observable<Ride> {
-    return this.http.get<Ride>(this.rideUrl + '/' + driving);
+    return this.http.get<Ride>(this.rideUrl + '/' + driving.toString());
   }
 
   getRideByRoundTrip(roundTrip: boolean): Observable<Ride> {
@@ -253,7 +257,7 @@ export class RideListService {
       }
     }
 
-    // Filtering by roundTrip
+    // Filtering by Driving
     if (!(rideDriving == null)) {
       if (this.parameterPresent('driving=')) {
         // there was a previous search by destination that we need to clear
