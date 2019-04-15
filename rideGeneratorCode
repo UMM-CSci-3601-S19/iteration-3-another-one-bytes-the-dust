@@ -16,7 +16,7 @@ https://www.json-generator.com/
     noSmoking: '{{bool()}}',
     Eco: '{{bool()}}',
     petFriendly: '{{bool()}}',
-    seatsAvailable: '{{integer(0, 12)}}'
+    seatsAvailable: '{{integer(1, 12)}}'
   }
 ]
 

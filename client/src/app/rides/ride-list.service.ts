@@ -145,10 +145,10 @@ export class RideListService {
       }
       if (this.rideUrl.indexOf('?') !== -1) {
         // there was already some information passed in this url
-        this.rideUrl += 'destination=' + rideDestination + '&';
+        this.rideUrl += 'destination=' + rideDestination.replace(/\s+/g, '%20') + '&';
       } else {
         // this was the first bit of information to pass in the url
-        this.rideUrl += '?destination=' + rideDestination + '&';
+        this.rideUrl += '?destination=' + rideDestination.replace(/\s+/g, '%20') + '&';
       }
     } else {
       // there was nothing in the box to put onto the URL... reset
@@ -171,10 +171,10 @@ export class RideListService {
       }
       if (this.rideUrl.indexOf('?') !== -1) {
         // there was already some information passed in this url
-        this.rideUrl += 'origin=' + rideOrigin + '&';
+        this.rideUrl += 'origin=' + rideOrigin.replace(/\s+/g, '%20') + '&';
       } else {
         // this was the first bit of information to pass in the url
-        this.rideUrl += '?origin=' + rideOrigin + '&';
+        this.rideUrl += '?origin=' + rideOrigin.replace(/\s+/g, '%20') + '&';
       }
     } else {
       // there was nothing in the box to put onto the URL... reset
