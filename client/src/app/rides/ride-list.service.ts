@@ -147,242 +147,106 @@ export class RideListService {
     else {return false;}
   }
 
+  public makeSearchUrlString(searchParam: string, paramKey: string) {
+    if (!(searchParam == null || searchParam === '')) {
+      if (this.parameterPresent(paramKey)) {
+        // there was a previous search by destination that we need to clear
+        this.removeParameter(paramKey);
+      }
+      if (this.rideUrl.indexOf('?') !== -1) {
+        // there was already some information passed in this url
+        this.rideUrl += paramKey + searchParam.replace(/\s/g, "%20") + '&';
+      } else {
+        // this was the first bit of information to pass in the url
+        this.rideUrl += '?' + paramKey + searchParam.replace(/\s/g, "%20") + '&';
+      }
+    } else {
+      // there was nothing in the box to put onto the URL... reset
+      if (this.parameterPresent(paramKey)) {
+        if (this.parameterPresent(paramKey)) {
+          let start = this.rideUrl.indexOf(paramKey);
+          const end = this.rideUrl.indexOf('&', start);
+          if (this.rideUrl.substring(start - 1, start) === '?') {
+            this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
+          }
+          else {
+            this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
+          }
+        }
+      }
+    }
+  }
+  public makeSearchUrlBoolean(searchParam: boolean, paramKey: string) {
+    if (!(searchParam == null)) {
+      if (this.parameterPresent(paramKey)) {
+        // there was a previous search by destination that we need to clear
+        this.removeParameter(paramKey);
+      }
+      if (this.rideUrl.indexOf('?') !== -1) {
+        // there was already some information passed in this url
+        this.rideUrl += paramKey + searchParam + '&';
+      } else {
+        // this was the first bit of information to pass in the url
+        this.rideUrl += paramKey + searchParam + '&';
+      }
+    } else {
+      // there was nothing in the box to put onto the URL... reset
+      if (this.parameterPresent(paramKey)) {
+        let start = this.rideUrl.indexOf(paramKey);
+        const end = this.rideUrl.indexOf('&', start);
+        if (this.rideUrl.substring(start - 1, start) === '?') {
+          this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
+        }
+        else{
+          this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
+        }
+      }
+    }
+  }
+
   filterByParameters(rideDestination: string, rideOrigin: string, rideDate: string, rideTime: string, rideDriving: boolean, rideRoundTrip: boolean, rideNoSmoking: boolean, rideEco: boolean,
                      ridePetFriendly: boolean): void {
 
-    // Filtering by destination
-    if (!(rideDestination == null || rideDestination === '')) {
-      if (this.parameterPresent('destination=')) {
-        // there was a previous search by destination that we need to clear
-        this.removeParameter('destination=');
-        console.log(this.rideUrl + " --- 1");
-      }
-      if (this.rideUrl.indexOf('?') !== -1) {
-        // there was already some information passed in this url
-        this.rideUrl += 'destination=' + rideDestination.replace(/\s/g, "%20") + '&';
-        console.log(this.rideUrl + " --- 2");
-      } else {
-        // this was the first bit of information to pass in the url
-        this.rideUrl += '?destination=' + rideDestination.replace(/\s/g, "%20") + '&';
-        console.log(this.rideUrl + " --- 3");
-      }
-    } else {
-      // there was nothing in the box to put onto the URL... reset
-      if (this.parameterPresent('destination=')) {
-        let start = this.rideUrl.indexOf('destination=');
-        const end = this.rideUrl.indexOf('&', start);
-        console.log(this.rideUrl + " --- 4");
-        if (this.rideUrl.substring(start - 1, start) === '?') {
-          start = start - 1;
-          console.log(this.rideUrl + " --- 5");
-        }
-        this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
-        console.log(this.rideUrl + " --- 6");
-      }
-    }
+    console.log('Made it to filter by parameters!');
 
+    // Filtering by destination
+    this.makeSearchUrlString(rideDestination, 'destination=');
+    console.log('Destination filtered: ' + this.rideUrl);
 
     // Filtering by origin
-    if (!(rideOrigin == null || rideOrigin === '')) {
-      if (this.parameterPresent('origin=')) {
-        // there was a previous search by origin that we need to clear
-        this.removeParameter('origin=');
-      }
-      if (this.rideUrl.indexOf('?') !== -1) {
-        // there was already some information passed in this url
-        this.rideUrl += 'origin=' + rideOrigin.replace(/\s/g, "%20") + '&';
-      } else {
-        // this was the first bit of information to pass in the url
-        this.rideUrl += '?origin=' + rideOrigin.replace(/\s/g, "%20") + '&';
-      }
-    } else {
-      // there was nothing in the box to put onto the URL... reset
-      if (this.parameterPresent('origin=')) {
-        let start = this.rideUrl.indexOf('origin=');
-        const end = this.rideUrl.indexOf('&', start);
-        if (this.rideUrl.substring(start - 1, start) === '?') {
-          start = start - 1;
-        }
-        this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
-      }
-    }
+    this.makeSearchUrlString(rideOrigin, 'origin=');
+    console.log('Origin filtered: ' + this.rideUrl);
 
     // Filtering by departureDate
-    if (!(rideDate == null || rideDate === '')) {
-      if (this.parameterPresent('departureDate=')) {
-        // there was a previous search by destination that we need to clear
-        this.removeParameter('departureDate=');
-      }
-      if (this.rideUrl.indexOf('?') !== -1) {
-        // there was already some information passed in this url
-        this.rideUrl += 'departureDate=' + rideDate + '&';
-      } else {
-        // this was the first bit of information to pass in the url
-        this.rideUrl += '?departureDate=' + rideDate + '&';
-      }
-    } else {
-      // there was nothing in the box to put onto the URL... reset
-      if (this.parameterPresent('departureDate=')) {
-        let start = this.rideUrl.indexOf('departureDate=');
-        const end = this.rideUrl.indexOf('&', start);
-        if (this.rideUrl.substring(start - 1, start) === '?') {
-          start = start - 1;
-        }
-        this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
-      }
-    }
+    this.makeSearchUrlString(rideDate, 'departureDate=');
+    console.log('Departure Date filtered: ' + this.rideUrl);
 
     // Filtering by departureTime
-    if (!(rideTime == null || rideTime === '')) {
-      if (this.parameterPresent('departureTime=')) {
-        // there was a previous search by destination that we need to clear
-        this.removeParameter('departureTime=');
-      }
-      if (this.rideUrl.indexOf('?') !== -1) {
-        // there was already some information passed in this url
-        this.rideUrl += 'departureTime=' + rideTime + '&';
-      } else {
-        // this was the first bit of information to pass in the url
-        this.rideUrl += '?departureTime=' + rideTime + '&';
-      }
-    } else {
-      // there was nothing in the box to put onto the URL... reset
-      if (this.parameterPresent('departureTime=')) {
-        let start = this.rideUrl.indexOf('departureTime=');
-        const end = this.rideUrl.indexOf('&', start);
-        if (this.rideUrl.substring(start - 1, start) === '?') {
-          start = start - 1;
-        }
-        this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
-      }
-    }
+    this.makeSearchUrlString(rideTime, 'departureTime=');
+    console.log('Departure Time filtered: ' + this.rideUrl);
 
     // Filtering by Driving
-    if (!(rideDriving == null)) {
-      if (this.parameterPresent('driving=')) {
-        // there was a previous search by destination that we need to clear
-        this.removeParameter('driving=');
-      }
-      if (this.rideUrl.indexOf('?') !== -1) {
-        // there was already some information passed in this url
-        this.rideUrl += 'driving=' + rideDriving + '&';
-      } else {
-        // this was the first bit of information to pass in the url
-        this.rideUrl += '?driving=' + rideDriving + '&';
-      }
-    } else {
-      // there was nothing in the box to put onto the URL... reset
-      if (this.parameterPresent('driving=')) {
-        let start = this.rideUrl.indexOf('driving=');
-        const end = this.rideUrl.indexOf('&', start);
-        if (this.rideUrl.substring(start - 1, start) === '?') {
-          start = start - 1;
-        }
-        this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
-      }
-    }
+    this.makeSearchUrlBoolean(rideDriving, 'driving=');
+    console.log('Driving filtered: ' + this.rideUrl);
+
 
     // Filtering by roundTrip
-    if (!(rideRoundTrip == null)) {
-      if (this.parameterPresent('roundTrip=')) {
-        // there was a previous search by destination that we need to clear
-        this.removeParameter('roundTrip=');
-      }
-      if (this.rideUrl.indexOf('?') !== -1) {
-        // there was already some information passed in this url
-        this.rideUrl += 'roundTrip=' + rideRoundTrip + '&';
-      } else {
-        // this was the first bit of information to pass in the url
-        this.rideUrl += '?roundTrip=' + rideRoundTrip + '&';
-      }
-    } else {
-      // there was nothing in the box to put onto the URL... reset
-      if (this.parameterPresent('roundTrip=')) {
-        let start = this.rideUrl.indexOf('roundTrip=');
-        const end = this.rideUrl.indexOf('&', start);
-        if (this.rideUrl.substring(start - 1, start) === '?') {
-          start = start - 1;
-        }
-        this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
-      }
-    }
+    this.makeSearchUrlBoolean(rideRoundTrip, 'roundTrip=');
+    console.log('Roundtrip filtered: ' + this.rideUrl);
 
     // Filtering by noSmoking
-    if (!(rideNoSmoking == null)) {
-      if (this.parameterPresent('noSmoking=')) {
-        // there was a previous search by destination that we need to clear
-        this.removeParameter('noSmoking=');
-      }
-      if (this.rideUrl.indexOf('?') !== -1) {
-        // there was already some information passed in this url
-        this.rideUrl += 'noSmoking=' + rideNoSmoking + '&';
-      } else {
-        // this was the first bit of information to pass in the url
-        this.rideUrl += '?noSmoking=' + rideNoSmoking + '&';
-      }
-    } else {
-      // there was nothing in the box to put onto the URL... reset
-      if (this.parameterPresent('noSmoking=')) {
-        let start = this.rideUrl.indexOf('noSmoking=');
-        const end = this.rideUrl.indexOf('&', start);
-        if (this.rideUrl.substring(start - 1, start) === '?') {
-          start = start - 1;
-        }
-        this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
-      }
-    }
+    this.makeSearchUrlBoolean(rideNoSmoking, 'noSmoking=');
+    console.log('No Smoking filtered: ' + this.rideUrl);
 
     // Filtering by EcoFriendly
-    if (!(rideEco == null)) {
-      if (this.parameterPresent('Eco=')) {
-        // there was a previous search by destination that we need to clear
-        this.removeParameter('Eco=');
-      }
-      if (this.rideUrl.indexOf('?') !== -1) {
-        // there was already some information passed in this url
-        this.rideUrl += 'Eco=' + rideEco + '&';
-      } else {
-        // this was the first bit of information to pass in the url
-        this.rideUrl += '?Eco=' + rideEco + '&';
-      }
-    } else {
-      // there was nothing in the box to put onto the URL... reset
-      if (this.parameterPresent('Eco=')) {
-        let start = this.rideUrl.indexOf('Eco=');
-        const end = this.rideUrl.indexOf('&', start);
-        if (this.rideUrl.substring(start - 1, start) === '?') {
-          start = start - 1;
-        }
-        this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
-      }
-    }
+    this.makeSearchUrlBoolean(rideEco, 'Eco=');
+    console.log('Ecofriendly filtered filtered: ' + this.rideUrl);
 
     // Filtering by petFriendly
-    if (!(ridePetFriendly == null)) {
-      if (this.parameterPresent('petFriendly=')) {
-        // there was a previous search by destination that we need to clear
-        this.removeParameter('petFriendly=');
-      }
-      if (this.rideUrl.indexOf('?') !== -1) {
-        // there was already some information passed in this url
-        this.rideUrl += 'petFriendly=' + ridePetFriendly + '&';
-      } else {
-        // this was the first bit of information to pass in the url
-        this.rideUrl += '?petFriendly=' + ridePetFriendly + '&';
-      }
-    } else {
-      // there was nothing in the box to put onto the URL... reset
-      if (this.parameterPresent('petFriendly=')) {
-        let start = this.rideUrl.indexOf('petFriendly=');
-        const end = this.rideUrl.indexOf('&', start);
-        if (this.rideUrl.substring(start - 1, start) === '?') {
-          start = start - 1;
-        }
-        this.rideUrl = this.rideUrl.substring(0, start) + this.rideUrl.substring(end + 1);
-      }
-    }
+    this.makeSearchUrlBoolean(ridePetFriendly, 'petFriendly=');
+    console.log('Petfriendly filtered: ' + this.rideUrl);
 
-
+    //End of filterByParameters
   }
 
   private parameterPresent(searchParam: string) {
