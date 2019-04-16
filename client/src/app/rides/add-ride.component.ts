@@ -2,19 +2,42 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
 import {Ride} from './ride';
 import {FormControl, Validators, FormGroup, FormBuilder} from "@angular/forms";
+import {RideListComponent} from "./ride-list.component";
+import {RideListService} from "./ride-list.service";
+import {Observable} from "rxjs/Observable";
+import {AppService} from "../app.service";
 
 
 
 @Component({
   selector: 'add-ride.component',
   templateUrl: 'add-ride.component.html',
+  styleUrls: ['./add-ride.component.css'],
+
 })
 
 export class AddRideComponent implements OnInit {
+
+  private highlightedID: string = '';
+
   addRideForm: FormGroup;
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { ride: Ride }, private fb: FormBuilder) {
+  public driver: string;
+  public destination: string;
+  public origin: string;
+  public roundTrip: boolean;
+  public departureDate: string;
+  public departureTime: string;
+  public notes: string;
+  public noSmoking: boolean;
+  public Eco: boolean;
+  public petFriendly: boolean;
+  public seatsAvailable: number;
+
+// keep set to true
+  public driving: boolean = true;
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { ride: Ride }, private fb: FormBuilder, public rideListService: RideListService, public appService: AppService) {
   }
 
   add_ride_validation_messages = {
@@ -41,49 +64,89 @@ export class AddRideComponent implements OnInit {
       {type: 'maxlength', message: 'Notes cannot be more than 50 characters long'},
       {type: 'pattern', message: 'notes must contain only english and certain symbols'},
     ],
-    'seatsAvailable':[
+    'seatsAvailable': [
       {type: 'min', message: 'Must have at least 1 seat available'},
       {type: 'max', message: 'Must not have more than 12 seats'},
       {type: 'pattern', message: 'Must contain only numbers'}
     ]
   };
 
-  createForms() {
-    this.addRideForm = this.fb.group({
-      destination: new FormControl('destination', Validators.compose([
 
-        Validators.pattern('^[ a-zA-Z0-9.]+$'),
-        Validators.minLength(2),
-        Validators.maxLength(50),
-        Validators.required
-      ])),
-      origin: new FormControl('origin', Validators.compose([
-        Validators.minLength(2),
-        Validators.maxLength(50),
-        Validators.required,
-        Validators.pattern('^[ a-zA-Z0-9.]+$')
-      ])),
-      departureDate: new FormControl('departureDate', Validators.compose([
-        Validators.required
+  addRide(): void {
+    const newRide: Ride = {
+      _id: '',
+      driver: this.driver,
+      destination: this.destination,
+      origin: this.origin,
+      roundTrip: this.roundTrip,
+      departureDate: this.departureDate,
+      departureTime: this.departureTime,
+      driving: this.driving,
+      notes: this.notes,
+      noSmoking: this.noSmoking,
+      Eco: this.Eco,
+      petFriendly: this.petFriendly,
+      seatsAvailable: this.seatsAvailable
+    };
+
+    if (newRide != null) {
+      this.rideListService.addNewRide(newRide).subscribe(
+        result => {
+          this.highlightedID = result;
+        },
+        err => {
+          // This should probably be turned into some sort of meaningful response.
+          console.log('There was an error adding the ride.');
+          console.log('The newRide or dialogResult was ' + newRide);
+          console.log('The error was ' + JSON.stringify(err));
+        });
+      }
+    };
+
+    createForms()
+    {
+      this.addRideForm = this.fb.group({
+        destination: new FormControl('destination', Validators.compose([
+
+          Validators.pattern('^[ a-zA-Z0-9.]+$'),
+          Validators.minLength(2),
+          Validators.maxLength(50),
+          Validators.required
         ])),
-      departureTime: new FormControl('departureTime', Validators.compose([
-        Validators.required
-      ])),
-      notes: new FormControl('notes', Validators.compose([
-        Validators.minLength(2),
-        Validators.maxLength(50),
-        Validators.pattern('^[?\'"></!@#$%^&*()_+= a-zA-Z0-9:._-]+$')
-      ])),
-      seatsAvailable: new FormControl('seatsAvailable', Validators.compose([
-        Validators.min(1),
-        Validators.max(12),
-        Validators.pattern('^[0-9]+')
-      ]))
-    })
-  }
+        origin: new FormControl('origin', Validators.compose([
+          Validators.minLength(2),
+          Validators.maxLength(50),
+          Validators.required,
+          Validators.pattern('^[ a-zA-Z0-9.]+$')
+        ])),
+        departureDate: new FormControl('departureDate', Validators.compose([
+          Validators.required
+        ])),
+        departureTime: new FormControl('departureTime', Validators.compose([
+          Validators.required
+        ])),
+        notes: new FormControl('notes', Validators.compose([
+          Validators.minLength(2),
+          Validators.maxLength(50),
+          Validators.pattern('^[?\'"></!@#$%^&*()_+= a-zA-Z0-9:._-]+$')
+        ])),
+        seatsAvailable: new FormControl('seatsAvailable', Validators.compose([
+          Validators.min(1),
+          Validators.max(12),
+          Validators.pattern('^[0-9]+')
+        ]))
+      })
+    }
 
-  ngOnInit() {
-    this.createForms();
-  }
 
-}
+    setRideSeats()
+    {
+      this.seatsAvailable = 1;
+    }
+
+    ngOnInit()
+    {
+      this.createForms();
+    }
+
+  }
