@@ -22,8 +22,17 @@
               </mat-menu>
               <mat-card-title flex>
                 <div id="originAndDestinationContainer">
+                  <!--Driving icon-->
+                  <div class="card-top-left-icon" *ngIf="ride.driving; then thenDriving else elseDriving">ride.driving</div>
+                  <ng-template #thenDriving><mat-icon>directions_car</mat-icon></ng-template>
+                  <ng-template #elseDriving><mat-icon>directions_walk</mat-icon></ng-template>
+                  <!--Origin Display-->
                   <div class="originDestinationFields">{{ride.origin}}</div>
-                  <div><mat-icon class="arrow">forward</mat-icon></div>
+                  <!--//Arrow icon-->
+                  <div class="arrow" *ngIf="ride.roundTrip; then thenArrow else elseArrow">ride.roundTrip</div>
+                  <ng-template #thenArrow><mat-icon>swap_horiz</mat-icon></ng-template>
+                  <ng-template #elseArrow><mat-icon>trending_flat</mat-icon></ng-template>
+                  <!--//Destination Display-->
                   <div class="originDestinationFields">{{ride.destination}}</div>
                 </div>
               </mat-card-title>
@@ -37,7 +46,6 @@
                 <mat-icon *ngIf="ride.noSmoking">smoke_free</mat-icon>
                 <mat-icon *ngIf="ride.Eco">local_florist</mat-icon>
                 <mat-icon *ngIf="ride.petFriendly">pets</mat-icon>
-                <mat-icon *ngIf="ride.roundTrip">repeat</mat-icon>
               </div>
             </div>
             </mat-card-content>

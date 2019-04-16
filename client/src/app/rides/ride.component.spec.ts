@@ -25,6 +25,7 @@ describe('Ride component', () => {
           roundTrip: true,
           departureDate: '05-16-2007',
           departureTime: '6:00 PM',
+          driving: true,
           notes: 'I will be arriving in a flying motorcycle',
           sortDateTime: '200705161800',
           noSmoking: true,
@@ -38,6 +39,7 @@ describe('Ride component', () => {
           roundTrip: true,
           departureDate: '07-13-2020',
           departureTime: '5:00 PM',
+          driving: true,
           notes: 'Dress for cold',
           sortDateTime: '202007131700',
           noSmoking: true,
@@ -51,6 +53,7 @@ describe('Ride component', () => {
           roundTrip: false,
           departureDate: '08-02-2019',
           departureTime: '7:00 PM',
+          driving: true,
           notes: 'There is no escaping Morris',
           sortDateTime: '201908021900',
           noSmoking: true,
@@ -67,6 +70,7 @@ describe('Ride component', () => {
           roundTrip: true,
           departureDate: '05-16-2007',
           departureTime: '6:00 PM',
+          driving: true,
           notes: 'I will be arriving in a flying motorcycle',
           sortDateTime: '200705161800',
           noSmoking: true,
@@ -80,6 +84,7 @@ describe('Ride component', () => {
           roundTrip: true,
           departureDate: '07-13-2020',
           departureTime: '5:00 PM',
+          driving: true,
           notes: 'Dress for cold',
           sortDateTime: '202007131700',
           noSmoking: true,
@@ -93,6 +98,7 @@ describe('Ride component', () => {
           roundTrip: false,
           departureDate: '08-02-2019',
           departureTime: '7:00 PM',
+          driving: false,
           notes: 'There is no escaping Morris',
           sortDateTime: '201908021900',
           noSmoking: true,
@@ -125,6 +131,7 @@ describe('Ride component', () => {
     expect(rideComponent.ride.roundTrip).toBe(true);
     expect(rideComponent.ride.departureDate).toBe('05-16-2007');
     expect(rideComponent.ride.departureTime).toBe('6:00 PM');
+    expect(rideComponent.ride.driving).toBe(true);
     expect(rideComponent.ride.notes).toBe('I will be arriving in a flying motorcycle');
     expect(rideComponent.ride.sortDateTime).toBe('200705161800');
     expect(rideComponent.ride.noSmoking).toBe(true);
@@ -134,7 +141,7 @@ describe('Ride component', () => {
 
   it('returns undefined for Canada', () => {
     rideComponent.setDestination('Canada');
-    expect(rideComponent.ride).not.toBeDefined();
+    expect(rideComponent.ride).toBeUndefined();
   });
 
 
@@ -146,6 +153,7 @@ describe('Ride component', () => {
     expect(rideComponent.ride.origin).toBe('The Outside');
     expect(rideComponent.ride.departureDate).toBe('08-02-2019');
     expect(rideComponent.ride.departureTime).toBe('7:00 PM');
+    expect(rideComponent.ride.driving).toBe(false);
     expect(rideComponent.ride.notes).toBe('There is no escaping Morris');
     expect(rideComponent.ride.sortDateTime).toBe('201908021900');
     expect(rideComponent.ride.noSmoking).toBe(true);
