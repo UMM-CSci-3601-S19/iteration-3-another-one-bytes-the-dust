@@ -8,7 +8,10 @@
     "departureTime": "8:02 AM",
     "driving": true,
     "notes": "Side mirrors are broken",
-    "sortDateTime": "203309030802"
+    "sortDateTime": "203309030802",
+    "noSmoking": true,
+    "Eco": false,
+    "petFriendly": true
   },
   {
     "driver": "Joyner Heath",
@@ -19,7 +22,10 @@
     "departureTime": "10:25 AM",
     "driving": false,
     "notes": "...",
-    "sortDateTime": "202311081025"
+    "sortDateTime": "202311081025",
+    "noSmoking": false,
+    "Eco": true,
+    "petFriendly": true
   },
   {
     "driver": "Rose Aguirre",
@@ -30,7 +36,10 @@
     "departureTime": "7:52 PM",
     "driving": true,
     "notes": "No screaming in my car",
-    "sortDateTime": "203308230752"
+    "sortDateTime": "203308230752",
+    "noSmoking": true,
+    "Eco": false,
+    "petFriendly": true
   },
   {
     "driver": "Douglas Carter",
@@ -41,7 +50,10 @@
     "departureTime": "7:49 AM",
     "driving": false,
     "notes": "I am always happy, always",
-    "sortDateTime": "203510180749"
+    "sortDateTime": "203510180749",
+    "noSmoking": true,
+    "Eco": false,
+    "petFriendly": true
   },
   {
     "driver": "Shana Albert",
@@ -52,7 +64,10 @@
     "departureTime": "5:33 AM",
     "driving": false,
     "notes": "No pet allowed",
-    "sortDateTime": "202012180533"
+    "sortDateTime": "202012180533",
+    "noSmoking": true,
+    "Eco": false,
+    "petFriendly": false
   },
   {
     "driver": "Mcintyre Eaton",
@@ -63,7 +78,10 @@
     "departureTime": "1:16 PM",
     "driving": false,
     "notes": "No screaming in my car",
-    "sortDateTime": "203701080116"
+    "sortDateTime": "203701080116",
+    "noSmoking": false,
+    "Eco": true,
+    "petFriendly": false
   },
   {
     "driver": "Alexandra Griffin",
@@ -74,7 +92,10 @@
     "departureTime": "11:46 AM",
     "driving": false,
     "notes": "I am always happy, always",
-    "sortDateTime": "202803141146"
+    "sortDateTime": "202803141146",
+    "noSmoking": false,
+    "Eco": false,
+    "petFriendly": true
   },
   {
     "driver": "Mason Montoya",
@@ -85,7 +106,10 @@
     "departureTime": "2:01 AM",
     "driving": true,
     "notes": "I drive Sonic fast",
-    "sortDateTime": "202702190201"
+    "sortDateTime": "202702190201",
+    "noSmoking": true,
+    "Eco": true,
+    "petFriendly": true
   },
   {
     "driver": "Shauna Gilliam",
@@ -96,7 +120,10 @@
     "departureTime": "2:19 PM",
     "driving": false,
     "notes": "I like to drive with no air conditioning",
-    "sortDateTime": "202802290219"
+    "sortDateTime": "202802290219",
+    "noSmoking": false,
+    "Eco": false,
+    "petFriendly": true
   },
   {
     "driver": "Jenifer Mack",
@@ -107,7 +134,10 @@
     "departureTime": "7:09 PM",
     "driving": true,
     "notes": "I am driving and I like to eat at the same time",
-    "sortDateTime": "203212070709"
+    "sortDateTime": "203212070709",
+    "noSmoking": true,
+    "Eco": false,
+    "petFriendly": false
   },
   {
     "driver": "Sanford Camacho",
@@ -118,7 +148,10 @@
     "departureTime": "5:21 AM",
     "driving": true,
     "notes": "I like to talk while driving",
-    "sortDateTime": "203304030521"
+    "sortDateTime": "203304030521",
+    "noSmoking": false,
+    "Eco": false,
+    "petFriendly": false
   },
   {
     "driver": "Jodi Harmon",
@@ -129,7 +162,10 @@
     "departureTime": "6:44 PM",
     "driving": true,
     "notes": "My car is messy",
-    "sortDateTime": "202708100644"
+    "sortDateTime": "202708100644",
+    "noSmoking": false,
+    "Eco": true,
+    "petFriendly": true
   },
   {
     "driver": "Bird Klein",
@@ -140,7 +176,10 @@
     "departureTime": "9:35 PM",
     "driving": false,
     "notes": "No room in the trunk of my car",
-    "sortDateTime": "202611010935"
+    "sortDateTime": "202611010935",
+    "noSmoking": false,
+    "Eco": false,
+    "petFriendly": true
   },
   {
     "driver": "Pennington Golden",
@@ -151,7 +190,10 @@
     "departureTime": "9:26 AM",
     "driving": true,
     "notes": "I am usually sad",
-    "sortDateTime": "203511280926"
+    "sortDateTime": "203511280926",
+    "noSmoking": false,
+    "Eco": true,
+    "petFriendly": false
   },
   {
     "driver": "Zimmerman Jarvis",
@@ -162,7 +204,10 @@
     "departureTime": "3:56 PM",
     "driving": false,
     "notes": "I am flexible on the time",
-    "sortDateTime": "203101010356"
+    "sortDateTime": "203101010356",
+    "noSmoking": true,
+    "Eco": false,
+    "petFriendly": false
   },
   {
     "driver": "Kelly Cantu",
@@ -173,7 +218,10 @@
     "departureTime": "12:17 AM",
     "driving": true,
     "notes": "It is free if you pay for McDonalds",
-    "sortDateTime": "202907011217"
+    "sortDateTime": "202907011217",
+    "noSmoking": false,
+    "Eco": false,
+    "petFriendly": false
   },
   {
     "driver": "Finley Lucas",
@@ -184,7 +232,10 @@
     "departureTime": "10:12 PM",
     "driving": true,
     "notes": "I love to crank the volume up to 11",
-    "sortDateTime": "203208051012"
+    "sortDateTime": "203208051012",
+    "noSmoking": true,
+    "Eco": true,
+    "petFriendly": true
   },
   {
     "driver": "Hill Roberson",
@@ -195,7 +246,10 @@
     "departureTime": "3:18 PM",
     "driving": true,
     "notes": "Get ready to have fun",
-    "sortDateTime": "202706040318"
+    "sortDateTime": "202706040318",
+    "noSmoking": true,
+    "Eco": false,
+    "petFriendly": false
   },
   {
     "driver": "Andrews Reese",
@@ -206,7 +260,10 @@
     "departureTime": "10:17 AM",
     "driving": true,
     "notes": "It is free if you pay for McDonalds",
-    "sortDateTime": "202406021017"
+    "sortDateTime": "202406021017",
+    "noSmoking": false,
+    "Eco": false,
+    "petFriendly": true
   },
   {
     "driver": "Olsen Tyler",
@@ -217,7 +274,10 @@
     "departureTime": "9:22 PM",
     "driving": false,
     "notes": "No room in the trunk of my car",
-    "sortDateTime": "202710280922"
+    "sortDateTime": "202710280922",
+    "noSmoking": false,
+    "Eco": true,
+    "petFriendly": false
   },
   {
     "driver": "Stark French",
@@ -228,7 +288,10 @@
     "departureTime": "11:23 AM",
     "driving": true,
     "notes": "No screaming in my car",
-    "sortDateTime": "202111231123"
+    "sortDateTime": "202111231123",
+    "noSmoking": true,
+    "Eco": true,
+    "petFriendly": false
   },
   {
     "driver": "Tillman Kane",
@@ -239,7 +302,10 @@
     "departureTime": "1:06 PM",
     "driving": true,
     "notes": "I am always listening to death metal",
-    "sortDateTime": "203012070106"
+    "sortDateTime": "203012070106",
+    "noSmoking": false,
+    "Eco": false,
+    "petFriendly": true
   },
   {
     "driver": "Evangeline Poole",
@@ -250,7 +316,10 @@
     "departureTime": "9:07 PM",
     "driving": false,
     "notes": "No pet allowed",
-    "sortDateTime": "202303270907"
+    "sortDateTime": "202303270907",
+    "noSmoking": true,
+    "Eco": true,
+    "petFriendly": false
   },
   {
     "driver": "Holland Good",
@@ -261,7 +330,10 @@
     "departureTime": "11:21 AM",
     "driving": false,
     "notes": "I am usually sad",
-    "sortDateTime": "202002221121"
+    "sortDateTime": "202002221121",
+    "noSmoking": false,
+    "Eco": false,
+    "petFriendly": false
   },
   {
     "driver": "Combs Pope",
@@ -272,7 +344,10 @@
     "departureTime": "12:03 AM",
     "driving": true,
     "notes": "I am flexible on the time",
-    "sortDateTime": "203505031203"
+    "sortDateTime": "203505031203",
+    "noSmoking": true,
+    "Eco": true,
+    "petFriendly": true
   },
   {
     "driver": "Alison Blake",
@@ -283,7 +358,10 @@
     "departureTime": "7:17 AM",
     "driving": true,
     "notes": "Get ready to have fun",
-    "sortDateTime": "203004010717"
+    "sortDateTime": "203004010717",
+    "noSmoking": false,
+    "Eco": false,
+    "petFriendly": true
   },
   {
     "driver": "Camille Adkins",
@@ -294,6 +372,9 @@
     "departureTime": "2:32 PM",
     "driving": true,
     "notes": "Contact me for meeting place",
-    "sortDateTime": "202212210232"
+    "sortDateTime": "202212210232",
+    "noSmoking": true,
+    "Eco": false,
+    "petFriendly": false
   }
 ]

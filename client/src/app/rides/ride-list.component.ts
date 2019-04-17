@@ -21,14 +21,41 @@ export class RideListComponent implements OnInit {
 
   public rides: Ride[];
   public searchedRides: Ride[];
+  public filteredRides: Ride[];
 
+  public rideDriving: boolean;
   public rideDestination: string;
+  public rideRoundTrip: boolean;
+  public rideNoSmoking: boolean;
+  public rideEco: boolean;
+  public ridePetFriendly: boolean;
+
 
   private highlightedDestination: string = '';
 
 
 
   constructor(public appComponent: AppComponent, public rideListService: RideListService, public dialog: MatDialog) {
+  }
+
+  public toggleRoundTrip() {
+    this.rideRoundTrip = !this.rideRoundTrip;
+  }
+
+  public toggleDriving() {
+    this.rideDriving = !this.rideDriving;
+  }
+
+  public toggleNoSmoking() {
+    this.rideNoSmoking = !this.rideNoSmoking;
+  }
+
+  public toggleEco() {
+    this.rideEco = !this.rideEco;
+  }
+
+  public togglePetFriendly() {
+    this.ridePetFriendly = !this.ridePetFriendly;
   }
 
   // To use to delete past rides
@@ -174,30 +201,55 @@ export class RideListComponent implements OnInit {
   }
 
 
- /* public filterRides(searchDestination: string): Ride[] {
+ public filterRides(searchRoundTrip: boolean, searchDriving: boolean, searchDestination: string, searchNoSmoking: boolean, searchEco: boolean, searchPetFriendly: boolean): Ride[] {
 
-    this.filteredRides = this.rides;
-    var today = new Date();
-    var date = today.getMonth()+'-'+(today.getDate()+1)+'-'+today.getFullYear();
-    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    var dateTime = date+' '+time;
+   this.filteredRides = this.rides;
 
-    if (searchDestination != null) {getCurrentDate(): string {
-    var today = new Date();
-    var date = today.getMonth()+'-'+(today.getDate()+1)+'-'+today.getFullYear();
-    return date;
-  }
-      searchDestination = searchDestination.toLocaleLowerCase();
+   if (searchRoundTrip === true) {
 
-      this.filteredRides = this.filteredRides.filter(ride => {
-        return !searchDestination || ride.destination.toLowerCase().indexOf(searchDestination) !== -1;
-      });
-    }
+     this.filteredRides = this.filteredRides.filter(ride => {
+       return ride.roundTrip === searchRoundTrip;
+     });
+   }
 
+   if (searchDriving === true) {
+
+     this.filteredRides = this.filteredRides.filter(ride => {
+       return ride.driving === searchDriving;
+     });
+   }
+
+    if (searchDestination != null) {
+     searchDestination = searchDestination.toLocaleLowerCase().trim().replace(/\s+/g, " ");
+     this.filteredRides = this.filteredRides.filter(ride => {
+       return !searchDestination || ride.destination.toLowerCase().indexOf(searchDestination) !== -1;
+     });
+   }
+
+   if (searchNoSmoking === true) {
+
+     this.filteredRides = this.filteredRides.filter(ride => {
+       return ride.noSmoking === searchNoSmoking;
+     });
+   }
+
+   if (searchEco === true) {
+
+     this.filteredRides = this.filteredRides.filter(ride => {
+       return ride.Eco === searchEco;
+     });
+   }
+
+   if (searchPetFriendly === true) {
+
+     this.filteredRides = this.filteredRides.filter(ride => {
+       return ride.petFriendly === searchPetFriendly;
+     });
+   }
 
     return this.filteredRides;
   }
- */
+
 
   refreshRides(searchDestination?: string,searchOrigin?: string,searchDate?: string,searchTime?: string,searchRoundTrip?: boolean, searchNoSmoking?: boolean, searchEco?: boolean, searchPetFriendly?: boolean): Observable<Ride[]> {
     localStorage.setItem("searched", "false");
@@ -230,9 +282,40 @@ export class RideListComponent implements OnInit {
      setTimeout('', 10000);
      localStorage.setItem("load", "true")
    }*/
+  refreshRides2(): Observable<Ride[]> {
+    // Get Rides returns an Observable, basically a "promise" that
+    // we will get the data from the server.
+    //
+    // Subscribe waits until the data is fully downloaded, then
+    // performs an action on it (the first lambda)
 
+    const rides: Observable<Ride[]> = this.rideListService.getRides2();
+    rides.subscribe(
+      rides => {
+        this.rides = rides;
+        this.filterRides(this.rideRoundTrip, this.rideDriving, this.rideDestination, this.rideNoSmoking, this.rideEco, this.ridePetFriendly);
+      },
+      err => {
+        console.log(err);
+      });
+    return rides;
+  }
+
+  loadService(): void {
+    this.rideListService.getRides2().subscribe(
+      rides => {
+        this.rides = rides;
+        this.filteredRides = this.rides;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 
   ngOnInit(): void {
     this.refreshRides();
+    this.loadService();
+    this.refreshRides2();
   }
 }
