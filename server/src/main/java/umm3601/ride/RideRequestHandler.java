@@ -98,10 +98,11 @@ public class RideRequestHandler {
     Boolean noSmoking = editRide.getBoolean("noSmoking");
     Boolean Eco = editRide.getBoolean("Eco");
     Boolean petFriendly = editRide.getBoolean("petFriendly");
+    Number seatsAvailable = editRide.getInteger(0);
 
     System.err.println("Editing ride [id=" + id + " driver=" + driver + " destination=" + destination + " origin=" + origin + " roundTrip=" + roundTrip + " driving=" + driving
       + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + " sortDateTime=" + sortDateTime + ']');
-    return rideController.updateRide(id, driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes, sortDateTime, noSmoking, Eco, petFriendly);
+    return rideController.updateRide(id, driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes, sortDateTime, noSmoking, Eco, petFriendly, seatsAvailable);
   }
 
   public Boolean deleteRide(Request req, Response res){

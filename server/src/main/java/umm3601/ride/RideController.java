@@ -173,7 +173,7 @@ public class RideController {
   }
 
   Boolean updateRide(String id, String driver, String destination, String origin, Boolean roundTrip, Boolean driving,
-    String departureDate, String departureTime, String notes, String sortDateTime, Boolean noSmoking, Boolean Eco, Boolean petFriendly){
+    String departureDate, String departureTime, String notes, String sortDateTime, Boolean noSmoking, Boolean Eco, Boolean petFriendly, Number seatsAvailable){
     ObjectId objId = new ObjectId(id);
     Document filter = new Document("_id", objId);
     Document updateFields = new Document();
@@ -189,6 +189,7 @@ public class RideController {
     updateFields.append("noSmoking" , noSmoking);
     updateFields.append("Eco" , Eco);
     updateFields.append("petFriendly" , petFriendly);
+    updateFields.append("seatsAvailable", seatsAvailable);
 
 
     Document updateDoc = new Document("$set", updateFields);
