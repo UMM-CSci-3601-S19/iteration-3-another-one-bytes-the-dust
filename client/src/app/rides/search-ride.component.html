@@ -25,12 +25,6 @@
           </mat-error>
         </mat-error>
       </mat-form-field>
-      <section >
-        <mat-checkbox class="noSmokingCheckBox" [(ngModel)]="data.ride.noSmoking" [ngModelOptions]="{standalone: true}">No Smoking</mat-checkbox>
-        <mat-checkbox class="EcoCheckBox" [(ngModel)]="data.ride.Eco" [ngModelOptions]="{standalone: true}">Eco Friendly</mat-checkbox>
-        <mat-checkbox class="petFriendlyCheckBox" [(ngModel)]="data.ride.petFriendly" [ngModelOptions]="{standalone: true}">Pet Friendly</mat-checkbox>
-        <mat-checkbox class="drivingCheckBox" [(ngModel)]="data.ride.driving" [ngModelOptions] ="{standalone: true}">I Am The Driver</mat-checkbox>
-      </section>
 
       <!--<mat-form-field flex>
         <input id="departureDateField" matInput [matDatepicker]="picker" placeholder="Departure Date" [(ngModel)]="data.ride.departureDate"
