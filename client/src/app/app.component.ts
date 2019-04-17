@@ -106,7 +106,7 @@ export class AppComponent implements OnInit {
   getUserPic() {
     this.pictureUrl = localStorage.getItem("pictureUrl");
     return this.pictureUrl;
-  }19
+  }
 
 
   handleClientLoad() {

@@ -115,11 +115,12 @@ export class RideListComponent implements OnInit {
         console.log('The petFriendly passed in is ' + searchRide.petFriendly);
 
         this.rideListService.getRides(searchRide.destination,searchRide.origin,searchRide.departureDate,
-          searchRide.departureTime,searchRide.roundTrip,searchRide.noSmoking,searchRide.Eco,searchRide.petFriendly).subscribe(
+          searchRide.departureTime,searchRide.driving, searchRide.roundTrip,searchRide.noSmoking,searchRide.Eco,
+          searchRide.petFriendly).subscribe(
           result => {
             this.searchedRides = result;
             console.log("The result is " + JSON.stringify(result));
-            this.refreshRides(searchRide.destination,searchRide.origin);
+            this.refreshRides(searchRide.destination,searchRide.origin,searchRide.departureDate);
             localStorage.setItem("searched", 'true');
           },
           err => {
@@ -251,11 +252,14 @@ export class RideListComponent implements OnInit {
   }
 
 
-  refreshRides(searchDestination?: string,searchOrigin?: string,searchDate?: string,searchTime?: string,searchRoundTrip?: boolean, searchNoSmoking?: boolean, searchEco?: boolean, searchPetFriendly?: boolean): Observable<Ride[]> {
+  refreshRides(searchDestination?: string,searchOrigin?: string,searchDate?: string,searchTime?: string,searchDriving?: boolean,
+               searchRoundTrip?: boolean, searchNoSmoking?: boolean, searchEco?: boolean, searchPetFriendly?: boolean): Observable<Ride[]> {
     localStorage.setItem("searched", "false");
     localStorage.setItem("load", "false");
-  if (searchDestination == null && searchOrigin == null) {
-      const rides: Observable<Ride[]> = this.rideListService.getRides('','','','', null, null, null, null);
+  if (searchDestination == null && searchOrigin == null && searchDate == null && searchTime == null && searchDriving == null
+  && searchRoundTrip == null && searchNoSmoking == null && searchEco == null && searchPetFriendly == null) {
+      const rides: Observable<Ride[]> = this.rideListService.getRides('','','',
+        '', null, null, null, null, null);
       rides.subscribe(
         rides => {
           this.rides = rides;
@@ -266,7 +270,8 @@ export class RideListComponent implements OnInit {
       return rides;
     }
     else {
-    const rides: Observable<Ride[]> = this.rideListService.getRides(searchDestination,searchOrigin,searchDate,searchTime,searchRoundTrip, searchNoSmoking, searchEco, searchPetFriendly);
+    const rides: Observable<Ride[]> = this.rideListService.getRides(searchDestination,searchOrigin,searchDate,searchTime,
+      searchDriving,searchRoundTrip, searchNoSmoking, searchEco, searchPetFriendly);
     rides.subscribe(
       rides => {
         this.rides = rides;

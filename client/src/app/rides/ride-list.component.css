@@ -33,6 +33,10 @@
   font-size: larger;
 }
 
+.drivingIcon{
+  float: left;
+}
+
 .bottomInfo{
   display: flex;
   flex-direction: row;
