@@ -18,6 +18,9 @@
                 <mat-icon class="dots">more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu" >
+                <button mat-menu-item (click)="openViewDialog(ride._id)">
+                  <span>View Ride details</span>
+                </button>
                 <button mat-menu-item (click)="openEditDialog(ride._id, ride.driver, ride.destination,
                 ride.origin, ride.roundTrip, ride.driving, ride.departureDate, ride.departureTime, ride.notes, ride.noSmoking, ride.Eco, ride.petFriendly)" >
 

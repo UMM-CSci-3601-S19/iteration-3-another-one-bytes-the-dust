@@ -4,7 +4,7 @@ import {Ride} from "./ride";
 import {RideListService} from "./ride-list.service";
 import {AddRideComponent} from "./add-ride.component";
 import {EditRideComponent} from "./edit-ride.component";
-import {MatDialog} from "@angular/material";
+import {MatDialog, MatDialogConfig} from "@angular/material";
 import {DeleteRideComponent} from "./delete-ride.component";
 import {SearchRideComponent} from "./search-ride.component";
 import {AppComponent} from "../app.component";
@@ -37,6 +37,7 @@ export class RideListComponent implements OnInit {
 
   constructor(public appComponent: AppComponent, public rideListService: RideListService, public dialog: MatDialog) {
   }
+
 
   public toggleRoundTrip() {
     this.rideRoundTrip = !this.rideRoundTrip;
@@ -71,7 +72,7 @@ export class RideListComponent implements OnInit {
   openDialog(): void {
     const newRide: Ride = {driver: this.appComponent.getUsername(), destination: '', origin: '', roundTrip: false, driving: false,
       departureDate: '', departureTime: '', notes: '', noSmoking: false, Eco: false, petFriendly: false};
-    const dialogRef = this.dialog.open(AddRideComponent, {
+    const dialogRef = this.dialog.open(AddRideComponent, <MatDialogConfig>{
       width: '500px',
       data: {ride: newRide}
     });
@@ -98,7 +99,7 @@ export class RideListComponent implements OnInit {
     const searchRide: Ride = {driver: '', destination: '', origin: '', roundTrip: null, driving: false,
       departureDate: '', departureTime: '', notes: '', noSmoking: null, Eco: null, petFriendly: null};
 
-    const dialogRef = this.dialog.open(SearchRideComponent, {
+    const dialogRef = this.dialog.open(SearchRideComponent, <MatDialogConfig>{
       width: '500px',
       data: {ride: searchRide}
     });
@@ -152,7 +153,7 @@ export class RideListComponent implements OnInit {
       petFriendly: currentPetFriendly
     };
 
-    const dialogRef = this.dialog.open(EditRideComponent, {
+    const dialogRef = this.dialog.open(EditRideComponent, <MatDialogConfig>{
       width: '500px',
       data: {ride: currentRide}
     });
@@ -176,10 +177,14 @@ export class RideListComponent implements OnInit {
     });
   }
 
+  openViewDialog(currentId: object): string {
+    console.log("this is openview dialog");
+    return "/viewRide?" + currentId.toString();
+  }
 
   openDeleteDialog(currentId: object): void {
     console.log("openDeleteDialog");
-    const dialogRef = this.dialog.open(DeleteRideComponent, {
+    const dialogRef = this.dialog.open(DeleteRideComponent, <MatDialogConfig>{
       width: '500px',
       data: {id: currentId}
     });

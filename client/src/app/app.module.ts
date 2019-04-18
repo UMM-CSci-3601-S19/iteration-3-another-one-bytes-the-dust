@@ -15,6 +15,7 @@ import {AddRideComponent} from "./rides/add-ride.component";
 import {EditRideComponent} from "./rides/edit-ride.component";
 import {DeleteRideComponent} from "./rides/delete-ride.component";
 import {SearchRideComponent} from "./rides/search-ride.component";
+import {ViewRideComponent} from "./rides/view-ride.component";
 
 
 import {UserListComponent} from "./users/user-list.component";
@@ -60,6 +61,7 @@ import {MatButtonModule, MatOptionModule, MatSelectModule, MatTabsModule} from "
     UserListComponent,
     SearchRideComponent,
     VehicleListComponent,
+    ViewRideComponent,
     AddVehicleComponent
   ],
   providers: [

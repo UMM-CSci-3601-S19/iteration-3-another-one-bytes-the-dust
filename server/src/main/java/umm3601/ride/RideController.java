@@ -14,6 +14,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import java.lang.*;
+
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Sorts.*;
 import org.bson.conversions.Bson;
@@ -54,6 +56,7 @@ public class RideController {
   // Method for appending the filterDoc in getRides for booleans
   private Document appendFilterDocBoolean(Map<String, String[]> appendParams, String appendBoolean, Document appendDoc){
     String targetContent = (appendParams.get(appendBoolean)[0]);
+    System.out.println("test string");
     System.err.println("This is the targetContent " + targetContent);
     Boolean targetBoolean = Boolean.parseBoolean(targetContent);
     System.err.println("This is the targetBoolean " + targetBoolean);
