@@ -125,7 +125,7 @@ export class RideListComponent implements OnInit {
 
         this.rideListService.getRides(searchRide.destination,searchRide.origin,searchRide.departureDate,
           searchRide.departureTime,searchRide.driving, searchRide.roundTrip,searchRide.noSmoking,searchRide.Eco,
-          searchRide.petFriendly,searchRide.seatsAvailable).subscribe(
+          searchRide.petFriendly).subscribe(
           result => {
             this.searchedRides = result;
             console.log("The result is " + JSON.stringify(result));
@@ -263,13 +263,13 @@ export class RideListComponent implements OnInit {
 
 
   refreshRides(searchDestination?: string,searchOrigin?: string,searchDate?: string,searchTime?: string,searchDriving?: boolean,
-               searchRoundTrip?: boolean, searchNoSmoking?: boolean, searchEco?: boolean, searchPetFriendly?: boolean, searchSeatsAvailable: number): Observable<Ride[]> {
+               searchRoundTrip?: boolean, searchNoSmoking?: boolean, searchEco?: boolean, searchPetFriendly?: boolean): Observable<Ride[]> {
     localStorage.setItem("searched", "false");
     localStorage.setItem("load", "false");
   if (searchDestination == null && searchOrigin == null && searchDate == null && searchTime == null && searchDriving == null
   && searchRoundTrip == null && searchNoSmoking == null && searchEco == null && searchPetFriendly == null) {
       const rides: Observable<Ride[]> = this.rideListService.getRides('','','',
-        '', null, null, null, null, null, 0);
+        '', null, null, null, null, null);
       rides.subscribe(
         rides => {
           this.rides = rides;
@@ -281,7 +281,7 @@ export class RideListComponent implements OnInit {
     }
     else {
     const rides: Observable<Ride[]> = this.rideListService.getRides(searchDestination,searchOrigin,searchDate,searchTime,
-      searchDriving,searchRoundTrip, searchNoSmoking, searchEco, searchPetFriendly, searchSeatsAvailable);
+      searchDriving,searchRoundTrip, searchNoSmoking, searchEco, searchPetFriendly);
     rides.subscribe(
       rides => {
         this.rides = rides;

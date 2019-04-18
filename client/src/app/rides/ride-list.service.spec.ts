@@ -83,7 +83,7 @@ describe( 'Ride list service: ', () => {
 
   it('getRides() calls api/rides', () => {
 
-    rideListService.getRides('','','','',null, null, null, null, null, 0).subscribe(
+    rideListService.getRides('','','','',null, null, null, null, null).subscribe(
       rides => expect(rides).toBe(testRides)
     );
 
@@ -93,7 +93,7 @@ describe( 'Ride list service: ', () => {
   });
 
   it('getRides(rideDestination) adds appropriate param string to called URL', () => {
-    rideListService.getRides('r','','','',null,null,null,null, null, 0).subscribe(
+    rideListService.getRides('r','','','',null,null,null,null, null).subscribe(
       rides => expect(rides).toEqual(rRides)
     );
 
