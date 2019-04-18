@@ -33,6 +33,10 @@
   font-size: larger;
 }
 
+.drivingIcon{
+  float: left;
+}
+
 .seats {
   display: inline-block;
   padding-left: 10px;

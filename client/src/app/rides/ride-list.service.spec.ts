@@ -14,6 +14,7 @@ describe( 'Ride list service: ', () => {
       roundTrip: true,
       departureDate: '05-16-2007',
       departureTime: '6:00 PM',
+      driving: true,
       notes: 'I will be arriving in a flying motorcycle',
       sortDateTime: '200705161800',
       noSmoking: true,
@@ -28,6 +29,7 @@ describe( 'Ride list service: ', () => {
       roundTrip: true,
       departureDate: '07-13-2020',
       departureTime: '5:00 PM',
+      driving: true,
       notes: 'Dress for cold',
       sortDateTime: '202007131700',
       noSmoking: true,
@@ -42,6 +44,7 @@ describe( 'Ride list service: ', () => {
       roundTrip: false,
       departureDate: '08-02-2019',
       departureTime: '7:00 PM',
+      driving: false,
       notes: 'There is no escaping Morris',
       sortDateTime: '201908021900',
       noSmoking: true,
@@ -80,7 +83,7 @@ describe( 'Ride list service: ', () => {
 
   it('getRides() calls api/rides', () => {
 
-    rideListService.getRides('','','','',null, null, null, null, 0).subscribe(
+    rideListService.getRides('','','','',null, null, null, null, null, 0).subscribe(
       rides => expect(rides).toBe(testRides)
     );
 
@@ -90,7 +93,7 @@ describe( 'Ride list service: ', () => {
   });
 
   it('getRides(rideDestination) adds appropriate param string to called URL', () => {
-    rideListService.getRides('r','','','',null,null,null,null, 0).subscribe(
+    rideListService.getRides('r','','','',null,null,null,null, null, 0).subscribe(
       rides => expect(rides).toEqual(rRides)
     );
 
@@ -109,6 +112,7 @@ describe( 'Ride list service: ', () => {
       roundTrip: false,
       departureDate: '10-16-2124',
       departureTime: '5:00 PM',
+      driving: true,
       notes: 'There is no escaping Morris',
       sortDateTime: '212410160500',
       noSmoking: true,
@@ -166,6 +170,7 @@ describe( 'Ride list service: ', () => {
       roundTrip: false,
       departureDate: '10-16-2124',
       departureTime: '5:00 PM',
+      driving: true,
       notes: 'There is no escaping Morris',
       sortDateTime: '212410160500',
       noSmoking: true,
@@ -196,6 +201,7 @@ describe( 'Ride list service: ', () => {
       roundTrip: false,
       departureTime: '6:00 AM',
       departureDate: '12-13-2019',
+      driving: true,
       notes: 'There is no escaping the lab',
       noSmoking: true,
       Eco: true,

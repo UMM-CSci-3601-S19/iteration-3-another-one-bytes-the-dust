@@ -12,6 +12,8 @@ export class RideComponent implements OnInit {
 
   public ride: Ride = null;
   private destination: string;
+  private origin: string;
+  private driving: boolean;
   private roundTrip: boolean;
   private noSmoking: boolean;
   private Eco: boolean;
@@ -22,12 +24,30 @@ export class RideComponent implements OnInit {
   }
 
   private subscribeToServiceForDestination() {
-      this.rideListService.getRideByDestination(this.destination).subscribe(
-        ride => this.ride = ride,
-        err => {
-          console.log(err);
-        }
-      );
+    this.rideListService.getRideByDestination(this.destination).subscribe(
+      ride => this.ride = ride,
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  private subscribeToServiceForOrigin() {
+    this.rideListService.getRideByOrigin(this.origin).subscribe(
+      ride => this.ride = ride,
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  private subscribeToServiceForDriving(){
+    this.rideListService.getRideByDriving(this.driving).subscribe(
+      ride => this.ride = ride,
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   private subscribeToServiceForRoundTrip() {
@@ -71,6 +91,16 @@ export class RideComponent implements OnInit {
     this.subscribeToServiceForDestination();
   }
 
+  setOrigin(origin: string) {
+    this.origin = origin;
+    this.subscribeToServiceForOrigin()
+  }
+
+  setDriving(driving: boolean) {
+    this.driving = driving;
+    this.subscribeToServiceForDriving();
+  }
+
   setRoundTrip(roundTrip: boolean) {
     this.roundTrip = roundTrip;
     this.subscribeToServiceForRoundTrip();
@@ -93,7 +123,12 @@ export class RideComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeToServiceForDestination();
+    this.subscribeToServiceForOrigin();
+    this.subscribeToServiceForDriving();
     this.subscribeToServiceForRoundTrip();
+    this.subscribeToServiceForEco();
+    this.subscribeToServiceForNoSmoking();
+    this.subscribeToServiceForPetFriendly();
   }
 
 

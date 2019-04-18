@@ -7,7 +7,7 @@ export interface Ride {
   roundTrip: boolean;
   departureDate: string;
   departureTime: string;
-  driving?: boolean;
+  driving: boolean;
   notes: string;
   sortDateTime?: string;
   noSmoking: boolean;

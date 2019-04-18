@@ -1,11 +1,19 @@
 <div layout-gt-sm="row">
   <div flex-gt-sm="80" flex-offset-gt-sm="10">
-
         <br>
+    <mat-checkbox id="checkboxRoundTrip" (checked)="rideRoundTrip" (click)="toggleRoundTrip()">
+      Round Trip </mat-checkbox>
+    <mat-checkbox id="checkboxDriving" (checked)="rideDriving" (click)="toggleDriving()">
+      Driving? </mat-checkbox>
+    <mat-checkbox id="checkboxNonSmoking" (checked)="rideNoSmoking" (click)="toggleNoSmoking()">
+      Non-smoking </mat-checkbox>
+    <mat-checkbox id="checkboxEco" (checked)="rideEco" (click)="toggleEco()">
+      Eco Friendly </mat-checkbox>
+    <mat-checkbox id="checkboxPetFriendly" (checked)="ridePetFriendly" (click)="togglePetFriendly()">
+      Pet Friendly </mat-checkbox>
         <mat-card-content id="background" *ngIf="rides; else ridesError">
           <mat-card id="rides" #elem class="rides" [id]="ride.destination"
-                               *ngFor="let ride of rides">
-
+                               *ngFor="let ride of this.filterRides(rideRoundTrip, rideDriving, rideDestination, rideNoSmoking, rideEco, ridePetFriendly)">
               <button mat-icon-button [matMenuTriggerFor]="menu" id="settings" class="card-top-right-button">
                 <mat-icon class="dots">more_vert</mat-icon>
               </button>
@@ -22,8 +30,17 @@
               </mat-menu>
               <mat-card-title flex>
                 <div id="originAndDestinationContainer">
+                  <!--Driving icon-->
+                  <div class="card-top-left-icon" *ngIf="ride.driving; then thenDriving else elseDriving">ride.driving</div>
+                  <ng-template #thenDriving><mat-icon>directions_car</mat-icon></ng-template>
+                  <ng-template #elseDriving><mat-icon>directions_walk</mat-icon></ng-template>
+                  <!--Origin Display-->
                   <div class="originDestinationFields">{{ride.origin}}</div>
-                  <div><mat-icon class="arrow">forward</mat-icon></div>
+                  <!--//Arrow icon-->
+                  <div class="arrow" *ngIf="ride.roundTrip; then thenArrow else elseArrow">ride.roundTrip</div>
+                  <ng-template #thenArrow><mat-icon>swap_horiz</mat-icon></ng-template>
+                  <ng-template #elseArrow><mat-icon>trending_flat</mat-icon></ng-template>
+                  <!--//Destination Display-->
                   <div class="originDestinationFields">{{ride.destination}}</div>
                 </div>
               </mat-card-title>
@@ -37,7 +54,6 @@
                 <mat-icon *ngIf="ride.noSmoking">smoke_free</mat-icon>
                 <mat-icon *ngIf="ride.Eco">local_florist</mat-icon>
                 <mat-icon *ngIf="ride.petFriendly">pets</mat-icon>
-                <mat-icon *ngIf="ride.roundTrip">repeat</mat-icon>
               </div>
               <div class="seats">{{ride.seatsAvailable}} Seats Available</div>
               <!--<div class=ride.roundTrip ><mat-icon *ngIf="ride.roundTrip">repeat</mat-icon></div>-->
