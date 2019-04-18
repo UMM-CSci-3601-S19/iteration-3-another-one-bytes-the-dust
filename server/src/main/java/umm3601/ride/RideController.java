@@ -110,6 +110,8 @@ public class RideController {
     System.err.println(" I got past noSmoking");
     System.err.println(" I got past Eco");
     System.err.println(" I got past petFriendly");
+    System.err.println(" I got past seatsAvailable");
+
 
     FindIterable<Document> matchingRides = rideCollection.find(filterDoc);
 
@@ -129,7 +131,7 @@ public class RideController {
   }
 
   String addNewRide(String driver, String destination, String origin, Boolean roundTrip, Boolean driving, String departureDate,
-                    String departureTime, String notes, String sortDateTime, Boolean noSmoking, Boolean Eco, Boolean petFriendly) {
+                    String departureTime, String notes, String sortDateTime, Boolean noSmoking, Boolean Eco, Boolean petFriendly, int seatsAvailable) {
 
     Document newRide = new Document();
     newRide.append("driver", driver);
@@ -144,6 +146,8 @@ public class RideController {
     newRide.append("noSmoking", noSmoking);
     newRide.append("Eco", Eco);
     newRide.append("petFriendly", petFriendly);
+    newRide.append("seatsAvailable", seatsAvailable);
+    System.out.println(seatsAvailable);
 
 
     try {
@@ -151,7 +155,7 @@ public class RideController {
       ObjectId _id = newRide.getObjectId("_id");
       System.err.println("Successfully added new ride [_id=" + _id + ", driver=" + driver + ", destination=" + destination + ", origin=" + origin + ", roundTrip=" + roundTrip + ", driving="
         + driving + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes +
-        " sortDateTime=" + sortDateTime + " noSmoking=" + noSmoking + " Eco=" + Eco + "petFriendly=" + petFriendly + ']');
+        " sortDateTime=" + sortDateTime + " noSmoking=" + noSmoking + " Eco=" + Eco + "petFriendly=" + petFriendly + "seatsAvailable" + seatsAvailable +']');
       return _id.toHexString();
     } catch (MongoException me) {
       me.printStackTrace();

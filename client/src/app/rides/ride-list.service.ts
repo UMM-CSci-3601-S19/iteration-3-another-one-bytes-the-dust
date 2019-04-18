@@ -15,7 +15,7 @@ export class RideListService {
 
   }
 
-  getRides(searchedDestination: string, searchedOrigin: string, searchedDate: string, searchedTime: string, searchedRoundTrip: boolean, searchedNoSmoking: boolean, searchedEco: boolean, searchedPetFriendly: boolean): Observable<Ride[]> {
+  getRides(searchedDestination: string, searchedOrigin: string, searchedDate: string, searchedTime: string, searchedRoundTrip: boolean, searchedNoSmoking: boolean, searchedEco: boolean, searchedPetFriendly: boolean, searchedSeatsAvailable: number): Observable<Ride[]> {
     console.log("searched Destination to getRides is " + searchedDestination);
     console.log("searched Origin to getRides is " + searchedOrigin);
     console.log("searched date to getRides is " + searchedDate);
@@ -24,10 +24,11 @@ export class RideListService {
     console.log("searched noSmoking to getRides is " + searchedNoSmoking);
     console.log("searched Eco to getRides is " + searchedEco);
     console.log("searched petFriendly to getRides is " + searchedPetFriendly);
+    console.log("searched seatsAvailable to getRides is " + searchedSeatsAvailable);
 
     console.log("Ride Url before filter By PARAMETERS " + this.rideUrl);
 
-    this.filterByParameters(searchedDestination,searchedOrigin,searchedDate,searchedTime,searchedRoundTrip, searchedNoSmoking, searchedEco, searchedPetFriendly);
+    this.filterByParameters(searchedDestination,searchedOrigin,searchedDate,searchedTime,searchedRoundTrip, searchedNoSmoking, searchedEco, searchedPetFriendly, searchedSeatsAvailable);
 
     console.log("Ride Url after filter By PARAMETERS " + this.rideUrl);
 
@@ -57,9 +58,11 @@ export class RideListService {
   }
 
 
-
   addNewRide(newRide: Ride): Observable<string> {
+    console.log("/////////////////////////////////////////////////////");
     console.log("This the format of departure date when adding " + newRide.departureDate);
+    console.log("Seats Available is " + newRide.seatsAvailable);
+    console.log("/////////////////////////////////////////////////////");
     const httpOptions = {
       headers: new HttpHeaders({
         // We're sending JSON
@@ -135,7 +138,7 @@ export class RideListService {
     else {return false;}
   }
 
-  filterByParameters(rideDestination: string, rideOrigin: string, rideDate: string, rideTime: string, rideRoundTrip: boolean, rideNoSmoking: boolean, rideEco: boolean, ridePetFriendly: boolean): void {
+  filterByParameters(rideDestination: string, rideOrigin: string, rideDate: string, rideTime: string, rideRoundTrip: boolean, rideNoSmoking: boolean, rideEco: boolean, ridePetFriendly: boolean, rideSeatsAvailable: number): void {
 
     // Filtering by destination
     if (!(rideDestination == null || rideDestination === '')) {
