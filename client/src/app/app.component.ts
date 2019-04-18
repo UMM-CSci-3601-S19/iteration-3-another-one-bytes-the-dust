@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
   }
 
 
-  title = 'MoRide';
+  title = 'Mo-Ride';
 
   // This signs in the user and opens the window for signing in
   signIn() {
