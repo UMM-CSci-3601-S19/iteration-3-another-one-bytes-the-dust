@@ -9,6 +9,8 @@ import {DeleteRideComponent} from "./delete-ride.component";
 import {SearchRideComponent} from "./search-ride.component";
 import {AppComponent} from "../app.component";
 
+import {ViewRideComponent} from "./view-ride.component";
+
 
 @Component({
   selector: 'ride-list-component',
@@ -177,10 +179,12 @@ export class RideListComponent implements OnInit {
     });
   }
 
-  openViewDialog(currentId: object): string {
+  openViewDialog(currentId: object): void {
     console.log("this is openview dialog");
-    return "/viewRide?" + currentId.toString();
+    ///testFunction
   }
+
+
 
   openDeleteDialog(currentId: object): void {
     console.log("openDeleteDialog");

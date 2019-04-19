@@ -1,5 +1,7 @@
 <div layout-gt-sm="row">
   <div flex-gt-sm="80" flex-offset-gt-sm="10">
+
+
         <br>
     <div>
       <mat-checkbox id="checkboxDriving" (checked)="rideDriving" (click)="toggleDriving()" matTooltip="Driving" matTooltipPosition="below">
@@ -21,7 +23,7 @@
                 <mat-icon class="dots">more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu" >
-                <button mat-menu-item (click)="openViewDialog(ride._id)">
+                <button mat-menu-item [routerLink]="['/viewRide']" (click)= "openViewDialog(ride._id)" routerLinkActive="nav-active">
                   <span>View Ride details</span>
                 </button>
                 <button mat-menu-item (click)="openEditDialog(ride._id, ride.driver, ride.destination,
