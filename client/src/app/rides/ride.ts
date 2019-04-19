@@ -13,4 +13,5 @@ export interface Ride {
   noSmoking: boolean;
   Eco: boolean;
   petFriendly: boolean;
+  visible?: boolean;
 }
