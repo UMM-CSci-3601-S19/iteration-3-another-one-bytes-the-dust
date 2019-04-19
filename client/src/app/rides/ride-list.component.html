@@ -1,16 +1,19 @@
 <div layout-gt-sm="row">
   <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <br>
-    <mat-checkbox id="checkboxRoundTrip" (checked)="rideRoundTrip" (click)="toggleRoundTrip()">
-      Round Trip </mat-checkbox>
-    <mat-checkbox id="checkboxDriving" (checked)="rideDriving" (click)="toggleDriving()">
-      Driving? </mat-checkbox>
-    <mat-checkbox id="checkboxNonSmoking" (checked)="rideNoSmoking" (click)="toggleNoSmoking()">
-      Non-smoking </mat-checkbox>
-    <mat-checkbox id="checkboxEco" (checked)="rideEco" (click)="toggleEco()">
-      Eco Friendly </mat-checkbox>
-    <mat-checkbox id="checkboxPetFriendly" (checked)="ridePetFriendly" (click)="togglePetFriendly()">
-      Pet Friendly </mat-checkbox>
+    <div>
+      <mat-checkbox id="checkboxDriving" (checked)="rideDriving" (click)="toggleDriving()" matTooltip="Driving" matTooltipPosition="below">
+        Driving? </mat-checkbox>
+      <mat-checkbox id="checkboxRoundTrip" (checked)="rideRoundTrip" (click)="toggleRoundTrip()" matTooltip="Round Trip" matTooltipPosition="below">
+        <mat-icon >swap_horiz</mat-icon> </mat-checkbox>
+      <mat-checkbox id="checkboxNonSmoking" (checked)="rideNoSmoking" (click)="toggleNoSmoking()" matTooltip="No Smoking" matTooltipPosition="below">
+        <mat-icon >smoke_free</mat-icon> </mat-checkbox>
+      <mat-checkbox id="checkboxEco" (checked)="rideEco" (click)="toggleEco()" matTooltip="Eco-friendly" matTooltipPosition="below">
+        <mat-icon >local_florist</mat-icon> </mat-checkbox>
+      <mat-checkbox id="checkboxPetFriendly" (checked)="ridePetFriendly" (click)="togglePetFriendly()" matTooltip="Pet-friendly" matTooltipPosition="below">
+        <mat-icon >pets</mat-icon> </mat-checkbox>
+
+    </div>
         <mat-card-content id="background" *ngIf="rides; else ridesError">
           <mat-card id="rides" #elem class="rides" [id]="ride.destination"
                                *ngFor="let ride of this.filterRides(rideRoundTrip, rideDriving, rideDestination, rideNoSmoking, rideEco, ridePetFriendly)">
