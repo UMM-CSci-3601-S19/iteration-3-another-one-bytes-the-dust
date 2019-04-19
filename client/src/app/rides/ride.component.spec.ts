@@ -15,6 +15,7 @@ describe('Ride component', () => {
     getRideByRoundTrip: (rideRoundTrip: Boolean) => Observable<Ride>
     getRideByNoSmoking: (NoSmoking: Boolean) => Observable<Ride>
     getRideByEco: (eco: Boolean) => Observable<Ride>
+    getRideByPetFriendly: (petFriendly: Boolean) => Observable<Ride>
   };
 
   beforeEach(() => {
@@ -198,6 +199,51 @@ describe('Ride component', () => {
           petFriendly: false,
         }
       ].find(ride => ride.Eco === rideEco)),
+
+      getRideByPetFriendly: (ridePetFriendly: boolean) => Observable.of([
+        {
+          driver: 'Hagrid',
+          destination: 'Hogwarts',
+          origin: '4 Privet Drive',
+          roundTrip: true,
+          departureDate: '05-16-2007',
+          departureTime: '6:00 PM',
+          driving: true,
+          notes: 'I will be arriving in a flying motorcycle',
+          sortDateTime: '200705161800',
+          noSmoking: true,
+          Eco: true,
+          petFriendly: true,
+        },
+        {
+          driver: 'Lucy',
+          destination: 'Narnia',
+          origin: 'Wardrobe',
+          roundTrip: true,
+          departureDate: '07-13-2020',
+          departureTime: '5:00 PM',
+          driving: true,
+          notes: 'Dress for cold',
+          sortDateTime: '202007131700',
+          noSmoking: true,
+          Eco: true,
+          petFriendly: false,
+        },
+        {
+          driver: 'Student',
+          destination: 'Morris',
+          origin: 'The Outside',
+          roundTrip: false,
+          departureDate: '08-02-2019',
+          departureTime: '7:00 PM',
+          driving: false,
+          notes: 'There is no escaping Morris',
+          sortDateTime: '201908021900',
+          noSmoking: false,
+          Eco: true,
+          petFriendly: false,
+        }
+      ].find(ride => ride.petFriendly === ridePetFriendly)),
     };
 
 
@@ -264,6 +310,13 @@ describe('Ride component', () => {
     rideComponent.setEco(true);
     expect(rideComponent.ride).toBeDefined();
     expect(rideComponent.ride.Eco).toBe(true);
+
+  });
+
+  it('can retrieve correct tag: PetFriendly', ()=> {
+    rideComponent.setPetFriendly(true);
+    expect(rideComponent.ride).toBeDefined();
+    expect(rideComponent.ride.petFriendly).toBe(true);
 
   });
 
