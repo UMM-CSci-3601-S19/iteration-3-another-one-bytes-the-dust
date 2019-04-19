@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Ride} from "./ride";
 import {RideListService} from "./ride-list.service";
@@ -7,8 +7,9 @@ import {EditRideComponent} from "./edit-ride.component";
 import {MatDialog, MatDialogConfig} from "@angular/material";
 import {DeleteRideComponent} from "./delete-ride.component";
 import {SearchRideComponent} from "./search-ride.component";
-import {RideListComponent} from "./ride-list.component";
+// import {RideListComponent} from "./ride-list.component";
 import {AppComponent} from "../app.component";
+
 
 
 @Component({
@@ -31,16 +32,18 @@ export class ViewRideComponent implements OnInit {
   public rideEco: boolean;
   public ridePetFriendly: boolean;
 
+  public rideid: string;
+
 
   private highlightedDestination: string = '';
 
 
 
-  // constructor(public appComponent: AppComponent, public rideListService: RideListService, public dialog: MatDialog) {
-  // }
+  constructor(public appComponent: AppComponent) {
+  }
 
-  testFunction(currentId: object) {
-    console.log(currentId.toString());
+  static testFunction(currentId: object) {
+    console.log(currentId.valueOf() + "viewride component reached");
 
   }
 

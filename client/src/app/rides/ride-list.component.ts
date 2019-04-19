@@ -181,7 +181,7 @@ export class RideListComponent implements OnInit {
 
   openViewDialog(currentId: object): void {
     console.log("this is openview dialog");
-    ///testFunction
+    ViewRideComponent.testFunction(currentId);
   }
 
 

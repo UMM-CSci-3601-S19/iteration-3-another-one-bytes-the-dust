@@ -16,6 +16,18 @@
         <mat-icon >pets</mat-icon> </mat-checkbox>
 
     </div>
+
+
+    <!--<ul class="ride">-->
+      <!--<li *ngFor="let ride of ride"-->
+          <!--[class.selected]="ride === selectedRide"-->
+          <!--(click)="onSelect(ride)">-->
+        <!--<span class="badge">{{ride._id}}</span> {{ride._id}}-->
+      <!--</li>-->
+    <!--</ul>-->
+    <!--<view-ride [ride]="selectedRide"></view-ride>-->
+
+
         <mat-card-content id="background" *ngIf="rides; else ridesError">
           <mat-card id="rides" #elem class="rides" [id]="ride.destination"
                                *ngFor="let ride of this.filterRides(rideRoundTrip, rideDriving, rideDestination, rideNoSmoking, rideEco, ridePetFriendly)">
@@ -23,7 +35,7 @@
                 <mat-icon class="dots">more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu" >
-                <button mat-menu-item [routerLink]="['/viewRide']" (click)= "openViewDialog(ride._id)" routerLinkActive="nav-active">
+                <button mat-menu-item [routerLink]="['/viewRide']" (click)="openViewDialog(ride._id)" >
                   <span>View Ride details</span>
                 </button>
                 <button mat-menu-item (click)="openEditDialog(ride._id, ride.driver, ride.destination,
