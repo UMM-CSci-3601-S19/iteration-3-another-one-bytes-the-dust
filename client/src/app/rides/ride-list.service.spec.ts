@@ -171,7 +171,7 @@ describe( 'Ride list service: ', () => {
   it('getRideByEco calls api/rides/Eco', () => {
     const targetRide: Ride = testRides[1];
     const targetEco: boolean = targetRide.Eco;
-    rideListService.getRideByNoSmoking(targetEco).subscribe(
+    rideListService.getRideByEco(targetEco).subscribe(
       ride => expect(ride).toBe(targetRide)
     );
 
@@ -181,6 +181,18 @@ describe( 'Ride list service: ', () => {
     req.flush(targetRide);
   });
 
+  it('getRideByPetFriendly calls api/rides/PetFriendly', () => {
+    const targetRide: Ride = testRides[1];
+    const targetPetFriendly: boolean = targetRide.petFriendly;
+    rideListService.getRideByPetFriendly(targetPetFriendly).subscribe(
+      ride => expect(ride).toBe(targetRide)
+    );
+
+    const expectedUrl: string = rideListService.baseUrl + '/' + targetPetFriendly;
+    const req = httpTestingController.expectOne(expectedUrl);
+    expect(req.request.method).toEqual('GET');
+    req.flush(targetRide);
+  });
 
 
   it('editing a ride calls api/rides/update', () => {
