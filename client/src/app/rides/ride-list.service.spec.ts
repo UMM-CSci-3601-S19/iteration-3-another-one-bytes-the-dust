@@ -155,6 +155,19 @@ describe( 'Ride list service: ', () => {
     req.flush(targetRide);
   });
 
+  it('getRideByNoSmoking calls api/rides/noSmoking', () => {
+    const targetRide: Ride = testRides[1];
+    const targetNoSmoking: boolean = targetRide.noSmoking;
+    rideListService.getRideByNoSmoking(targetNoSmoking).subscribe(
+      ride => expect(ride).toBe(targetRide)
+    );
+
+    const expectedUrl: string = rideListService.baseUrl + '/' + targetNoSmoking;
+    const req = httpTestingController.expectOne(expectedUrl);
+    expect(req.request.method).toEqual('GET');
+    req.flush(targetRide);
+  });
+
 
 
   it('editing a ride calls api/rides/update', () => {
