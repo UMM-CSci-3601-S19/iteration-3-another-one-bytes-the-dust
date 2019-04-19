@@ -168,6 +168,19 @@ describe( 'Ride list service: ', () => {
     req.flush(targetRide);
   });
 
+  it('getRideByEco calls api/rides/Eco', () => {
+    const targetRide: Ride = testRides[1];
+    const targetEco: boolean = targetRide.Eco;
+    rideListService.getRideByNoSmoking(targetEco).subscribe(
+      ride => expect(ride).toBe(targetRide)
+    );
+
+    const expectedUrl: string = rideListService.baseUrl + '/' + targetEco;
+    const req = httpTestingController.expectOne(expectedUrl);
+    expect(req.request.method).toEqual('GET');
+    req.flush(targetRide);
+  });
+
 
 
   it('editing a ride calls api/rides/update', () => {
