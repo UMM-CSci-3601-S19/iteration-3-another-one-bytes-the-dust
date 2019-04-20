@@ -132,6 +132,12 @@ public class RideController {
     }
     System.err.println("I got past petFriendly");
 
+    if (queryParams.containsKey("visible")) {
+      String key = "visible";
+      filterDoc = appendFilterDocBoolean(queryParams, key, filterDoc);
+    }
+    System.err.println("I got past visible");
+
     FindIterable<Document> matchingRides = rideCollection.find(filterDoc);
 
     return serializeIterable(matchingRides);
@@ -145,7 +151,7 @@ public class RideController {
   }
 
   String addNewRide(String driver, String destination, String origin, Boolean roundTrip, Boolean driving, String departureDate,
-                    String departureTime, String notes, String sortDateTime, Boolean noSmoking, Boolean Eco, Boolean petFriendly) {
+                    String departureTime, String notes, String sortDateTime, Boolean noSmoking, Boolean Eco, Boolean petFriendly, Boolean visible) {
 
     Document newRide = new Document();
     newRide.append("driver", driver);
@@ -160,6 +166,7 @@ public class RideController {
     newRide.append("noSmoking", noSmoking);
     newRide.append("Eco", Eco);
     newRide.append("petFriendly", petFriendly);
+    newRide.append("visible", visible);
 
 
     try {
@@ -167,7 +174,7 @@ public class RideController {
       ObjectId _id = newRide.getObjectId("_id");
       System.err.println("Successfully added new ride [_id=" + _id + ", driver=" + driver + ", destination=" + destination + ", origin=" + origin + ", roundTrip=" + roundTrip + ", driving="
         + driving + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes +
-        " sortDateTime=" + sortDateTime + " noSmoking=" + noSmoking + " Eco=" + Eco + "petFriendly=" + petFriendly + ']');
+        " sortDateTime=" + sortDateTime + " noSmoking=" + noSmoking + " Eco=" + Eco + "petFriendly=" + petFriendly + "visible=" + visible + ']');
       return _id.toHexString();
     } catch (MongoException me) {
       me.printStackTrace();
@@ -189,7 +196,7 @@ public class RideController {
   }
 
   Boolean updateRide(String id, String driver, String destination, String origin, Boolean roundTrip, Boolean driving,
-    String departureDate, String departureTime, String notes, String sortDateTime, Boolean noSmoking, Boolean Eco, Boolean petFriendly){
+    String departureDate, String departureTime, String notes, String sortDateTime, Boolean noSmoking, Boolean Eco, Boolean petFriendly, Boolean visible){
     ObjectId objId = new ObjectId(id);
     Document filter = new Document("_id", objId);
     Document updateFields = new Document();
@@ -205,6 +212,7 @@ public class RideController {
     updateFields.append("noSmoking" , noSmoking);
     updateFields.append("Eco" , Eco);
     updateFields.append("petFriendly" , petFriendly);
+    updateFields.append("visible" , visible);
 
 
     Document updateDoc = new Document("$set", updateFields);

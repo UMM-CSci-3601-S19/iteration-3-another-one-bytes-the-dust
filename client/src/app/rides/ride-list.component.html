@@ -14,9 +14,12 @@
         <mat-icon >pets</mat-icon> </mat-checkbox>
 
     </div>
-        <mat-card-content id="background" *ngIf="rides; else ridesError">
+        <mat-card-content id="background" *ngIf="rides; else ridesError" >
           <mat-card id="rides" #elem class="rides" [id]="ride.destination"
                                *ngFor="let ride of this.filterRides(rideRoundTrip, rideDriving, rideDestination, rideNoSmoking, rideEco, ridePetFriendly)">
+
+            <span id="wrapper" *ngIf="dateCompare(ride.departureDate)">
+
               <button mat-icon-button [matMenuTriggerFor]="menu" id="settings" class="card-top-right-button">
                 <mat-icon class="dots">more_vert</mat-icon>
               </button>
@@ -31,7 +34,7 @@
                   <span>Delete Ride</span>
                 </button>
               </mat-menu>
-              <mat-card-title flex>
+              <mat-card-title flex >
                 <div id="originAndDestinationContainer">
                   <!--Driving icon-->
                   <div class="card-top-left-icon" *ngIf="ride.driving; then thenDriving else elseDriving">ride.driving</div>
@@ -66,8 +69,8 @@
             <mat-card-content class="notes">
               <div>{{ride.notes}}</div>
             </mat-card-content>
+              </span>
           </mat-card>
-
         </mat-card-content>
 
     <ng-template #ridesError>
