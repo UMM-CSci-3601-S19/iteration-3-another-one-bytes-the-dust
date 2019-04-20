@@ -32,8 +32,7 @@ export class ViewRideComponent implements OnInit {
   public rideEco: boolean;
   public ridePetFriendly: boolean;
 
-  public rideid: string;
-
+  public viewRideId: object;
 
   private highlightedDestination: string = '';
 
@@ -42,9 +41,19 @@ export class ViewRideComponent implements OnInit {
   constructor(public appComponent: AppComponent) {
   }
 
-  static testFunction(currentId: object) {
-    console.log(currentId.valueOf() + "viewride component reached");
 
+
+  static testFunction(currentId: object): void {
+    console.log("view-ride.component reached");
+    console.log(currentId);
+    //ViewRideComponent.testFunction2();
+//Why doesn't the above function work?
+    //note to self: research static contexts and how they work
+  }
+
+  public testFunction2(){
+    const testConstant = this.viewRideId;
+    console.log(testConstant);
   }
 
   ngOnInit(): void {

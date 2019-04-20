@@ -140,6 +140,7 @@ export class RideListComponent implements OnInit {
                  currentRoundTrip: boolean, currentDriving: boolean, currentDepartureDate: string,
                  currentDepartureTime: string, currentNotes: string, currentNoSmoking: boolean,
                  currentEco: boolean, currentPetFriendly: boolean): void {
+    console.log(currentId);
     const currentRide: Ride = {
       _id: currentId,
       driver: this.appComponent.getUsername(),
@@ -180,7 +181,8 @@ export class RideListComponent implements OnInit {
   }
 
   openViewDialog(currentId: object): void {
-    console.log("this is openview dialog");
+    console.log("we got to openviewdialog" + currentId);
+    console.log(currentId);
     ViewRideComponent.testFunction(currentId);
   }
 
@@ -188,6 +190,7 @@ export class RideListComponent implements OnInit {
 
   openDeleteDialog(currentId: object): void {
     console.log("openDeleteDialog");
+    console.log(currentId);
     const dialogRef = this.dialog.open(DeleteRideComponent, <MatDialogConfig>{
       width: '500px',
       data: {id: currentId}
