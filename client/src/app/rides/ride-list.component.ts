@@ -88,28 +88,28 @@ export class RideListComponent implements OnInit {
 
   getCurrentTime(): string{
     let today = new Date();
-    console.log("getFullYear is " + today.getFullYear());
-    console.log("getMonth is " + today.getUTCMonth());
-    console.log("getDate is " + today.getDate());
-    console.log("getHours is " + today.getHours());
-    console.log("getMinutes is " + today.getMinutes());
+    // console.log("getFullYear is " + today.getFullYear());
+    // console.log("getMonth is " + today.getUTCMonth());
+    // console.log("getDate is " + today.getDate());
+    // console.log("getHours is " + today.getHours());
+    // console.log("getMinutes is " + today.getMinutes());
     let year = this.appendDatesUnder10(today.getFullYear());
     let month = this.appendDatesUnder10(today.getMonth());
     let day = this.appendDatesUnder10(today.getDate());
     let hours = this.appendDatesUnder10(today.getHours());
     let minutes = this.appendDatesUnder10(today.getMinutes());
-    console.log("Year is " + year);
-    console.log("Month is " + month);
-    console.log("Date is " + day);
-    console.log("Hours is " + hours);
-    console.log("Minutes is " + minutes);
+    // console.log("Year is " + year);
+    // console.log("Month is " + month);
+    // console.log("Date is " + day);
+    // console.log("Hours is " + hours);
+    // console.log("Minutes is " + minutes);
 
     let date = year + month + day;
     let time = hours + minutes;
     let blah = date + time;
-    console.log("The Current Time Is " + blah);
-    console.log("The date var is" + date);
-    console.log("The time var is" + time);
+    // console.log("The Current Time Is " + blah);
+    // console.log("The date var is" + date);
+    // console.log("The time var is" + time);
     return date;
   }
   //Method for deleting past rides
