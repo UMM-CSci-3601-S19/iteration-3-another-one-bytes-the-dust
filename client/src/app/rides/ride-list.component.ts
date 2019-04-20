@@ -117,7 +117,7 @@ export class RideListComponent implements OnInit {
 
   openDialog(): void {
     const newRide: Ride = {driver: this.appComponent.getUsername(), destination: '', origin: '', roundTrip: false, driving: false,
-      departureDate: '', departureTime: '', notes: '', noSmoking: false, Eco: false, petFriendly: false, visible: true};
+      departureDate: '', departureTime: '', notes: '', noSmoking: false, Eco: false, petFriendly: false};
     const dialogRef = this.dialog.open(AddRideComponent, <MatDialogConfig>{
       width: '500px',
       data: {ride: newRide}
@@ -145,7 +145,7 @@ export class RideListComponent implements OnInit {
   openSearchDialog(): void {
 
     const searchRide: Ride = {driver: '', destination: '', origin: '', roundTrip: null, driving: false,
-      departureDate: '', departureTime: '', notes: '', noSmoking: null, Eco: null, petFriendly: null, visible: true};
+      departureDate: '', departureTime: '', notes: '', noSmoking: null, Eco: null, petFriendly: null};
 
     const dialogRef = this.dialog.open(SearchRideComponent, <MatDialogConfig>{
       width: '500px',
@@ -162,12 +162,11 @@ export class RideListComponent implements OnInit {
         console.log('The noSmoking passed in is ' + searchRide.noSmoking);
         console.log('The Eco passed in is ' + searchRide.Eco);
         console.log('The petFriendly passed in is ' + searchRide.petFriendly);
-        console.log('The visible passed in is ' + searchRide.visible);
         console.log('The Current Time Is ' + this.getCurrentTime());
 
         this.rideListService.getRides(searchRide.destination,searchRide.origin,searchRide.departureDate,
           searchRide.departureTime,searchRide.driving, searchRide.roundTrip,searchRide.noSmoking,searchRide.Eco,
-          searchRide.petFriendly, searchRide.visible).subscribe(
+          searchRide.petFriendly).subscribe(
           result => {
             this.searchedRides = result;
             console.log("The result is " + JSON.stringify(result));
@@ -304,13 +303,13 @@ export class RideListComponent implements OnInit {
 
 
   refreshRides(searchDestination?: string,searchOrigin?: string,searchDate?: string,searchTime?: string,searchDriving?: boolean,
-               searchRoundTrip?: boolean, searchNoSmoking?: boolean, searchEco?: boolean, searchPetFriendly?: boolean, searchVisible?: boolean): Observable<Ride[]> {
+               searchRoundTrip?: boolean, searchNoSmoking?: boolean, searchEco?: boolean, searchPetFriendly?: boolean): Observable<Ride[]> {
     localStorage.setItem("searched", "false");
     localStorage.setItem("load", "false");
   if (searchDestination == null && searchOrigin == null && searchDate == null && searchTime == null && searchDriving == null
   && searchRoundTrip == null && searchNoSmoking == null && searchEco == null && searchPetFriendly == null) {
       const rides: Observable<Ride[]> = this.rideListService.getRides('','','',
-        '', null, null, null, null, null, null);
+        '', null, null, null, null, null);
       rides.subscribe(
         rides => {
           this.rides = rides;
@@ -322,7 +321,7 @@ export class RideListComponent implements OnInit {
     }
     else {
     const rides: Observable<Ride[]> = this.rideListService.getRides(searchDestination,searchOrigin,searchDate,searchTime,
-      searchDriving,searchRoundTrip, searchNoSmoking, searchEco, searchPetFriendly, searchVisible);
+      searchDriving,searchRoundTrip, searchNoSmoking, searchEco, searchPetFriendly);
     rides.subscribe(
       rides => {
         this.rides = rides;

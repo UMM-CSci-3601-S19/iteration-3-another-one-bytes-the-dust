@@ -17,7 +17,7 @@ export class RideListService {
 
   getRides(searchedDestination: string, searchedOrigin: string, searchedDate: string, searchedTime: string,
            searchedDriving: boolean, searchedRoundTrip: boolean, searchedNoSmoking: boolean, searchedEco: boolean,
-           searchedPetFriendly: boolean, searchedVisible: boolean): Observable<Ride[]> {
+           searchedPetFriendly: boolean): Observable<Ride[]> {
     console.log("searched Destination to getRides is " + searchedDestination);
     console.log("searched Origin to getRides is " + searchedOrigin);
     console.log("searched date to getRides is " + searchedDate);
@@ -27,12 +27,11 @@ export class RideListService {
     console.log("searched noSmoking to getRides is " + searchedNoSmoking);
     console.log("searched Eco to getRides is " + searchedEco);
     console.log("searched petFriendly to getRides is " + searchedPetFriendly);
-    console.log("searched visible to getRides is " + searchedVisible);
 
     console.log("Ride Url before filter By PARAMETERS " + this.rideUrl);
 
     this.filterByParameters(searchedDestination,searchedOrigin,searchedDate,searchedTime,searchedDriving,
-      searchedRoundTrip, searchedNoSmoking, searchedEco, searchedPetFriendly, searchedVisible);
+      searchedRoundTrip, searchedNoSmoking, searchedEco, searchedPetFriendly);
 
     console.log("Ride Url after filter By PARAMETERS " + this.rideUrl);
 
@@ -236,7 +235,7 @@ export class RideListService {
   }
 
   filterByParameters(rideDestination: string, rideOrigin: string, rideDate: string, rideTime: string, rideDriving: boolean, rideRoundTrip: boolean, rideNoSmoking: boolean, rideEco: boolean,
-                     ridePetFriendly: boolean, rideVisible: boolean): void {
+                     ridePetFriendly: boolean): void {
 
     console.log('Made it to filter by parameters!');
 

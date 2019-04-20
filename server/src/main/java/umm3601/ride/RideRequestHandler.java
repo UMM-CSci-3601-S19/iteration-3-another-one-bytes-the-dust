@@ -65,13 +65,12 @@ public class RideRequestHandler {
     Boolean noSmoking = newRide.getBoolean("noSmoking");
     Boolean Eco = newRide.getBoolean("Eco");
     Boolean petFriendly = newRide.getBoolean("petFriendly");
-    Boolean visible = newRide.getBoolean("visible");
 
 
     System.err.println("Adding new ride [driver=" + driver + " destination=" + destination + " origin=" + origin + " roundTrip=" + roundTrip + " driving=" + driving
-      + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + " sortDateTime=" + sortDateTime + "visible=" + visible + ']');
+      + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + " sortDateTime=" + sortDateTime + ']');
     return rideController.addNewRide(driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes,
-      sortDateTime, noSmoking, Eco, petFriendly, visible);
+      sortDateTime, noSmoking, Eco, petFriendly);
   }
 
   public Boolean updateRide(Request req, Response res) {
@@ -99,11 +98,11 @@ public class RideRequestHandler {
     Boolean noSmoking = editRide.getBoolean("noSmoking");
     Boolean Eco = editRide.getBoolean("Eco");
     Boolean petFriendly = editRide.getBoolean("petFriendly");
-    Boolean visible = editRide.getBoolean("visible");
+
 
     System.err.println("Editing ride [id=" + id + " driver=" + driver + " destination=" + destination + " origin=" + origin + " roundTrip=" + roundTrip + " driving=" + driving
-      + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + " sortDateTime=" + sortDateTime + "visible=" + visible + ']');
-    return rideController.updateRide(id, driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes, sortDateTime, noSmoking, Eco, petFriendly, visible);
+      + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + " sortDateTime=" + sortDateTime + ']');
+    return rideController.updateRide(id, driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes, sortDateTime, noSmoking, Eco, petFriendly);
   }
 
   public Boolean deleteRide(Request req, Response res){
