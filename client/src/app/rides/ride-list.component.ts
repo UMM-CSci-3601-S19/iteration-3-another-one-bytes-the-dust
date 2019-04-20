@@ -73,6 +73,11 @@ export class RideListComponent implements OnInit {
   dateCompare(currentDepartureDate: string): boolean{
     var d1 = new Date(currentDepartureDate);
     var now = new Date();
+    // var now2 = new Date(now.setDate(now.getDate() + 1));
+    now.setDate(now.getDate() - 1);
+    // console.log(d1);
+    // console.log("xxx" + now);
+    // console.log("////" + now2);
 
     if (d1 > now){
       return true
