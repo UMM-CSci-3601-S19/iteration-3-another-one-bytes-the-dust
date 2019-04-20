@@ -69,6 +69,11 @@ export class RideListService {
     }
   }
 
+  //Added this line for view-ride.component to be functional
+  getRideById(_id: string): Observable<Ride> {
+    return this.http.get<Ride>(this.rideUrl + '/' + _id);
+  }
+
   //This could be changed into a getRideById if we decide to ad id as a field
   getRideByDestination(destination: string): Observable<Ride> {
     return this.http.get<Ride>(this.rideUrl + '/' + destination);
@@ -258,7 +263,6 @@ export class RideListService {
     // Filtering by Driving
     this.makeSearchUrlBoolean(rideDriving, 'driving=');
     console.log('Driving filtered: ' + this.rideUrl);
-
 
     // Filtering by roundTrip
     this.makeSearchUrlBoolean(rideRoundTrip, 'roundTrip=');

@@ -49,6 +49,7 @@ export class ViewRideComponent implements OnInit {
     //ViewRideComponent.testFunction2();
 //Why doesn't the above function work?
     //note to self: research static contexts and how they work
+
   }
 
   public testFunction2(){

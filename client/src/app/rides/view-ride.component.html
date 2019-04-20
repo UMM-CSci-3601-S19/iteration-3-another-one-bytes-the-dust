@@ -1,12 +1,40 @@
-<!--<div *ngIf="ride">-->
+<mat-card-content id="background" *ngIf="rides; else ridesError">
+  <mat-card id="rides" #elem class="rides" [id]="ride._id"
+            *ngFor="let ride of this.getRideById([id])">
+    <button mat-icon-button [matMenuTriggerFor]="menu" id="settings" class="card-top-right-button">
+      <mat-icon class="dots">more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" >
+      <!--<button mat-menu-item (click)="openEditDialog(ride._id, ride.driver, ride.destination,-->
+                <!--ride.origin, ride.roundTrip, ride.driving, ride.departureDate, ride.departureTime, ride.notes, ride.noSmoking, ride.Eco, ride.petFriendly)" >-->
 
-  <!--<h2>{{ride._id| uppercase}} Details</h2>-->
-  <!--<div><span>id: </span>{{ride._id}}</div>-->
-  <!--<div>-->
-    <!--<label>id:-->
-      <!--<input [(ngModel)]="ride._id" placeholder="id"/>-->
-    <!--</label>-->
-  <!--</div>-->
-  <!--<view-ride [ride]="selectedRide"></view-ride>-->
+        <!--<span>Edit Ride</span>-->
+      <!--</button>-->
+      <!--<button mat-menu-item (click)="openDeleteDialog(ride._id)" >-->
 
-<!--</div>-->
+        <!--<span>Delete Ride</span>-->
+      <!--</button>-->
+
+    </mat-menu>
+    <mat-divider></mat-divider>
+
+    <!--<mat-card-content class="description">-->
+      <!--<p>{{ride.driver}}</p>-->
+      <!--<div class="bottomInfo">-->
+        <!--<div>{{ride.departureDate}} at {{ride.departureTime}}</div>-->
+        <!--<div class="bottomInfo2">-->
+          <!--<mat-icon *ngIf="ride.noSmoking">smoke_free</mat-icon>-->
+          <!--<mat-icon *ngIf="ride.Eco">local_florist</mat-icon>-->
+          <!--<mat-icon *ngIf="ride.petFriendly">pets</mat-icon>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</mat-card-content>-->
+
+    <!--<mat-divider></mat-divider>-->
+
+    <!--<mat-card-content class="notes">-->
+      <!--<div>{{ride.notes}}</div>-->
+    <!--</mat-card-content>-->
+  </mat-card>
+
+</mat-card-content>

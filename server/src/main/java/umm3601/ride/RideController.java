@@ -73,6 +73,14 @@ public class RideController {
 
     System.err.println("I got to ride Controller");
 
+    //the following _id filter was added by Mitchell, it might have unintended consequences, so be wary
+    if (queryParams.containsKey("_id")) {
+      String key = "_id";
+      filterDoc = appendFilterDocString(queryParams, key, filterDoc);
+    }
+    System.err.println("I got past the _id filter");
+
+
     if (queryParams.containsKey("destination")) {
       String key = "destination";
       filterDoc = appendFilterDocString(queryParams, key, filterDoc);
