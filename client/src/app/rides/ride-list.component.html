@@ -32,7 +32,7 @@
               </button>
               <mat-menu #menu="matMenu" >
                 <button mat-menu-item (click)="openEditDialog(ride._id, ride.driver, ride.destination,
-                ride.origin, ride.roundTrip, ride.driving, ride.departureDate, ride.departureTime, ride.notes, ride.noSmoking, ride.Eco, ride.petFriendly)" >
+                ride.origin, ride.roundTrip, ride.driving, ride.departureDate, ride.departureTime, ride.notes, ride.noSmoking, ride.Eco, ride.petFriendly, ride.seatsAvailable)" >
 
                   <span>Edit Ride</span>
                 </button>
@@ -68,6 +68,8 @@
                 <mat-icon *ngIf="ride.Eco">local_florist</mat-icon>
                 <mat-icon *ngIf="ride.petFriendly">pets</mat-icon>
               </div>
+              <div class="seats">{{ride.seatsAvailable}} Seats Available</div>
+              <!--<div class=ride.roundTrip ><mat-icon *ngIf="ride.roundTrip">repeat</mat-icon></div>-->
             </div>
             </mat-card-content>
 

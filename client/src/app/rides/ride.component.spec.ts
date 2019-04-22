@@ -31,6 +31,7 @@ describe('Ride component', () => {
           noSmoking: true,
           Eco: true,
           petFriendly: false,
+          seatsAvailable: 5,
         },
         {
           driver: 'Lucy',
@@ -45,6 +46,7 @@ describe('Ride component', () => {
           noSmoking: true,
           Eco: true,
           petFriendly: false,
+          seatsAvailable: 1,
         },
         {
           driver: 'Student',
@@ -59,6 +61,7 @@ describe('Ride component', () => {
           noSmoking: true,
           Eco: true,
           petFriendly: false,
+          seatsAvailable: 9,
         }
       ].find(ride => ride.destination === rideDestination)),
 
@@ -76,6 +79,7 @@ describe('Ride component', () => {
           noSmoking: true,
           Eco: true,
           petFriendly: false,
+          seatsAvailable: 8,
         },
         {
           driver: 'Lucy',
@@ -90,6 +94,7 @@ describe('Ride component', () => {
           noSmoking: true,
           Eco: true,
           petFriendly: false,
+          seatsAvailable: 4,
         },
         {
           driver: 'Student',
@@ -104,6 +109,7 @@ describe('Ride component', () => {
           noSmoking: true,
           Eco: true,
           petFriendly: false,
+          seatsAvailable: 3,
         }
       ].find(ride => ride.roundTrip === rideRoundTrip))
     };
