@@ -1,5 +1,10 @@
 #Mo-Ride{
   font-size: 500%;
+  position: center;
+}
+#logo{
+  position: center;
+  margin-left: auto;
 }
 
 #buttons{
