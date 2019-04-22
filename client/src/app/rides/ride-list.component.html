@@ -2,6 +2,13 @@
   <div flex-gt-sm="80" flex-offset-gt-sm="10">
         <br>
     <div>
+      <script>
+        if (localStorage) {
+          console.log("LocalStorage is supported")
+        }else{
+          console.log("No support. Use a fallback such as cookies.")
+        }
+      </script>
       <mat-checkbox id="checkboxDriving" (checked)="rideDriving" (click)="toggleDriving()" matTooltip="Driving" matTooltipPosition="below">
         Driving? </mat-checkbox>
       <mat-checkbox id="checkboxRoundTrip" (checked)="rideRoundTrip" (click)="toggleRoundTrip()" matTooltip="Round Trip" matTooltipPosition="below">

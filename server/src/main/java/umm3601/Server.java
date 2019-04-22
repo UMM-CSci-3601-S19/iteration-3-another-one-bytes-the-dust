@@ -13,6 +13,7 @@ import umm3601.user.UserRequestHandler;
 
 import java.io.FileReader;
 import java.io.InputStream;
+import java.io.File;
 
 import com.google.api.client.googleapis.auth.oauth2.*;
 import com.google.api.client.http.javanet.NetHttpTransport;
@@ -28,7 +29,7 @@ import umm3601.vehicles.VehicleRequestHandler;
 
 public class Server {
 
-  private static final int serverPort=4567;
+  private static final int serverPort=80;
 
   private static final String databaseName = "dev";
 
@@ -101,30 +102,39 @@ public class Server {
         JSONObject obj = new JSONObject(req.body());
         String authCode = obj.getString("code");
 
-        try {
+      try {
+        File file = new File("./iteration-3-another-one-bytes-the-dust/server/src/main/java/umm3601/server_files/credentials.json");
+        String path = file.getAbsolutePath();
+        System.out.println("The path: "+ path);
+        String CLIENT_SECRET_FILE = path;
 
-          String CLIENT_SECRET_FILE = "./src/main/java/umm3601/server_files/clientSF.json";
-
-
-          GoogleClientSecrets clientSecrets =
-            GoogleClientSecrets.load(
-              JacksonFactory.getDefaultInstance(), new FileReader(CLIENT_SECRET_FILE));
-
-
-          GoogleTokenResponse tokenResponse =
-            new GoogleAuthorizationCodeTokenRequest(
-              new NetHttpTransport(),
-              JacksonFactory.getDefaultInstance(),
-              "https://oauth2.googleapis.com/token",
-              clientSecrets.getDetails().getClientId(),
+        GoogleClientSecrets clientSecrets =
+          GoogleClientSecrets.load(
+            JacksonFactory.getDefaultInstance(), new FileReader(CLIENT_SECRET_FILE));
 
 
-              clientSecrets.getDetails().getClientSecret(),
-              authCode,
-              "http://localhost:9000").execute();
+        GoogleTokenResponse tokenResponse =
+          new GoogleAuthorizationCodeTokenRequest(
+            new NetHttpTransport(),
+            JacksonFactory.getDefaultInstance(),
+            "https://oauth2.googleapis.com/token",
+            clientSecrets.getDetails().getClientId(),
+
+            // Replace clientSecret with the localhost one if testing
+            //Your top level domain. Must match "redirect_uris" field in credentials.json. Must be https. No port.
+            clientSecrets.getDetails().getClientSecret(),
+            authCode,
+            "https://spacejlam.me")
+
+            //Not sure if we have a redirectUri
+
+            // Specify the same redirect URI that you use with your web
+            // app. If you don't have a web version of your app, you can
+            // specify an empty string.
+            .execute();
 
 
-          // Get profile info from ID token
+        // Get profile info from ID token
           GoogleIdToken idToken = tokenResponse.parseIdToken();
           GoogleIdToken.Payload payload = idToken.getPayload();
           String userId = payload.getSubject();     // Use this value as a key to identify a user.
