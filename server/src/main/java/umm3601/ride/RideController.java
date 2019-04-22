@@ -210,6 +210,7 @@ public class RideController {
     updateFields.append("seatsAvailable", seatsAvailable);
 
 
+
     Document updateDoc = new Document("$set", updateFields);
     try{
       UpdateResult out = rideCollection.updateOne(filter, updateDoc);

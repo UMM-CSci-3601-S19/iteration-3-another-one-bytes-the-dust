@@ -101,6 +101,7 @@ public class RideRequestHandler {
     Boolean petFriendly = editRide.getBoolean("petFriendly");
     Number seatsAvailable = editRide.getInteger("seatsAvailable");
 
+
     System.err.println("Editing ride [id=" + id + " driver=" + driver + " destination=" + destination + " origin=" + origin + " roundTrip=" + roundTrip + " driving=" + driving
       + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + " sortDateTime=" + sortDateTime + ']');
     return rideController.updateRide(id, driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes, sortDateTime, noSmoking, Eco, petFriendly, seatsAvailable);

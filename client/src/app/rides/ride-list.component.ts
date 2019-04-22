@@ -4,7 +4,7 @@ import {Ride} from "./ride";
 import {RideListService} from "./ride-list.service";
 import {AddRideComponent} from "./add-ride.component";
 import {EditRideComponent} from "./edit-ride.component";
-import {MatDialog} from "@angular/material";
+import {MatDialog, MatDialogConfig} from "@angular/material";
 import {DeleteRideComponent} from "./delete-ride.component";
 import {SearchRideComponent} from "./search-ride.component";
 import {AppComponent} from "../app.component";
@@ -33,8 +33,6 @@ export class RideListComponent implements OnInit {
 
   private highlightedDestination: string = '';
 
-
-
   constructor(public appComponent: AppComponent, public rideListService: RideListService, public dialog: MatDialog) {
   }
 
@@ -58,35 +56,77 @@ export class RideListComponent implements OnInit {
     this.ridePetFriendly = !this.ridePetFriendly;
   }
 
-  // To use to delete past rides
-  static getCurrentTime(): string{
-    let today = new Date();
-    let date = today.getMonth() + '-' + (today.getDate() + 1) + '-' + today.getFullYear();
-    let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    let blah = date + " " + time;
-    return blah;
+  appendDatesUnder10(date: number): string{
+    let newDate;
+    if(date<10){
+      newDate = "0" + date.toString()
+    }
+    else{
+      newDate = date.toString();
+    }
+    return newDate;
   }
+
+  // To use to delete past rides
+
+
+  dateCompare(currentDepartureDate: string): boolean{
+    var d1 = new Date(currentDepartureDate);
+    var now = new Date();
+    // var now2 = new Date(now.setDate(now.getDate() + 1));
+    now.setDate(now.getDate() - 1);
+    // console.log(d1);
+    // console.log("xxx" + now);
+    // console.log("////" + now2);
+
+    if (d1 > now){
+      return true
+    }else{
+      return false
+    }
+  }
+
+  getCurrentTime(): string{
+    let today = new Date();
+    // console.log("getFullYear is " + today.getFullYear());
+    // console.log("getMonth is " + today.getUTCMonth());
+    // console.log("getDate is " + today.getDate());
+    // console.log("getHours is " + today.getHours());
+    // console.log("getMinutes is " + today.getMinutes());
+    let year = this.appendDatesUnder10(today.getFullYear());
+    let month = this.appendDatesUnder10(today.getMonth());
+    let day = this.appendDatesUnder10(today.getDate());
+    let hours = this.appendDatesUnder10(today.getHours());
+    let minutes = this.appendDatesUnder10(today.getMinutes());
+    // console.log("Year is " + year);
+    // console.log("Month is " + month);
+    // console.log("Date is " + day);
+    // console.log("Hours is " + hours);
+    // console.log("Minutes is " + minutes);
+
+    let date = year + month + day;
+    let time = hours + minutes;
+    let blah = date + time;
+    // console.log("The Current Time Is " + blah);
+    // console.log("The date var is" + date);
+    // console.log("The time var is" + time);
+    return date;
+  }
+  //Method for deleting past rides
 
 
   openDialog(): void {
     const newRide: Ride = {driver: this.appComponent.getUsername(), destination: '', origin: '', roundTrip: false, driving: false,
       departureDate: '', departureTime: '', notes: '', noSmoking: false, Eco: false, petFriendly: false, seatsAvailable: 0};
-    const dialogRef = this.dialog.open(AddRideComponent, {
+    const dialogRef = this.dialog.open(AddRideComponent, <MatDialogConfig>{
       width: '500px',
       data: {ride: newRide}
     });
 
+
     dialogRef.afterClosed().subscribe(newRide => {
+      console.log('The Current Time Is ' + this.getCurrentTime());
       if (newRide != null) {
-        console.log('The destination passed in is ' + newRide.destination);
-        console.log('The origin passed in is ' + newRide.origin);
-        console.log('The departureDate passed in is ' + newRide.departureDate);
-        console.log('The departureTime passed in is ' + newRide.departureTime);
-        console.log('The roundTrip passed in is ' + newRide.roundTrip);
-        console.log('The noSmoking passed in is ' + newRide.noSmoking);
-        console.log('The Eco passed in is ' + newRide.Eco);
-        console.log('The petFriendly passed in is ' + newRide.petFriendly);
-        console.log('the seatsAvailable passed in is ' + newRide.seatsAvailable);
 
         this.rideListService.addNewRide(newRide).subscribe(
           result => {
@@ -107,7 +147,7 @@ export class RideListComponent implements OnInit {
     const searchRide: Ride = {driver: '', destination: '', origin: '', roundTrip: null, driving: false,
       departureDate: '', departureTime: '', notes: '', noSmoking: null, Eco: null, petFriendly: null, seatsAvailable: 0};
 
-    const dialogRef = this.dialog.open(SearchRideComponent, {
+    const dialogRef = this.dialog.open(SearchRideComponent, <MatDialogConfig>{
       width: '500px',
       data: {ride: searchRide}
     });
@@ -122,6 +162,7 @@ export class RideListComponent implements OnInit {
         console.log('The noSmoking passed in is ' + searchRide.noSmoking);
         console.log('The Eco passed in is ' + searchRide.Eco);
         console.log('The petFriendly passed in is ' + searchRide.petFriendly);
+        console.log('The Current Time Is ' + this.getCurrentTime());
 
         this.rideListService.getRides(searchRide.destination,searchRide.origin,searchRide.departureDate,
           searchRide.departureTime,searchRide.driving, searchRide.roundTrip,searchRide.noSmoking,searchRide.Eco,
@@ -162,7 +203,7 @@ export class RideListComponent implements OnInit {
       seatsAvailable: currentSeatsAvailable
     };
 
-    const dialogRef = this.dialog.open(EditRideComponent, {
+    const dialogRef = this.dialog.open(EditRideComponent, <MatDialogConfig>{
       width: '500px',
       data: {ride: currentRide}
     });
@@ -189,7 +230,7 @@ export class RideListComponent implements OnInit {
 
   openDeleteDialog(currentId: object): void {
     console.log("openDeleteDialog");
-    const dialogRef = this.dialog.open(DeleteRideComponent, {
+    const dialogRef = this.dialog.open(DeleteRideComponent, <MatDialogConfig>{
       width: '500px',
       data: {id: currentId}
     });
