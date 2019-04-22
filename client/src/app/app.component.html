@@ -17,6 +17,19 @@
     <button mat-icon-button td-menu-button tdLayoutToggle *ngIf="appService.isSignedIn()">
       <mat-icon>menu</mat-icon>
     </button>
+
+    <!--<div flex>-->
+      <!--<input matInput #input class="searchBar" placeholder="Search" [(ngModel)]="data.ride.origin" formControlName="origin"-->
+             <!--[maxLength]="50">-->
+      <!--<mat-error *ngFor="let validation of search_ride_validation_messages.origin">-->
+        <!--<mat-error class="error-message" id="origin-error"-->
+                   <!--*ngIf="searchRideForm.get('origin').hasError(validation.type) &&-->
+                     <!--(searchRideForm.get('origin').dirty || searchRideForm.get('origin').touched)">-->
+          <!--{{validation.message}}-->
+        <!--</mat-error>-->
+      <!--</mat-error>-->
+    <!--</div>-->
+
     <router-outlet></router-outlet>
   </td-layout-nav>
 </td-layout>

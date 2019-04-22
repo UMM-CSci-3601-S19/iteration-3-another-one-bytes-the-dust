@@ -155,6 +155,44 @@ describe( 'Ride list service: ', () => {
     req.flush(targetRide);
   });
 
+  it('getRideByNoSmoking calls api/rides/noSmoking', () => {
+    const targetRide: Ride = testRides[1];
+    const targetNoSmoking: boolean = targetRide.noSmoking;
+    rideListService.getRideByNoSmoking(targetNoSmoking).subscribe(
+      ride => expect(ride).toBe(targetRide)
+    );
+
+    const expectedUrl: string = rideListService.baseUrl + '/' + targetNoSmoking;
+    const req = httpTestingController.expectOne(expectedUrl);
+    expect(req.request.method).toEqual('GET');
+    req.flush(targetRide);
+  });
+
+  it('getRideByEco calls api/rides/Eco', () => {
+    const targetRide: Ride = testRides[1];
+    const targetEco: boolean = targetRide.Eco;
+    rideListService.getRideByEco(targetEco).subscribe(
+      ride => expect(ride).toBe(targetRide)
+    );
+
+    const expectedUrl: string = rideListService.baseUrl + '/' + targetEco;
+    const req = httpTestingController.expectOne(expectedUrl);
+    expect(req.request.method).toEqual('GET');
+    req.flush(targetRide);
+  });
+
+  it('getRideByPetFriendly calls api/rides/PetFriendly', () => {
+    const targetRide: Ride = testRides[1];
+    const targetPetFriendly: boolean = targetRide.petFriendly;
+    rideListService.getRideByPetFriendly(targetPetFriendly).subscribe(
+      ride => expect(ride).toBe(targetRide)
+    );
+
+    const expectedUrl: string = rideListService.baseUrl + '/' + targetPetFriendly;
+    const req = httpTestingController.expectOne(expectedUrl);
+    expect(req.request.method).toEqual('GET');
+    req.flush(targetRide);
+  });
 
 
   it('editing a ride calls api/rides/update', () => {
