@@ -47,7 +47,8 @@ export class AddRideComponent implements OnInit {
     'seatsAvailable': [
       {type: 'min', message: 'Must have at least 1 seat available if driving'},
       {type: 'max', message: 'Must not have more than 12 seats'},
-      {type: 'pattern', message: 'Must contain only numbers'}
+      {type: 'pattern', message: 'Must contain only numbers'},
+      {type: 'required', message: 'Seats Available is required'}
     ]
   };
 
@@ -81,7 +82,8 @@ export class AddRideComponent implements OnInit {
         seatsAvailable: new FormControl('seatsAvailable', Validators.compose([
           Validators.min(0),
           Validators.max(12),
-          Validators.pattern('^[0-9]+')
+          Validators.pattern('^[0-9]+'),
+          Validators.required
         ]))
       })
     }
