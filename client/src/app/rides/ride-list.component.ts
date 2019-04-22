@@ -117,7 +117,7 @@ export class RideListComponent implements OnInit {
 
   openDialog(): void {
     const newRide: Ride = {driver: this.appComponent.getUsername(), destination: '', origin: '', roundTrip: false, driving: false,
-      departureDate: '', departureTime: '', notes: '', noSmoking: false, Eco: false, petFriendly: false};
+      departureDate: '', departureTime: '', notes: '', noSmoking: false, Eco: false, petFriendly: false, seatsAvailable: null};
     const dialogRef = this.dialog.open(AddRideComponent, <MatDialogConfig>{
       width: '500px',
       data: {ride: newRide}
@@ -145,7 +145,7 @@ export class RideListComponent implements OnInit {
   openSearchDialog(): void {
 
     const searchRide: Ride = {driver: '', destination: '', origin: '', roundTrip: null, driving: false,
-      departureDate: '', departureTime: '', notes: '', noSmoking: null, Eco: null, petFriendly: null};
+      departureDate: '', departureTime: '', notes: '', noSmoking: null, Eco: null, petFriendly: null, seatsAvailable: 0};
 
     const dialogRef = this.dialog.open(SearchRideComponent, <MatDialogConfig>{
       width: '500px',
@@ -185,8 +185,8 @@ export class RideListComponent implements OnInit {
 
   openEditDialog(currentId: object,currentDriver: string, currentDestination: string, currentOrigin: string,
                  currentRoundTrip: boolean, currentDriving: boolean, currentDepartureDate: string,
-                 currentDepartureTime: string, currentNotes: string, currentNoSmoking: boolean,
-                 currentEco: boolean, currentPetFriendly: boolean): void {
+                 currentDepartureTime: string, currentNotes: string, currentNoSmoking: boolean, currentEco: boolean,
+                 currentPetFriendly: boolean, currentSeatsAvailable: number): void {
     const currentRide: Ride = {
       _id: currentId,
       driver: this.appComponent.getUsername(),
@@ -199,7 +199,8 @@ export class RideListComponent implements OnInit {
       notes: currentNotes,
       noSmoking: currentNoSmoking,
       Eco: currentEco,
-      petFriendly: currentPetFriendly
+      petFriendly: currentPetFriendly,
+      seatsAvailable: currentSeatsAvailable
     };
 
     const dialogRef = this.dialog.open(EditRideComponent, <MatDialogConfig>{

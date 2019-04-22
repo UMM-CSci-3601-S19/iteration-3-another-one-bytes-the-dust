@@ -65,12 +65,13 @@ public class RideRequestHandler {
     Boolean noSmoking = newRide.getBoolean("noSmoking");
     Boolean Eco = newRide.getBoolean("Eco");
     Boolean petFriendly = newRide.getBoolean("petFriendly");
+    int seatsAvailable = new Integer(newRide.getString("seatsAvailable"));
 
 
     System.err.println("Adding new ride [driver=" + driver + " destination=" + destination + " origin=" + origin + " roundTrip=" + roundTrip + " driving=" + driving
-      + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + " sortDateTime=" + sortDateTime + ']');
+      + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + " sortDateTime=" + sortDateTime + " seatsAvailable" + seatsAvailable +']');
     return rideController.addNewRide(driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes,
-      sortDateTime, noSmoking, Eco, petFriendly);
+      sortDateTime, noSmoking, Eco, petFriendly, seatsAvailable);
   }
 
   public Boolean updateRide(Request req, Response res) {
@@ -98,11 +99,12 @@ public class RideRequestHandler {
     Boolean noSmoking = editRide.getBoolean("noSmoking");
     Boolean Eco = editRide.getBoolean("Eco");
     Boolean petFriendly = editRide.getBoolean("petFriendly");
+    Number seatsAvailable = editRide.getInteger("seatsAvailable");
 
 
     System.err.println("Editing ride [id=" + id + " driver=" + driver + " destination=" + destination + " origin=" + origin + " roundTrip=" + roundTrip + " driving=" + driving
       + " departureDate=" + departureDate + " departureTime=" + departureTime + " notes=" + notes + " sortDateTime=" + sortDateTime + ']');
-    return rideController.updateRide(id, driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes, sortDateTime, noSmoking, Eco, petFriendly);
+    return rideController.updateRide(id, driver, destination, origin, roundTrip, driving, departureDate, departureTime, notes, sortDateTime, noSmoking, Eco, petFriendly, seatsAvailable);
   }
 
   public Boolean deleteRide(Request req, Response res){
