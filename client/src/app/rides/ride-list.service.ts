@@ -17,7 +17,7 @@ export class RideListService {
 
   getRides(searchedDestination: string, searchedOrigin: string, searchedDate: string, searchedTime: string,
            searchedDriving: boolean, searchedRoundTrip: boolean, searchedNoSmoking: boolean, searchedEco: boolean,
-           searchedPetFriendly: boolean): Observable<Ride[]> {
+           searchedPetFriendly: boolean, searchedId?: object): Observable<Ride[]> {
     console.log("searched Destination to getRides is " + searchedDestination);
     console.log("searched Origin to getRides is " + searchedOrigin);
     console.log("searched date to getRides is " + searchedDate);

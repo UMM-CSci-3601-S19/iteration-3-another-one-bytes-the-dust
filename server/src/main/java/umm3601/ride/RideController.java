@@ -53,6 +53,8 @@ public class RideController {
     appendDoc = appendDoc.append(targetString, contentRegQuery);
     return appendDoc;
   }
+
+
   // Method for appending the filterDoc in getRides for booleans
   private Document appendFilterDocBoolean(Map<String, String[]> appendParams, String appendBoolean, Document appendDoc){
     String targetContent = (appendParams.get(appendBoolean)[0]);
@@ -62,7 +64,7 @@ public class RideController {
     System.err.println("This is the targetBoolean " + targetBoolean);
     Document contentRegQuery = new Document();
     contentRegQuery.append("$regex", targetContent);
-    contentRegQuery.append("$options", "i");
+    contentRegQuery.append("$optioappendFilterDocStringns", "i");
     appendDoc = appendDoc.append(appendBoolean, contentRegQuery);
     return appendDoc;
   }
@@ -73,10 +75,27 @@ public class RideController {
 
     System.err.println("I got to ride Controller");
 
-    //the following _id filter was added by Mitchell, it might have unintended consequences, so be wary
+    //the fol      String[] tempvar = queryParams.get("_id");
+      System.out.println(tempvar[0]);
+      String tempvar2 = tempvar[0];
+      //getRide("fgsds");
+
+      Object knownId = "uwehrfuih";
+      String jsonResult = getRide(knownId.toString());
+      Document result = Document.parse(jsonResult);
+      System.out.println(result);lowing _id filter was added by Mitchell, it might have unintended consequences, so be wary
     if (queryParams.containsKey("_id")) {
       String key = "_id";
-      filterDoc = appendFilterDocString(queryParams, key, filterDoc);
+//      String[] tempvar = queryParams.get("_id");
+//      System.out.println(tempvar[0]);
+//      String tempvar2 = tempvar[0];
+//      //getRide("fgsds");
+//
+//      Object knownId = "uwehrfuih";
+//      String jsonResult = getRide(knownId.toString());
+//      Document result = Document.parse(jsonResult);
+//      System.out.println(result);
+
     }
     System.err.println("I got past the _id filter");
 
