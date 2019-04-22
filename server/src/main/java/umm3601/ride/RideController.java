@@ -207,6 +207,7 @@ public class RideController {
     updateFields.append("petFriendly" , petFriendly);
 
 
+
     Document updateDoc = new Document("$set", updateFields);
     try{
       UpdateResult out = rideCollection.updateOne(filter, updateDoc);
