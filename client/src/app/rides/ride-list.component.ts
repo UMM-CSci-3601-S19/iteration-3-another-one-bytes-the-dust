@@ -117,7 +117,7 @@ export class RideListComponent implements OnInit {
 
   openDialog(): void {
     const newRide: Ride = {driver: this.appComponent.getUsername(), destination: '', origin: '', roundTrip: false, driving: false,
-      departureDate: '', departureTime: '', notes: '', noSmoking: false, Eco: false, petFriendly: false, seatsAvailable: 0};
+      departureDate: '', departureTime: '', notes: '', noSmoking: false, Eco: false, petFriendly: false, seatsAvailable: null};
     const dialogRef = this.dialog.open(AddRideComponent, <MatDialogConfig>{
       width: '500px',
       data: {ride: newRide}
