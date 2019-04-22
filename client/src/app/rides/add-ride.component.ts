@@ -45,7 +45,7 @@ export class AddRideComponent implements OnInit {
       {type: 'pattern', message: 'notes must contain only english and certain symbols'},
     ],
     'seatsAvailable': [
-      {type: 'min', message: 'Must have at least 1 seat available'},
+      {type: 'min', message: 'Must have at least 1 seat available if driving'},
       {type: 'max', message: 'Must not have more than 12 seats'},
       {type: 'pattern', message: 'Must contain only numbers'}
     ]
