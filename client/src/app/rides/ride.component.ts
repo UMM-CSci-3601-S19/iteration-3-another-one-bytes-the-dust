@@ -93,7 +93,7 @@ export class RideComponent implements OnInit {
 
   setOrigin(origin: string) {
     this.origin = origin;
-    this.subscribeToServiceForOrigin()
+    this.subscribeToServiceForOrigin();
   }
 
   setDriving(driving: boolean) {
