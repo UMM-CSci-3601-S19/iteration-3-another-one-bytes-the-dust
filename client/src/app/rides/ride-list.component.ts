@@ -22,9 +22,9 @@ export class RideListComponent implements OnInit {
   public rides: Ride[];
   public searchedRides: Ride[];
   public filteredRides: Ride[];
-  public rideOrigin: string;
   public rideDriving: boolean;
   public rideDestination: string;
+  public rideOrigin: string;
   public rideRoundTrip: boolean;
   public rideNoSmoking: boolean;
   public rideEco: boolean;

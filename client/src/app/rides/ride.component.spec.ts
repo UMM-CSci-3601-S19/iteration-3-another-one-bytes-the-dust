@@ -12,6 +12,8 @@ describe('Ride component', () => {
 
   let rideListServiceStub: {
     getRideByDestination: (rideDestination: string) => Observable<Ride>
+    getRideByOrigin: (rideOrigin: string) => Observable<Ride>
+    getRideByDriving: (rideDriving: boolean) => Observable<Ride>
     getRideByRoundTrip: (rideRoundTrip: Boolean) => Observable<Ride>
     getRideByNoSmoking: (NoSmoking: Boolean) => Observable<Ride>
     getRideByEco: (eco: Boolean) => Observable<Ride>
@@ -68,7 +70,7 @@ describe('Ride component', () => {
         }
       ].find(ride => ride.destination === rideDestination)),
 
-      getRideByRoundTrip: (rideRoundTrip: boolean) => Observable.of([
+      getRideByOrigin: (rideOrigin: string) => Observable.of([
         {
           driver: 'Hagrid',
           destination: 'Hogwarts',
@@ -82,7 +84,7 @@ describe('Ride component', () => {
           noSmoking: true,
           Eco: true,
           petFriendly: false,
-          seatsAvailable: 8,
+          seatsAvailable: 5,
         },
         {
           driver: 'Lucy',
@@ -97,7 +99,55 @@ describe('Ride component', () => {
           noSmoking: true,
           Eco: true,
           petFriendly: false,
-          seatsAvailable: 4,
+          seatsAvailable: 1,
+        },
+        {
+          driver: 'Student',
+          destination: 'Morris',
+          origin: 'The Outside',
+          roundTrip: false,
+          departureDate: '08-02-2019',
+          departureTime: '7:00 PM',
+          driving: true,
+          notes: 'There is no escaping Morris',
+          sortDateTime: '201908021900',
+          noSmoking: true,
+          Eco: true,
+          petFriendly: false,
+          seatsAvailable: 9,
+        }
+      ].find(ride => ride.origin === rideOrigin)),
+
+      getRideByDriving: (rideDriving: boolean) => Observable.of([
+        {
+          driver: 'Hagrid',
+          destination: 'Hogwarts',
+          origin: '4 Privet Drive',
+          roundTrip: true,
+          departureDate: '05-16-2007',
+          departureTime: '6:00 PM',
+          driving: true,
+          notes: 'I will be arriving in a flying motorcycle',
+          sortDateTime: '200705161800',
+          noSmoking: true,
+          Eco: true,
+          petFriendly: false,
+          seatsAvailable: 5,
+        },
+        {
+          driver: 'Lucy',
+          destination: 'Narnia',
+          origin: 'Wardrobe',
+          roundTrip: true,
+          departureDate: '07-13-2020',
+          departureTime: '5:00 PM',
+          driving: true,
+          notes: 'Dress for cold',
+          sortDateTime: '202007131700',
+          noSmoking: true,
+          Eco: true,
+          petFriendly: false,
+          seatsAvailable: 1,
         },
         {
           driver: 'Student',
@@ -112,7 +162,55 @@ describe('Ride component', () => {
           noSmoking: true,
           Eco: true,
           petFriendly: false,
-          seatsAvailable: 3,
+          seatsAvailable: 9,
+        }
+      ].find(ride => ride.driving === rideDriving)),
+
+      getRideByRoundTrip: (rideRoundTrip: boolean) => Observable.of([
+        {
+          driver: 'Hagrid',
+          destination: 'Hogwarts',
+          origin: '4 Privet Drive',
+          roundTrip: true,
+          departureDate: '05-16-2007',
+          departureTime: '6:00 PM',
+          driving: true,
+          notes: 'I will be arriving in a flying motorcycle',
+          sortDateTime: '200705161800',
+          noSmoking: true,
+          Eco: true,
+          petFriendly: false,
+          seatsAvailable: 5,
+        },
+        {
+          driver: 'Lucy',
+          destination: 'Narnia',
+          origin: 'Wardrobe',
+          roundTrip: true,
+          departureDate: '07-13-2020',
+          departureTime: '5:00 PM',
+          driving: true,
+          notes: 'Dress for cold',
+          sortDateTime: '202007131700',
+          noSmoking: true,
+          Eco: true,
+          petFriendly: false,
+          seatsAvailable: 1,
+        },
+        {
+          driver: 'Student',
+          destination: 'Morris',
+          origin: 'The Outside',
+          roundTrip: false,
+          departureDate: '08-02-2019',
+          departureTime: '7:00 PM',
+          driving: false,
+          notes: 'There is no escaping Morris',
+          sortDateTime: '201908021900',
+          noSmoking: true,
+          Eco: true,
+          petFriendly: false,
+          seatsAvailable: 9,
         }
       ].find(ride => ride.roundTrip === rideRoundTrip)),
 
@@ -130,6 +228,7 @@ describe('Ride component', () => {
           noSmoking: true,
           Eco: true,
           petFriendly: false,
+          seatsAvailable: 5,
         },
         {
           driver: 'Lucy',
@@ -144,6 +243,7 @@ describe('Ride component', () => {
           noSmoking: true,
           Eco: true,
           petFriendly: false,
+          seatsAvailable: 1,
         },
         {
           driver: 'Student',
@@ -158,6 +258,7 @@ describe('Ride component', () => {
           noSmoking: true,
           Eco: true,
           petFriendly: false,
+          seatsAvailable: 9,
         }
       ].find(ride => ride.noSmoking === rideNoSmoking)),
 
@@ -175,6 +276,7 @@ describe('Ride component', () => {
           noSmoking: true,
           Eco: true,
           petFriendly: false,
+          seatsAvailable: 5,
         },
         {
           driver: 'Lucy',
@@ -189,6 +291,7 @@ describe('Ride component', () => {
           noSmoking: true,
           Eco: true,
           petFriendly: false,
+          seatsAvailable: 1,
         },
         {
           driver: 'Student',
@@ -203,6 +306,7 @@ describe('Ride component', () => {
           noSmoking: true,
           Eco: true,
           petFriendly: false,
+          seatsAvailable: 9,
         }
       ].find(ride => ride.Eco === rideEco)),
 
@@ -220,6 +324,7 @@ describe('Ride component', () => {
           noSmoking: true,
           Eco: true,
           petFriendly: true,
+          seatsAvailable: 5,
         },
         {
           driver: 'Lucy',
@@ -234,6 +339,7 @@ describe('Ride component', () => {
           noSmoking: true,
           Eco: true,
           petFriendly: false,
+          seatsAvailable: 1,
         },
         {
           driver: 'Student',
@@ -248,6 +354,7 @@ describe('Ride component', () => {
           noSmoking: false,
           Eco: true,
           petFriendly: false,
+          seatsAvailable: 9,
         }
       ].find(ride => ride.petFriendly === ridePetFriendly)),
     };
@@ -283,11 +390,31 @@ describe('Ride component', () => {
     expect(rideComponent.ride.petFriendly).toBe(false);
   });
 
+  it('can retrieve all the fields given origin', () => {
+    rideComponent.setOrigin('4 Privet Drive');
+    expect(rideComponent.ride).toBeDefined();
+    expect(rideComponent.ride.driver).toBe('Hagrid');
+    expect(rideComponent.ride.destination).toBe('Hogwarts');
+    expect(rideComponent.ride.roundTrip).toBe(true);
+    expect(rideComponent.ride.departureDate).toBe('05-16-2007');
+    expect(rideComponent.ride.departureTime).toBe('6:00 PM');
+    expect(rideComponent.ride.driving).toBe(true);
+    expect(rideComponent.ride.notes).toBe('I will be arriving in a flying motorcycle');
+    expect(rideComponent.ride.sortDateTime).toBe('200705161800');
+    expect(rideComponent.ride.noSmoking).toBe(true);
+    expect(rideComponent.ride.Eco).toBe(true);
+    expect(rideComponent.ride.petFriendly).toBe(false);
+  });
+
   it('returns undefined for Canada', () => {
     rideComponent.setDestination('Canada');
     expect(rideComponent.ride).toBeUndefined();
   });
 
+  it('can retrieve correct driving', () => {
+    rideComponent.setDriving(false);
+    expect(rideComponent.ride.driving).toBe(false);
+  });
 
   it('can retrieve correct roundTrip', () => {
     rideComponent.setRoundTrip(false);

@@ -16,9 +16,12 @@ import {EditRideComponent} from "./rides/edit-ride.component";
 import {DeleteRideComponent} from "./rides/delete-ride.component";
 import {SearchRideComponent} from "./rides/search-ride.component";
 
+//////////////////////////////////////////////////////////////////////////////
+//We'll use this in the future, commented out for the sake of test coverage.//
+//////////////////////////////////////////////////////////////////////////////
 
-import {UserListComponent} from "./users/user-list.component";
-import {UserListService} from "./users/user-list.service";
+// import {UserListComponent} from "./users/user-list.component";
+// import {UserListService} from "./users/user-list.service";
 
 import {VehicleListComponent} from "./vehicles/vehicle-list.component";
 import {VehicleListService} from "./vehicles/vehicle-list.service";
@@ -57,14 +60,14 @@ import {MatButtonModule, MatOptionModule, MatSelectModule, MatTabsModule} from "
     AddRideComponent,
     EditRideComponent,
     DeleteRideComponent,
-    UserListComponent,
+    //UserListComponent,
     SearchRideComponent,
     VehicleListComponent,
     AddVehicleComponent
   ],
   providers: [
     RideListService,
-    UserListService,
+    //UserListService,
     VehicleListService,
     AppService,
     {provide: APP_BASE_HREF, useValue: '/'},

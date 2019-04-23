@@ -2,7 +2,6 @@
 // import { Ride } from './ride';
 // import { Observable } from "rxjs/Observable";
 // import { CustomModule } from '../custom.module';
-// import {MAT_CHECKBOX_CLICK_ACTION, MAT_CHECKBOX_CONTROL_VALUE_ACCESSOR, MAT_CHECKBOX_REQUIRED_VALIDATOR} from "@angular/material";
 //
 // import { RideListComponent } from './ride-list.component';
 // import { RideListService } from "./ride-list.service";
