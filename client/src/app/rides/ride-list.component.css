@@ -13,6 +13,7 @@
 .mat-card-title {
   background-color: #b781d8;
   padding-bottom: 15px;
+  margin: 0px;
 }
 
 .mat-card-content{

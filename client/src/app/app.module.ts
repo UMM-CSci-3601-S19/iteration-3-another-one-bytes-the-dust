@@ -15,6 +15,7 @@ import {AddRideComponent} from "./rides/add-ride.component";
 import {EditRideComponent} from "./rides/edit-ride.component";
 import {DeleteRideComponent} from "./rides/delete-ride.component";
 import {SearchRideComponent} from "./rides/search-ride.component";
+import {ViewRideComponent} from "./rides/view-ride.component";
 
 //////////////////////////////////////////////////////////////////////////////
 //We'll use this in the future, commented out for the sake of test coverage.//
@@ -60,6 +61,7 @@ import {MatButtonModule, MatOptionModule, MatSelectModule, MatTabsModule} from "
     AddRideComponent,
     EditRideComponent,
     DeleteRideComponent,
+    ViewRideComponent,
     //UserListComponent,
     SearchRideComponent,
     VehicleListComponent,
@@ -77,6 +79,7 @@ import {MatButtonModule, MatOptionModule, MatSelectModule, MatTabsModule} from "
     EditRideComponent,
     DeleteRideComponent,
     SearchRideComponent,
+    ViewRideComponent,
     AddVehicleComponent
   ],
   bootstrap: [AppComponent]

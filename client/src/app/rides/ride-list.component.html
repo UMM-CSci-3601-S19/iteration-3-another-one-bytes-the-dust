@@ -9,6 +9,7 @@
           console.log("No support. Use a fallback such as cookies.")
         }
       </script>
+      <div id="filters" style="margin-left: 20px">
       <mat-checkbox id="checkboxDriving" (checked)="rideDriving" (click)="toggleDriving()" matTooltip="Driving" matTooltipPosition="below">
         Driving? </mat-checkbox>
       <mat-checkbox id="checkboxRoundTrip" (checked)="rideRoundTrip" (click)="toggleRoundTrip()" matTooltip="Round Trip" matTooltipPosition="below">
@@ -19,9 +20,10 @@
         <mat-icon >local_florist</mat-icon> </mat-checkbox>
       <mat-checkbox id="checkboxPetFriendly" (checked)="ridePetFriendly" (click)="togglePetFriendly()" matTooltip="Pet-friendly" matTooltipPosition="below">
         <mat-icon >pets</mat-icon> </mat-checkbox>
-
+      </div>
     </div>
-        <mat-card-content id="background" *ngIf="rides; else ridesError" >
+
+        <mat-card-content id="background" *ngIf="rides; else ridesError">
           <mat-card id="rides" #elem class="rides" [id]="ride.destination"
                                *ngFor="let ride of this.filterRides(rideRoundTrip, rideDriving, rideDestination, rideNoSmoking, rideEco, ridePetFriendly)">
 
@@ -31,6 +33,11 @@
                 <mat-icon class="dots">more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu" >
+                <button mat-menu-item (click)="openViewDialog(ride._id, ride.driver, ride.destination,
+                ride.origin, ride.roundTrip, ride.driving, ride.departureDate, ride.departureTIme, ride.notes, ride.noSmoking, ride.Eco, ride.petFriendly, ride.seatsAvailable)" >
+                  <span>View Ride</span>
+                </button>
+
                 <button mat-menu-item (click)="openEditDialog(ride._id, ride.driver, ride.destination,
                 ride.origin, ride.roundTrip, ride.driving, ride.departureDate, ride.departureTime, ride.notes, ride.noSmoking, ride.Eco, ride.petFriendly, ride.seatsAvailable)" >
 
@@ -60,7 +67,6 @@
             <mat-divider></mat-divider>
 
             <mat-card-content class="description">
-              <p>{{ride.driver}}</p>
             <div class="bottomInfo">
               <div>{{ride.departureDate}} at {{ride.departureTime}}</div>
               <div class="bottomInfo2">
@@ -68,15 +74,8 @@
                 <mat-icon *ngIf="ride.Eco">local_florist</mat-icon>
                 <mat-icon *ngIf="ride.petFriendly">pets</mat-icon>
               </div>
-              <div class="seats">{{ride.seatsAvailable}} Seats Available</div>
               <!--<div class=ride.roundTrip ><mat-icon *ngIf="ride.roundTrip">repeat</mat-icon></div>-->
             </div>
-            </mat-card-content>
-
-            <mat-divider></mat-divider>
-
-            <mat-card-content class="notes">
-              <div>{{ride.notes}}</div>
             </mat-card-content>
               </span>
           </mat-card>

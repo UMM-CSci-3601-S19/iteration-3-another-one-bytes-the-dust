@@ -103,7 +103,7 @@ public class Server {
         String authCode = obj.getString("code");
 
       try {
-        File file = new File("./iteration-3-another-one-bytes-the-dust/server/src/main/java/umm3601/server_files/credentials.json");
+        File file = new File("src/main/java/umm3601/server_files/clientSF.json");
         String path = file.getAbsolutePath();
         System.out.println("The path: "+ path);
         String CLIENT_SECRET_FILE = path;
@@ -124,7 +124,7 @@ public class Server {
             //Your top level domain. Must match "redirect_uris" field in credentials.json. Must be https. No port.
             clientSecrets.getDetails().getClientSecret(),
             authCode,
-            "https://spacejlam.me")
+            "http://localhost:9000")
 
             //Not sure if we have a redirectUri
 

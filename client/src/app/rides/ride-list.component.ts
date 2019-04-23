@@ -8,6 +8,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material";
 import {DeleteRideComponent} from "./delete-ride.component";
 import {SearchRideComponent} from "./search-ride.component";
 import {AppComponent} from "../app.component";
+import {ViewRideComponent} from "./view-ride.component";
 
 
 @Component({
@@ -203,7 +204,7 @@ export class RideListComponent implements OnInit {
       seatsAvailable: currentSeatsAvailable
     };
 
-    const dialogRef = this.dialog.open(EditRideComponent, <MatDialogConfig>{
+    const dialogRef = this.dialog.open(ViewRideComponent, <MatDialogConfig>{
       width: '500px',
       data: {ride: currentRide}
     });
@@ -227,6 +228,44 @@ export class RideListComponent implements OnInit {
     });
   }
 
+
+  openViewDialog(currentId: object,currentDriver: string, currentDestination: string, currentOrigin: string,
+                 currentRoundTrip: boolean, currentDriving: boolean, currentDepartureDate: string,
+                 currentDepartureTime: string, currentNotes: string, currentNoSmoking: boolean,
+                 currentEco: boolean, currentPetFriendly: boolean, currentSeatsAvailable: number): void {
+    const currentRide: Ride = {
+      _id: currentId,
+      driver: this.appComponent.getUsername(),
+      destination: currentDestination,
+      origin: currentOrigin,
+      roundTrip: currentRoundTrip,
+      driving: currentDriving,
+      departureDate: currentDepartureDate,
+      departureTime: currentDepartureTime,
+      notes: currentNotes,
+      noSmoking: currentNoSmoking,
+      Eco: currentEco,
+      petFriendly: currentPetFriendly,
+      seatsAvailable: currentSeatsAvailable
+    };
+
+    const dialogRef = this.dialog.open(ViewRideComponent, <MatDialogConfig>{
+      width: '500px',
+      data: {ride: currentRide}
+    });
+
+
+    dialogRef.afterClosed().subscribe(currentRide => {
+      if (currentRide != null) {
+
+        this.rideListService.editRide(currentRide).subscribe(
+          result => {
+            this.highlightedDestination = result;
+            this.refreshRides();
+          });
+      }
+    });
+  }
 
   openDeleteDialog(currentId: object): void {
     console.log("openDeleteDialog");
