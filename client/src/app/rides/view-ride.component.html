@@ -16,8 +16,11 @@
     <li>
       Notes: {{data.ride.notes}}
     </li>
+    <li>
+      Seats left: {{data.ride.seatsAvailable}}
+    </li>
     <span *ngIf="data.ride.roundTrip === true">
-      <li>No Smoking</li>
+      <li>Round Trip</li>
     </span>
     <span *ngIf="data.ride.noSmoking === true">
       <li>No Smoking</li>

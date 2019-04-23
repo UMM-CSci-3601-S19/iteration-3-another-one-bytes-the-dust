@@ -232,7 +232,7 @@ export class RideListComponent implements OnInit {
   openViewDialog(currentId: object,currentDriver: string, currentDestination: string, currentOrigin: string,
                  currentRoundTrip: boolean, currentDriving: boolean, currentDepartureDate: string,
                  currentDepartureTime: string, currentNotes: string, currentNoSmoking: boolean,
-                 currentEco: boolean, currentPetFriendly: boolean): void {
+                 currentEco: boolean, currentPetFriendly: boolean, currentSeatsAvailable: number): void {
     const currentRide: Ride = {
       _id: currentId,
       driver: this.appComponent.getUsername(),
@@ -245,7 +245,8 @@ export class RideListComponent implements OnInit {
       notes: currentNotes,
       noSmoking: currentNoSmoking,
       Eco: currentEco,
-      petFriendly: currentPetFriendly
+      petFriendly: currentPetFriendly,
+      seatsAvailable: currentSeatsAvailable
     };
 
     const dialogRef = this.dialog.open(ViewRideComponent, <MatDialogConfig>{
