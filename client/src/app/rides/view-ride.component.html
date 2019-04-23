@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Ride Information</h1>
+<div mat-dialog-content>
+    <span *ngIf="data.ride.driving === true">
+      <div id="viewRideDriver">This ride is offered by {{data.ride.driver}}</div>
+    </span>
+    <span *ngIf="data.ride.driving === false">
+      {{data.ride.driver}} is looking for a ride.
+    </span>
+  <ul>
+    <li>
+      From: {{data.ride.origin}}
+    </li>
+    <li>
+      To: {{data.ride.destination}}
+    </li>
+    <li>
+      Notes: {{data.ride.notes}}
+    </li>
+    <span *ngIf="data.ride.roundTrip === true">
+      <li>No Smoking</li>
+    </span>
+    <span *ngIf="data.ride.noSmoking === true">
+      <li>No Smoking</li>
+    </span>
+    <span *ngIf="data.ride.Eco === true">
+      <li>Eco Friendly</li>
+    </span>
+    <span *ngIf="data.ride.petFriendly === true">
+      <li>Pet Friendly</li>
+    </span>
+  </ul>
+</div>

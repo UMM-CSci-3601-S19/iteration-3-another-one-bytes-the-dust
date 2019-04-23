@@ -31,6 +31,11 @@
                 <mat-icon class="dots">more_vert</mat-icon>
               </button>
               <mat-menu #menu="matMenu" >
+                <button mat-menu-item (click)="openViewDialog(ride._id, ride.driver, ride.destination,
+                ride.origin, ride.roundTrip, ride.driving, ride.departureDate, ride.departureTIme, ride.notes, ride.noSmoking, ride.Eco, ride.petFriendly)" >
+                  <span>View Ride</span>
+                </button>
+
                 <button mat-menu-item (click)="openEditDialog(ride._id, ride.driver, ride.destination,
                 ride.origin, ride.roundTrip, ride.driving, ride.departureDate, ride.departureTime, ride.notes, ride.noSmoking, ride.Eco, ride.petFriendly)" >
 
@@ -60,22 +65,12 @@
             <mat-divider></mat-divider>
 
             <mat-card-content class="description">
-              <p>{{ride.driver}}</p>
             <div class="bottomInfo">
               <div>{{ride.departureDate}} at {{ride.departureTime}}</div>
-              <div class="bottomInfo2">
-                <mat-icon *ngIf="ride.noSmoking">smoke_free</mat-icon>
-                <mat-icon *ngIf="ride.Eco">local_florist</mat-icon>
-                <mat-icon *ngIf="ride.petFriendly">pets</mat-icon>
-              </div>
             </div>
             </mat-card-content>
 
             <mat-divider></mat-divider>
-
-            <mat-card-content class="notes">
-              <div>{{ride.notes}}</div>
-            </mat-card-content>
               </span>
           </mat-card>
         </mat-card-content>
