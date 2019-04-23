@@ -1,3 +1,9 @@
+//////////////////////////////////////////////////////////////////////////////
+//We'll use this in the future, commented out for the sake of test coverage.//
+//////////////////////////////////////////////////////////////////////////////
+
+
+/*
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {User} from "./user";
@@ -61,3 +67,4 @@ export class UserListComponent implements OnInit {
     this.refreshVehicles();
   }
 }
+*/
