@@ -27,9 +27,14 @@ export class RidePage {
   }
 
   typeADestination(destination: string) {
-    const input = element(by.id('rideDestination'));
+    const input = element(by.id('destinationField'));
     input.click();
     input.sendKeys(destination);
+  }
+  typeAnOrigin(origin: string) {
+    const input = element(by.id('originField'));
+    input.click();
+    input.sendKeys(origin);
   }
 
   selectUpKey() {
@@ -45,8 +50,8 @@ export class RidePage {
   }
 
   getUniqueRide(destination: string) {
-    const ride = element(by.id(destination)).getText();
-    this.highlightElement(by.id(destination));
+    const ride = element(by.id('rideDestination')).getText();
+    this.highlightElement(by.id('rideDestination'));
 
     return ride;
   }

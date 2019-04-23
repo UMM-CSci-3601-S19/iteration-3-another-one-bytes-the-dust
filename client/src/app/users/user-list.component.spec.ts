@@ -1,9 +1,3 @@
-//////////////////////////////////////////////////////////////////////////////
-//We'll use this in the future, commented out for the sake of test coverage.//
-//////////////////////////////////////////////////////////////////////////////
-
-
-/*
 import {ComponentFixture, TestBed, async} from '@angular/core/testing';
 import{User} from "./user";
 import {UserListComponent} from "./user-list.component";
@@ -75,4 +69,3 @@ describe('User list', () => {
   }));
 
 });
-*/

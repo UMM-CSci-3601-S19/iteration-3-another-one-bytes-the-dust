@@ -1,9 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////
-//We'll use this in the future, commented out for the sake of test coverage.//
-//////////////////////////////////////////////////////////////////////////////
-
-
-/*import {Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {environment} from '../../environments/environment';
@@ -21,4 +16,4 @@ export class UserListService {
     return this.http.get<User[]>(this.userUrl);
   }
 
-}*/
+}
